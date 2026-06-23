@@ -664,6 +664,12 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .encuentrame-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
 
     /* OCULTAR CURSOR EN MÓVIL */
     @media (hover: none), (max-width: 768px) {
@@ -701,7 +707,8 @@
 
       #contacto { padding: 80px 28px; }
       #encuentrame { padding: 80px 28px; }
-      #encuentrame .reveal > div { grid-template-columns: 1fr !important; }
+      .encuentrame-grid { grid-template-columns: 1fr !important; }
+      .mapa-desktop { display: none !important; }
       .form-row { grid-template-columns: 1fr; }
       .contact-wrapper { padding: 0; }
 
@@ -932,8 +939,8 @@
       <p style="font-size:0.7rem;letter-spacing:6px;color:#c9a84c;text-transform:uppercase;margin-bottom:12px">Encuéntrame</p>
       <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;">Estoy en <span style="background:linear-gradient(135deg,#c9a84c,#f0d080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Santiago de Chile</span></h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="reveal">
-      <div>
+    <div class="encuentrame-grid reveal">
+      <div class="mapa-desktop">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.4!2d-70.7372!3d-33.4832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c3b3e3c3e3c3%3A0x0!2sPadre+Hurtado%2C+Santiago%2C+Chile!5e0!3m2!1ses!2scl!4v1" width="100%" height="280" style="border:1px solid rgba(201,168,76,0.2);filter:grayscale(80%) invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy"></iframe>
       </div>
       <div style="display:flex;flex-direction:column;gap:24px;justify-content:center;">
@@ -958,11 +965,11 @@
             <a href="mailto:alonsostudiodigitalch@gmail.com" style="font-size:0.9rem;color:rgba(255,255,255,0.6);text-decoration:none;">alonsostudiodigitalch@gmail.com</a>
           </div>
         </div>
-        <div style="display:flex;gap:12px;margin-top:8px;">
-          <a href="https://www.instagram.com/alonsostudio_web" target="_blank" style="display:flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid rgba(201,168,76,0.25);text-decoration:none;color:#c9a84c;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s;">
+        <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;">
+          <a href="https://www.instagram.com/alonsostudio_web" target="_blank" style="display:flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid rgba(201,168,76,0.25);text-decoration:none;color:#c9a84c;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;">
             📸 Instagram
           </a>
-          <a href="https://www.facebook.com/alonsostudio" target="_blank" style="display:flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid rgba(201,168,76,0.25);text-decoration:none;color:#c9a84c;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s;">
+          <a href="https://www.facebook.com/alonsostudio.web" target="_blank" style="display:flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid rgba(201,168,76,0.25);text-decoration:none;color:#c9a84c;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;">
             👥 Facebook
           </a>
         </div>
@@ -974,10 +981,10 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ALONSO STUDIO</div>
-  <div class="footer-copy">© 2025 — Todos los derechos reservados — Alonso Cifuentes</div>
+  <div class="footer-copy">© 2025 — 2026 Todos los derechos reservados — Alonso Cifuentes</div>
   <div style="display:flex;gap:16px;">
-    <a href="https://www.instagram.com/alonsostudio_web" target="_blank" style="color:rgba(201,168,76,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:1px;transition:color 0.3s;">Instagram</a>
-    <a href="mailto:alonsostudiodigitalch@gmail.com" style="color:rgba(201,168,76,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:1px;transition:color 0.3s;">Correo</a>
+    <a href="https://www.instagram.com/alonsostudio_web" target="_blank" style="color:rgba(201,168,76,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:1px;">Instagram</a>
+    <a href="mailto:alonsostudiodigitalch@gmail.com" style="color:rgba(201,168,76,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:1px;">Correo</a>
   </div>
 </footer>
 
