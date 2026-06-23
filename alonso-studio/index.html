@@ -700,6 +700,8 @@
       .step { padding: 0 8px; }
 
       #contacto { padding: 80px 28px; }
+      #encuentrame { padding: 80px 28px; }
+      #encuentrame .reveal > div { grid-template-columns: 1fr !important; }
       .form-row { grid-template-columns: 1fr; }
       .contact-wrapper { padding: 0; }
 
@@ -786,20 +788,20 @@
     <div class="service-card reveal">
       <span class="service-icon">⚡</span>
       <h3 class="service-name">Plan Base</h3>
-      <p class="service-desc">Sitio web profesional de 3 a 5 páginas con formulario de contacto que llega automático a tu WhatsApp con todos los datos del cliente listos para que solo envíes tu cuenta bancaria</p>
+      <p class="service-desc">Web profesional diseñada a medida para celular y computador — para que tu negocio sea visible genere confianza y reciba contactos de inmediato. Incluye diseño exclusivo adaptado a tus colores y logo — estructura completa con inicio, servicios, por qué elegirnos y contacto — formulario inteligente que envía los datos del cliente directo a tu WhatsApp — integración de redes sociales — mapa Google para que te encuentren — y optimización móvil de carga rápida. La web es 100% tuya desde el primer día</p>
       <div class="service-price">$150.000 <small>CLP</small></div>
     </div>
     <div class="service-card reveal">
       <div class="badge">Más elegido</div>
       <span class="service-icon">🔥</span>
       <h3 class="service-name">Plan Premium</h3>
-      <p class="service-desc">Todo lo del plan base más agenda 100% automática donde tus clientes eligen fecha y hora solos directamente en tu web y tú solo abres tu calendario y los atiendes sin interrupciones</p>
+      <p class="service-desc">Todo lo del plan base más un sistema que convierte tu web en un trabajador digital 24/7. Tus clientes ven tus horarios disponibles en tiempo real y reservan solos — bloqueo de turnos y descansos desde tu celular — recordatorios automáticos para que no olviden su cita — pasarela de pagos opcional para recibir abonos o pagos completos antes de atender — y hasta 3 correos corporativos para ti y tu equipo. Cero mensajes que responder — la web agenda por ti mientras descansas</p>
       <div class="service-price">$200.000 <small>CLP</small></div>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">✦</span>
       <h3 class="service-name">Soporte Anual</h3>
-      <p class="service-desc">Actualizaciones de contenido con cambio de precios nuevas fotos y ajustes de diseño para que tu web esté siempre al día sin que tú tengas que tocar nada</p>
+      <p class="service-desc">Mantén tu web al día sin mover un dedo. Incluye hosting y servidor activo los 365 días — soporte técnico directo por WhatsApp — copias de seguridad de tu sitio — y hasta 2 actualizaciones al año sin costo extra. Si suben tus precios o cambias de dirección me avisas y queda listo en minutos. Cambios adicionales desde $15.000</p>
       <div class="service-price">$70.000 <small>CLP / AÑO</small></div>
     </div>
   </div>
@@ -923,11 +925,60 @@
   </div>
 </section>
 
+<!-- MAPA Y REDES -->
+<section id="encuentrame" style="position:relative;z-index:2;padding:80px 60px;background:rgba(0,0,0,0.7);border-top:1px solid rgba(201,168,76,0.1);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:60px;" class="reveal">
+      <p style="font-size:0.7rem;letter-spacing:6px;color:#c9a84c;text-transform:uppercase;margin-bottom:12px">Encuéntrame</p>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;">Estoy en <span style="background:linear-gradient(135deg,#c9a84c,#f0d080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Santiago de Chile</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="reveal">
+      <div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.4!2d-70.7372!3d-33.4832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c3b3e3c3e3c3%3A0x0!2sPadre+Hurtado%2C+Santiago%2C+Chile!5e0!3m2!1ses!2scl!4v1" width="100%" height="280" style="border:1px solid rgba(201,168,76,0.2);filter:grayscale(80%) invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px;justify-content:center;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="font-size:1.4rem">📍</span>
+          <div>
+            <p style="font-size:0.7rem;letter-spacing:2px;color:#c9a84c;text-transform:uppercase;margin-bottom:4px">Ubicación</p>
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);">Padre Hurtado — Santiago de Chile</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="font-size:1.4rem">💬</span>
+          <div>
+            <p style="font-size:0.7rem;letter-spacing:2px;color:#c9a84c;text-transform:uppercase;margin-bottom:4px">WhatsApp</p>
+            <a href="https://wa.me/56939665163" target="_blank" style="font-size:0.9rem;color:rgba(255,255,255,0.6);text-decoration:none;">+56 9 3966 5163</a>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="font-size:1.4rem">✉️</span>
+          <div>
+            <p style="font-size:0.7rem;letter-spacing:2px;color:#c9a84c;text-transform:uppercase;margin-bottom:4px">Correo</p>
+            <a href="mailto:alonsostudiodigitalch@gmail.com" style="font-size:0.9rem;color:rgba(255,255,255,0.6);text-decoration:none;">alonsostudiodigitalch@gmail.com</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:8px;">
+          <a href="https://www.instagram.com/alonsostudio_web" target="_blank" style="display:flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid rgba(201,168,76,0.25);text-decoration:none;color:#c9a84c;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s;">
+            📸 Instagram
+          </a>
+          <a href="https://www.facebook.com/alonsostudio" target="_blank" style="display:flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid rgba(201,168,76,0.25);text-decoration:none;color:#c9a84c;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s;">
+            👥 Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ALONSO STUDIO</div>
-  <div class="footer-copy">© 2025 — Todos los derechos reservados</div>
-  <div class="footer-name">Alonso Cifuentes</div>
+  <div class="footer-copy">© 2025 — Todos los derechos reservados — Alonso Cifuentes</div>
+  <div style="display:flex;gap:16px;">
+    <a href="https://www.instagram.com/alonsostudio_web" target="_blank" style="color:rgba(201,168,76,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:1px;transition:color 0.3s;">Instagram</a>
+    <a href="mailto:alonsostudiodigitalch@gmail.com" style="color:rgba(201,168,76,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:1px;transition:color 0.3s;">Correo</a>
+  </div>
 </footer>
 
 <script>
