@@ -96,6 +96,16 @@
     .portfolio-name { font-family:'Cinzel',serif; font-size:0.95rem; font-weight:700; margin-bottom:4px; }
     .portfolio-type { font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold); }
     .portfolio-placeholder { width:100%; height:220px; background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(0,0,0,0.5)); display:flex; align-items:center; justify-content:center; }
+    .portfolio-brand { background:linear-gradient(135deg,#0a0a0a 0%,#1a1400 60%,#0f0c00 100%); border-bottom:1px solid rgba(201,168,76,0.15); }
+    .port-brand-inner { text-align:center; }
+    .port-brand-logo { font-family:'Cinzel',serif; font-size:1.6rem; font-weight:900; letter-spacing:6px; background:linear-gradient(135deg,var(--gold),#e8a020); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2; }
+    .port-brand-line { width:40px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:12px auto; }
+    .port-brand-sub { font-size:0.6rem; letter-spacing:4px; text-transform:uppercase; color:rgba(201,168,76,0.5); }
+    .portfolio-demo { background:linear-gradient(135deg,#0a0a0a 0%,#0d0d0d 100%); border-bottom:1px solid rgba(201,168,76,0.1); }
+    .port-demo-inner { text-align:center; }
+    .port-demo-icon { font-size:2.2rem; color:var(--gold); margin-bottom:10px; opacity:0.7; }
+    .port-demo-name { font-family:'Cinzel',serif; font-size:1rem; font-weight:700; color:rgba(255,255,255,0.8); margin-bottom:8px; letter-spacing:2px; }
+    .port-demo-tag { font-size:0.62rem; letter-spacing:3px; text-transform:uppercase; color:rgba(201,168,76,0.5); }
     .portfolio-placeholder span { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:rgba(201,168,76,0.4); }
 
     /* POR QUÉ YO */
@@ -349,8 +359,12 @@
   </div>
   <div class="portfolio-grid">
     <div class="portfolio-item reveal">
-      <div class="portfolio-placeholder">
-        <span>Captura de pantalla — Alonso Studio</span>
+      <div class="portfolio-placeholder portfolio-brand">
+        <div class="port-brand-inner">
+          <div class="port-brand-logo">ALONSO<br/>STUDIO</div>
+          <div class="port-brand-line"></div>
+          <div class="port-brand-sub">Diseño Web · Santiago de Chile</div>
+        </div>
       </div>
       <div class="portfolio-info">
         <p class="portfolio-name">Alonso Studio</p>
@@ -358,17 +372,21 @@
       </div>
     </div>
     <div class="portfolio-item reveal">
-      <div class="portfolio-placeholder">
-        <span>Captura de pantalla — El Russo</span>
+      <div class="portfolio-placeholder portfolio-demo">
+        <div class="port-demo-inner">
+          <div class="port-demo-icon">✂</div>
+          <div class="port-demo-name">Demo — Barbería</div>
+          <div class="port-demo-tag">Agenda · Reservas · Servicios</div>
+        </div>
       </div>
       <div class="portfolio-info">
-        <p class="portfolio-name">Barbería El Russo</p>
-        <p class="portfolio-type">Barbería — Plan Base con reservas</p>
+        <p class="portfolio-name">Demo Barbería</p>
+        <p class="portfolio-type">Concepto — Plan Base con reservas</p>
       </div>
     </div>
     <div class="portfolio-item reveal">
-      <div class="portfolio-placeholder" style="flex-direction:column;gap:12px;">
-        <span style="font-size:1.5rem">+</span>
+      <div class="portfolio-placeholder" style="flex-direction:column;gap:12px;min-height:220px;">
+        <span style="font-size:2rem;color:rgba(201,168,76,0.35)">+</span>
         <span>Tu negocio podría estar aquí</span>
       </div>
       <div class="portfolio-info">
