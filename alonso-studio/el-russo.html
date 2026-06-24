@@ -48,10 +48,14 @@
     .hero-sub { font-family:'Cinzel',serif; font-size:clamp(1rem,2.5vw,1.5rem); font-weight:400; color:rgba(255,255,255,0.55); letter-spacing:3px; margin-bottom:48px; opacity:0; animation:fadeUp 1s ease 0.8s forwards; }
     .hero-divider { width:80px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:0 auto 48px; opacity:0; animation:fadeIn 1s ease 1s forwards; }
     .hero-btns { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; opacity:0; animation:fadeUp 1s ease 1.1s forwards; }
-    .btn-gold { background:linear-gradient(135deg,var(--gold),#e8a020); color:#000; padding:16px 44px; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; font-weight:700; border:none; cursor:pointer; text-decoration:none; transition:all 0.3s; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); display:inline-block; }
+
+    /* BOTONES */
+    .btn-gold { background:linear-gradient(135deg,var(--gold),#e8a020); color:#000; padding:16px 44px; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; font-weight:700; border:none; cursor:pointer; text-decoration:none; transition:all 0.3s; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); display:inline-block; position:relative; overflow:hidden; }
+    .btn-gold::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent); animation:btnShine 4s ease infinite; }
     .btn-gold:hover { transform:translateY(-3px); box-shadow:0 20px 50px rgba(201,168,76,0.35); }
     .btn-ghost { border:1px solid rgba(201,168,76,0.45); color:var(--gold); padding:16px 44px; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; font-weight:600; background:transparent; cursor:pointer; text-decoration:none; transition:all 0.3s; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); display:inline-block; }
     .btn-ghost:hover { background:rgba(201,168,76,0.08); border-color:var(--gold); transform:translateY(-3px); }
+
     .scroll-hint { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; animation:fadeIn 1.5s ease 1.8s forwards; }
     .scroll-hint span { font-size:0.6rem; letter-spacing:4px; color:var(--gray); text-transform:uppercase; }
     .scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,var(--gold),transparent); animation:pulse 2s ease infinite; }
@@ -63,20 +67,28 @@
     .strip span::before { content:'✦ '; }
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    /* SERVICIOS */
-    #servicios { padding:120px 60px; background:rgba(0,0,0,0.55); }
+    /* STATS */
+    #stats { padding:72px 60px; border-bottom:1px solid rgba(201,168,76,0.08); background:rgba(0,0,0,0.6); }
+    .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:32px; max-width:900px; margin:0 auto; text-align:center; }
+    .stat-num { font-family:'Cinzel',serif; font-size:2.6rem; font-weight:900; background:linear-gradient(135deg,var(--gold),#e8a020); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
+    .stat-lbl { font-size:0.68rem; letter-spacing:3px; text-transform:uppercase; color:var(--gray); margin-top:8px; }
+
+    /* SECCIÓN GENÉRICA */
     .sec-label { font-size:0.68rem; letter-spacing:6px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; }
     .sec-title { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:700; margin-bottom:64px; }
     .sec-title span { background:linear-gradient(135deg,var(--gold),#e8a020); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* SERVICIOS */
+    #servicios { padding:120px 60px; background:rgba(0,0,0,0.55); }
     .servicios-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; max-width:1000px; }
     .srv { background:rgba(12,12,12,0.92); border:1px solid rgba(201,168,76,0.07); padding:44px 36px; position:relative; overflow:hidden; transition:all 0.4s; display:flex; flex-direction:column; }
     .srv::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:linear-gradient(to right,var(--gold),#e8a020); transition:width 0.4s; }
     .srv:hover { background:rgba(18,18,18,0.98); transform:translateY(-4px); }
     .srv:hover::after { width:100%; }
-    .srv-icon { font-size:1.8rem; margin-bottom:20px; }
+    .srv-svg { width:32px; height:32px; margin-bottom:20px; }
     .srv-name { font-family:'Cinzel',serif; font-size:1rem; font-weight:700; margin-bottom:10px; letter-spacing:1px; }
     .srv-desc { font-size:0.82rem; color:rgba(255,255,255,0.45); line-height:1.7; margin-bottom:24px; flex:1; }
-    .srv-price { font-family:'Cinzel',serif; font-size:1.6rem; font-weight:900; color:var(--gold); }
+    .srv-price { font-family:'Cinzel',serif; font-size:1.6rem; font-weight:900; color:var(--gold); margin-top:auto; }
     .srv-price small { font-family:'Inter',sans-serif; font-size:0.7rem; color:var(--gray); font-weight:400; letter-spacing:2px; }
     .srv-popular { position:absolute; top:16px; right:16px; background:linear-gradient(135deg,var(--gold),#e8a020); color:#000; font-size:0.55rem; letter-spacing:2px; text-transform:uppercase; font-weight:800; padding:4px 10px; }
 
@@ -92,8 +104,21 @@
     .horario-hora { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--gold); font-weight:700; }
     .horario-cerrado { font-size:0.8rem; color:rgba(255,255,255,0.25); letter-spacing:1px; }
 
+    /* TESTIMONIOS */
+    #testimonios { padding:120px 60px; background:rgba(0,0,0,0.5); }
+    .test-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2px; max-width:1000px; }
+    .test-card { background:rgba(12,12,12,0.92); border:1px solid rgba(201,168,76,0.08); padding:40px 36px; position:relative; overflow:hidden; transition:all 0.4s; }
+    .test-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:linear-gradient(to bottom,var(--gold),#e8a020); transition:height 0.4s; }
+    .test-card:hover::before { height:100%; }
+    .test-stars { display:flex; gap:4px; margin-bottom:20px; }
+    .test-stars span { color:var(--gold); font-size:0.9rem; }
+    .test-text { font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.8; margin-bottom:24px; font-style:italic; }
+    .test-author { font-family:'Cinzel',serif; font-size:0.78rem; font-weight:700; letter-spacing:2px; color:var(--white); }
+    .test-role { font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; color:rgba(201,168,76,0.6); margin-top:4px; }
+    .test-quote { position:absolute; top:20px; right:24px; font-size:3rem; color:rgba(201,168,76,0.07); font-family:'Cinzel',serif; line-height:1; }
+
     /* POR QUÉ NOSOTROS */
-    #porque { padding:120px 60px; background:rgba(0,0,0,0.5); }
+    #porque { padding:120px 60px; background:rgba(0,0,0,0.6); }
     .porque-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2px; max-width:1100px; }
     .porque-item { padding:48px 40px; background:rgba(10,10,10,0.9); border:1px solid rgba(201,168,76,0.06); position:relative; overflow:hidden; transition:all 0.4s; }
     .porque-item::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:linear-gradient(to right,transparent,var(--gold),transparent); transform:scaleX(0); transition:transform 0.4s; }
@@ -128,20 +153,20 @@
     .fg input,.fg select,.fg textarea { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); color:var(--white); padding:14px 18px; font-family:'Inter',sans-serif; font-size:0.88rem; outline:none; transition:all 0.3s; resize:none; -webkit-appearance:none; appearance:none; }
     .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--gold); background:rgba(201,168,76,0.04); }
     .fg select option { background:#111; }
-    .btn-submit { margin-top:8px; width:100%; background:linear-gradient(135deg,var(--gold),#e8a020); color:#000; padding:18px; font-size:0.78rem; letter-spacing:4px; text-transform:uppercase; font-weight:700; border:none; cursor:pointer; transition:all 0.3s; font-family:'Inter',sans-serif; }
+    .btn-submit { margin-top:8px; width:100%; background:linear-gradient(135deg,var(--gold),#e8a020); color:#000; padding:18px; font-size:0.78rem; letter-spacing:4px; text-transform:uppercase; font-weight:700; border:none; cursor:pointer; transition:all 0.3s; font-family:'Inter',sans-serif; position:relative; overflow:hidden; }
+    .btn-submit::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent); animation:btnShine 4.5s ease infinite; }
     .btn-submit:hover { transform:translateY(-2px); box-shadow:0 20px 50px rgba(201,168,76,0.28); }
     .wa-direct { margin-top:24px; display:flex; align-items:center; justify-content:center; gap:12px; text-decoration:none; color:var(--gold); font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; padding:18px; border:1px solid rgba(201,168,76,0.18); transition:all 0.3s; }
     .wa-direct:hover { background:rgba(201,168,76,0.07); border-color:var(--gold); }
 
-    /* REDES SOCIALES */
+    /* REDES */
     #redes { padding:80px 60px; background:rgba(0,0,0,0.8); border-top:1px solid rgba(201,168,76,0.08); }
     .redes-wrap { max-width:600px; margin:0 auto; text-align:center; }
     .redes-title { font-family:'Cinzel',serif; font-size:1.4rem; font-weight:700; margin-bottom:12px; }
     .redes-sub { font-size:0.85rem; color:rgba(255,255,255,0.4); margin-bottom:40px; }
     .redes-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-    .red-btn { display:flex; align-items:center; gap:12px; padding:16px 32px; border:1px solid rgba(201,168,76,0.2); text-decoration:none; color:var(--white); font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; font-weight:500; }
+    .red-btn { display:flex; align-items:center; gap:10px; padding:16px 32px; border:1px solid rgba(201,168,76,0.2); text-decoration:none; color:var(--white); font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; font-weight:500; }
     .red-btn:hover { border-color:var(--gold); background:rgba(201,168,76,0.07); color:var(--gold); transform:translateY(-2px); }
-    .red-icon { font-size:1.2rem; }
 
     /* FOOTER */
     footer { padding:48px 60px; border-top:1px solid rgba(201,168,76,0.1); display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.95); position:relative; z-index:2; flex-wrap:wrap; gap:16px; }
@@ -155,6 +180,7 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    @keyframes btnShine { 0%{left:-100%} 20%{left:100%} 100%{left:100%} }
     .reveal { opacity:0; transform:translateY(36px); transition:all 0.85s cubic-bezier(0.16,1,0.3,1); }
     .reveal.visible { opacity:1; transform:translateY(0); }
 
@@ -166,11 +192,15 @@
       #hero { padding:140px 28px 100px; }
       .hero-btns { flex-direction:column; align-items:center; }
       .btn-gold,.btn-ghost { width:100%; max-width:280px; text-align:center; }
-      #servicios,#horarios,#porque,#ubicacion,#contacto,#redes { padding:80px 28px; }
+      #stats { padding:52px 28px; }
+      .stats-grid { grid-template-columns:1fr 1fr; gap:24px; }
+      #servicios,#horarios,#testimonios,#porque,#ubicacion,#contacto,#redes { padding:80px 28px; }
       .servicios-grid { grid-template-columns:1fr; }
       .horarios-wrap,.ubic-wrap { grid-template-columns:1fr; gap:48px; }
+      .test-grid { grid-template-columns:1fr; }
       .porque-grid { grid-template-columns:1fr; }
       .form-row2 { grid-template-columns:1fr; }
+      .fg select,.btn-submit { width:100%; max-width:340px; display:block; margin:0 auto; }
       footer { flex-direction:column; text-align:center; padding:40px 28px; }
     }
     @media (max-width:420px) {
@@ -183,7 +213,6 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
 <canvas id="bgCanvas"></canvas>
 <div class="overlay"></div>
 
@@ -193,7 +222,7 @@
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#horarios">Horarios</a></li>
-    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="#testimonios">Reseñas</a></li>
     <li><a href="#contacto">Reservar</a></li>
   </ul>
 </nav>
@@ -225,6 +254,28 @@
   </div>
 </div>
 
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid reveal">
+    <div>
+      <div class="stat-num" data-target="500">0</div>
+      <div class="stat-lbl">Clientes satisfechos</div>
+    </div>
+    <div>
+      <div class="stat-num" data-target="5">0</div>
+      <div class="stat-lbl">Años de experiencia</div>
+    </div>
+    <div>
+      <div class="stat-num" data-target="4">0</div>
+      <div class="stat-lbl">Servicios disponibles</div>
+    </div>
+    <div>
+      <div class="stat-num" data-target="100">0</div>
+      <div class="stat-lbl">% satisfacción</div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICIOS -->
 <section id="servicios">
   <div class="reveal">
@@ -232,31 +283,53 @@
     <h2 class="sec-title">Nuestros <span>servicios</span></h2>
   </div>
   <div class="servicios-grid">
+
     <div class="srv reveal">
-      <div class="srv-icon">✂️</div>
+      <svg class="srv-svg" viewBox="0 0 32 32" fill="none">
+        <line x1="8" y1="6" x2="24" y2="26" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="24" y1="6" x2="8" y2="26" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="8" cy="6" r="3" stroke="#c9a84c" stroke-width="1.5"/>
+        <circle cx="24" cy="6" r="3" stroke="#c9a84c" stroke-width="1.5"/>
+        <circle cx="8" cy="26" r="3" stroke="#c9a84c" stroke-width="1.5"/>
+        <circle cx="24" cy="26" r="3" stroke="#c9a84c" stroke-width="1.5"/>
+      </svg>
       <h3 class="srv-name">Corte Clásico</h3>
       <p class="srv-desc">El clásico que nunca falla — corte limpio y bien definido que se adapta a tu estilo</p>
       <div class="srv-price">$10.000 <small>CLP</small></div>
     </div>
+
     <div class="srv reveal">
       <div class="srv-popular">Más pedido</div>
-      <div class="srv-icon">⚡</div>
+      <svg class="srv-svg" viewBox="0 0 32 32" fill="none">
+        <path d="M16 4 C10 4 6 8 6 13 C6 20 16 28 16 28 C16 28 26 20 26 13 C26 8 22 4 16 4Z" stroke="#c9a84c" stroke-width="1.5"/>
+        <path d="M16 9 L16 17 M12 13 L20 13" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
       <h3 class="srv-name">Corte Fade</h3>
       <p class="srv-desc">Degradado perfecto de la nuca hasta arriba con transiciones impecables y acabado premium</p>
       <div class="srv-price">$12.000 <small>CLP</small></div>
     </div>
+
     <div class="srv reveal">
-      <div class="srv-icon">🪒</div>
+      <svg class="srv-svg" viewBox="0 0 32 32" fill="none">
+        <path d="M8 10 Q16 6 24 10 L22 22 Q16 26 10 22 Z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/>
+        <line x1="16" y1="6" x2="16" y2="10" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="10" y1="22" x2="8" y2="26" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="22" y1="22" x2="24" y2="26" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
       <h3 class="srv-name">Corte de Barba</h3>
       <p class="srv-desc">Perfilado y definición de barba con navaja para que luzcas siempre impecable</p>
       <div class="srv-price">$6.000 <small>CLP</small></div>
     </div>
+
     <div class="srv reveal">
-      <div class="srv-icon">👑</div>
+      <svg class="srv-svg" viewBox="0 0 32 32" fill="none">
+        <polygon points="16,3 19,11 28,11 21,17 24,25 16,20 8,25 11,17 4,11 13,11" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
       <h3 class="srv-name">Corte Completo</h3>
       <p class="srv-desc">Corte de cabello más barba completa — la experiencia total de El Russo en una sola visita</p>
       <div class="srv-price">$16.000 <small>CLP</small></div>
     </div>
+
   </div>
 </section>
 
@@ -265,7 +338,7 @@
   <div class="horarios-wrap">
     <div class="horarios-left reveal">
       <h2 class="big">Siempre<br/>listos<br/><span>para ti</span></h2>
-      <p>Encuéntranos de lunes a sábado en Pajaritos — sin esperas innecesarias cuando reservas online</p>
+      <p>Encuéntranos de lunes a sábado en Pajaritos — sin esperas cuando reservas online</p>
     </div>
     <div class="reveal">
       <p class="sec-label" style="margin-bottom:24px">Horarios de atención</p>
@@ -288,6 +361,37 @@
   </div>
 </section>
 
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="reveal" style="margin-bottom:64px">
+    <p class="sec-label">Lo que dicen nuestros clientes</p>
+    <h2 class="sec-title">Reseñas <span>reales</span></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Me atendieron al tiro sin esperar nada. El fade quedó perfecto — limpio, bien degradado y sin errores. Llevo meses yendo y siempre sale igual de bien</p>
+      <p class="test-author">Rodrigo M.</p>
+      <p class="test-role">Cliente frecuente</p>
+    </div>
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Vine por primera vez y quedé impresionado. El ambiente es tranquilo, el precio es justo y la barba me quedó perfecta. Ya agendé para la próxima semana</p>
+      <p class="test-author">Sebastián V.</p>
+      <p class="test-role">Primera visita</p>
+    </div>
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">El mejor precio de la zona y la calidad es top. El corte completo me deja siempre listo para cualquier ocasión. Lo recomiendo sin dudarlo</p>
+      <p class="test-author">Felipe C.</p>
+      <p class="test-role">Cliente fiel</p>
+    </div>
+  </div>
+</section>
+
 <!-- POR QUÉ NOSOTROS -->
 <section id="porque">
   <div class="reveal" style="margin-bottom:64px">
@@ -297,23 +401,23 @@
   <div class="porque-grid">
     <div class="porque-item reveal">
       <div class="porque-num">01</div>
-      <h4 class="porque-title">Precisión en cada corte</h4>
-      <p class="porque-desc">Cada detalle importa — desde la primera línea hasta el acabado final tu corte es tratado como una obra</p>
+      <h4 class="porque-title">Precisión en cada detalle</h4>
+      <p class="porque-desc">Trabajamos con tijera y máquina para que cada línea quede exacta — sin apuros y sin errores</p>
     </div>
     <div class="porque-item reveal">
       <div class="porque-num">02</div>
-      <h4 class="porque-title">Reserva sin complicaciones</h4>
-      <p class="porque-desc">Agenda tu hora en segundos desde tu celular y llega directo a la silla sin esperar</p>
+      <h4 class="porque-title">Reserva en segundos</h4>
+      <p class="porque-desc">Agenda tu hora desde el celular y llega directo a la silla — sin llamar, sin esperar filas</p>
     </div>
     <div class="porque-item reveal">
       <div class="porque-num">03</div>
-      <h4 class="porque-title">Ambiente de élite</h4>
-      <p class="porque-desc">Un espacio pensado para que te sientas cómodo y salgas sintiéndote distinto</p>
+      <h4 class="porque-title">El mismo barbero siempre</h4>
+      <p class="porque-desc">Conocemos tu corte, tu estilo y tus preferencias — no tienes que explicar nada dos veces</p>
     </div>
     <div class="porque-item reveal">
       <div class="porque-num">04</div>
-      <h4 class="porque-title">Precios justos siempre</h4>
-      <p class="porque-desc">Calidad premium a precios accesibles — porque verse bien no debería costar una fortuna</p>
+      <h4 class="porque-title">Precio justo, resultado premium</h4>
+      <p class="porque-desc">Desde $6.000 — calidad real sin pagar el triple por un local con nombre de moda</p>
     </div>
   </div>
 </section>
@@ -394,25 +498,25 @@
       <p style="text-align:center;margin-top:14px;font-size:0.78rem;color:rgba(201,168,76,0.7);letter-spacing:1px;">⚠️ Se requiere abono anticipado de <strong style="color:var(--gold)">$5.000</strong> para confirmar tu hora — el resto se paga en el local</p>
     </form>
     <a href="https://wa.me/56939665163" target="_blank" class="wa-direct reveal">
-      <span>💬</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#c9a84c"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       <span>O escríbenos directo — +56 9 3966 5163</span>
     </a>
   </div>
 </section>
 
-<!-- REDES SOCIALES -->
+<!-- REDES -->
 <section id="redes">
   <div class="redes-wrap reveal">
     <h3 class="redes-title">Síguenos en redes</h3>
     <p class="redes-sub">Mira nuestro trabajo y mantente al día con las novedades de El Russo</p>
     <div class="redes-btns">
       <a href="https://www.instagram.com/barberíaelruso" target="_blank" class="red-btn">
-        <span class="red-icon">📸</span>
-        <span>Instagram</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#c9a84c" stroke="none"/></svg>
+        Instagram
       </a>
       <a href="https://www.facebook.com/barberíaelruso" target="_blank" class="red-btn">
-        <span class="red-icon">👥</span>
-        <span>Facebook</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
       </a>
     </div>
   </div>
@@ -437,7 +541,7 @@
     ring.style.left=rx-17+'px'; ring.style.top=ry-17+'px';
     requestAnimationFrame(tick);
   })();
-  document.querySelectorAll('a,button,.srv,.porque-item').forEach(el=>{
+  document.querySelectorAll('a,button,.srv,.porque-item,.test-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2.5)';ring.style.transform='scale(1.5)';});
     el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.transform='scale(1)';});
   });
@@ -451,6 +555,28 @@
   },{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
+  // CONTADOR ANIMADO — una sola vez
+  let counted=false;
+  const statsObs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting && !counted){
+      counted=true;
+      document.querySelectorAll('.stat-num[data-target]').forEach(el=>{
+        const target=parseInt(el.dataset.target);
+        if(target===0){el.textContent='0';return;}
+        let current=0;
+        const step=Math.ceil(target/40);
+        const suffix=el.dataset.target==='100'?'%':el.dataset.target==='500'?'+':'';
+        const timer=setInterval(()=>{
+          current=Math.min(current+step,target);
+          el.textContent=current+suffix;
+          if(current>=target)clearInterval(timer);
+        },30);
+      });
+    }
+  },{threshold:0.5});
+  const statsSection=document.getElementById('stats');
+  if(statsSection)statsObs.observe(statsSection);
+
   // FORM → WHATSAPP
   document.getElementById('contactForm').addEventListener('submit',function(e){
     e.preventDefault();
@@ -463,12 +589,11 @@
     window.open(`https://wa.me/56939665163?text=${encodeURIComponent(txt)}`,'_blank');
   });
 
-  // CANVAS — PARTÍCULAS DORADAS + BRILLO
+  // CANVAS — PARTÍCULAS DORADAS
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
   function resize(){ canvas.width=innerWidth; canvas.height=innerHeight; }
   resize(); window.addEventListener('resize',resize);
-
   const particles=[];
   const COUNT=90;
   class P {
@@ -507,28 +632,21 @@
     }
   }
   for(let i=0;i<COUNT;i++) particles.push(new P());
-
   function drawGlow(){
-    const t=Date.now()*0.001;
-    const w=canvas.width,h=canvas.height;
+    const w=canvas.width,h=canvas.height,t=Date.now()*0.001;
     const gL=ctx.createRadialGradient(w*0.1,h,0,w*0.1,h*0.65,w*0.4);
-    gL.addColorStop(0,'rgba(180,120,0,0.12)');
-    gL.addColorStop(1,'rgba(0,0,0,0)');
+    gL.addColorStop(0,'rgba(180,120,0,0.12)'); gL.addColorStop(1,'rgba(0,0,0,0)');
     ctx.fillStyle=gL; ctx.fillRect(0,0,w,h);
     const gR=ctx.createRadialGradient(w*0.9,h,0,w*0.9,h*0.65,w*0.4);
-    gR.addColorStop(0,'rgba(180,120,0,0.10)');
-    gR.addColorStop(1,'rgba(0,0,0,0)');
+    gR.addColorStop(0,'rgba(180,120,0,0.10)'); gR.addColorStop(1,'rgba(0,0,0,0)');
     ctx.fillStyle=gR; ctx.fillRect(0,0,w,h);
     const gC=ctx.createRadialGradient(w*0.5,h*0.5,0,w*0.5,h*0.5,w*0.6);
-    gC.addColorStop(0,`rgba(150,100,0,${0.06+Math.sin(t)*0.02})`);
-    gC.addColorStop(1,'rgba(0,0,0,0)');
+    gC.addColorStop(0,`rgba(150,100,0,${0.06+Math.sin(t)*0.02})`); gC.addColorStop(1,'rgba(0,0,0,0)');
     ctx.fillStyle=gC; ctx.fillRect(0,0,w,h);
   }
-
   (function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    drawGlow();
-    particles.forEach(p=>{p.update();p.draw();});
+    drawGlow(); particles.forEach(p=>{p.update();p.draw();});
     requestAnimationFrame(animate);
   })();
 </script>
