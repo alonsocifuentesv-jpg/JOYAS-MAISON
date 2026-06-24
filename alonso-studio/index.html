@@ -87,6 +87,11 @@
     .service-price { font-family:'Cinzel',serif; font-size:1.7rem; font-weight:900; color:var(--gold); }
     .service-price small { font-family:'Inter',sans-serif; font-size:0.7rem; color:var(--gray); font-weight:400; letter-spacing:2px; }
 
+    /* AVISO PRECIO */
+    .precio-aviso { max-width:700px; margin:52px auto 0; text-align:center; padding:28px 36px; border:1px solid rgba(201,168,76,0.15); background:rgba(201,168,76,0.04); position:relative; }
+    .precio-aviso::before { content:''; position:absolute; top:-1px; left:20%; right:20%; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); }
+    .precio-aviso p { font-size:0.82rem; color:rgba(255,255,255,0.5); line-height:1.9; }
+
     /* PORTAFOLIO */
     #portafolio { padding:120px 60px; background:rgba(0,0,0,0.65); }
     .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; max-width:1100px; margin:0 auto; }
@@ -313,7 +318,7 @@
         <li>Web 100% tuya desde el primer día</li>
         <li>Entrega en 3 a 7 días hábiles</li>
       </ul>
-      <div class="service-price-old">$450.000</div>
+      <div class="service-price-old">$320.000 en agencias</div>
       <div class="service-price">$150.000 <small>CLP</small></div>
     </div>
 
@@ -335,7 +340,7 @@
         <li>Hasta 3 correos corporativos para tu equipo</li>
         <li>Cero mensajes que responder</li>
       </ul>
-      <div class="service-price-old">$900.000</div>
+      <div class="service-price-old">$580.000 en agencias</div>
       <div class="service-price">$200.000 <small>CLP</small></div>
     </div>
 
@@ -355,6 +360,9 @@
       <div class="service-price">$70.000 <small>CLP / AÑO</small></div>
     </div>
 
+  </div>
+  <div class="precio-aviso reveal">
+    <p>Estoy en etapa de crecimiento y quiero que más negocios locales tengan acceso al mismo resultado que ofrecen las grandes agencias — por eso mis precios son distintos por ahora. Cuando el estudio crezca, los valores subirán. Si contratas hoy, te aseguras este precio para siempre en tus renovaciones</p>
   </div>
 </section>
 
