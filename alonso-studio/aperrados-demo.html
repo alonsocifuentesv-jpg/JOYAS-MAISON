@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aperrados | Estética Canina — Padre Hurtado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --teal: #3a8f7f;
+      --teal-light: #5db8a6;
+      --teal-soft: #e8f5f2;
+      --cream: #faf9f6;
+      --dark: #1c2b28;
+      --dark2: #2d3d39;
+      --gray: #8a9e9a;
+      --white: #ffffff;
+      --warm: #f0ebe3;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--cream); color:var(--dark); font-family:'Poppins',sans-serif; overflow-x:hidden; cursor:none; }
+
+    /* CURSOR */
+    .cursor { width:10px; height:10px; background:var(--teal); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:99999; transition:transform 0.15s; }
+    .cursor-ring { width:34px; height:34px; border:1.5px solid var(--teal); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:99998; transition:all 0.25s; opacity:0.4; }
+    @media (hover:none),(max-width:768px) { body{cursor:auto;} .cursor,.cursor-ring{display:none!important;} }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:20px 60px; display:flex; justify-content:space-between; align-items:center; background:rgba(250,249,246,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(58,143,127,0.1); transition:all 0.3s; }
+    nav.scrolled { padding:14px 60px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo-icon { width:36px; height:36px; background:linear-gradient(135deg,var(--teal),var(--teal-light)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+    .nav-logo-text { font-size:1.2rem; font-weight:800; color:var(--dark); letter-spacing:-0.5px; }
+    .nav-logo-text span { color:var(--teal); }
+    .nav-links { display:flex; gap:36px; list-style:none; }
+    .nav-links a { color:var(--dark2); text-decoration:none; font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; font-weight:500; opacity:0.7; transition:all 0.3s; position:relative; }
+    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--teal); border-radius:2px; transition:width 0.3s; }
+    .nav-links a:hover { opacity:1; color:var(--teal); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta { background:var(--teal); color:#fff; padding:10px 24px; border-radius:50px; font-size:0.72rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; text-decoration:none; transition:all 0.3s; }
+    .nav-cta:hover { background:var(--dark); transform:translateY(-1px); }
+
+    /* HERO */
+    #hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 40px 80px; background:linear-gradient(160deg,var(--cream) 0%,var(--teal-soft) 60%,var(--cream) 100%); position:relative; overflow:hidden; }
+    #hero::before { content:''; position:absolute; top:-100px; right:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(58,143,127,0.1) 0%,transparent 70%); pointer-events:none; }
+    #hero::after { content:''; position:absolute; bottom:-80px; left:-80px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(58,143,127,0.08) 0%,transparent 70%); pointer-events:none; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(58,143,127,0.1); border:1px solid rgba(58,143,127,0.2); color:var(--teal); padding:8px 20px; border-radius:50px; font-size:0.68rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:32px; opacity:0; animation:fadeUp 0.8s ease 0.2s forwards; }
+    .hero-title { font-size:clamp(2.8rem,7vw,5.5rem); font-weight:800; line-height:1.05; margin-bottom:20px; letter-spacing:-2px; opacity:0; animation:fadeUp 0.8s ease 0.4s forwards; }
+    .hero-title .line1 { display:block; color:var(--dark); }
+    .hero-title .line2 { display:block; color:var(--teal); }
+    .hero-sub { font-size:clamp(1rem,2vw,1.2rem); color:var(--gray); font-weight:400; margin-bottom:48px; line-height:1.7; opacity:0; animation:fadeUp 0.8s ease 0.6s forwards; max-width:500px; }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; opacity:0; animation:fadeUp 0.8s ease 0.8s forwards; }
+    .hero-stats { display:flex; gap:40px; margin-top:64px; opacity:0; animation:fadeUp 0.8s ease 1s forwards; flex-wrap:wrap; justify-content:center; }
+    .hero-stat { text-align:center; }
+    .hero-stat-num { font-size:1.8rem; font-weight:800; color:var(--teal); line-height:1; }
+    .hero-stat-lbl { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-top:4px; }
+
+    /* BOTONES */
+    .btn-teal { background:var(--teal); color:#fff; padding:16px 36px; font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; font-weight:600; border:none; cursor:pointer; text-decoration:none; transition:all 0.3s; display:inline-block; border-radius:50px; position:relative; overflow:hidden; }
+    .btn-teal::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); animation:btnShine 4s ease infinite; }
+    .btn-teal:hover { background:var(--dark); transform:translateY(-2px); box-shadow:0 12px 30px rgba(58,143,127,0.3); }
+    .btn-outline { border:2px solid var(--teal); color:var(--teal); padding:14px 36px; font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; font-weight:600; background:transparent; cursor:pointer; text-decoration:none; transition:all 0.3s; display:inline-block; border-radius:50px; }
+    .btn-outline:hover { background:var(--teal); color:#fff; transform:translateY(-2px); }
+
+    /* STRIP */
+    .strip { background:var(--teal); padding:14px 0; overflow:hidden; position:relative; z-index:2; }
+    .strip-inner { display:flex; gap:50px; animation:marquee 22s linear infinite; width:max-content; }
+    .strip span { font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.9); font-weight:600; white-space:nowrap; }
+    .strip span::before { content:'🐾 '; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* SECCIÓN */
+    .sec-wrap { max-width:1100px; margin:0 auto; }
+    .sec-label { font-size:0.65rem; letter-spacing:4px; color:var(--teal); text-transform:uppercase; font-weight:600; margin-bottom:12px; }
+    .sec-title { font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:800; color:var(--dark); margin-bottom:16px; letter-spacing:-1px; }
+    .sec-title span { color:var(--teal); }
+    .sec-desc { font-size:0.9rem; color:var(--gray); line-height:1.8; max-width:500px; }
+
+    /* SERVICIOS */
+    #servicios { padding:120px 60px; background:var(--white); }
+    .servicios-header { text-align:center; margin-bottom:64px; }
+    .servicios-header .sec-desc { margin:0 auto; }
+    .servicios-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; max-width:1100px; margin:0 auto; }
+    .srv { background:var(--cream); border:1.5px solid rgba(58,143,127,0.1); padding:36px 28px; border-radius:16px; position:relative; overflow:hidden; transition:all 0.35s; display:flex; flex-direction:column; }
+    .srv:hover { border-color:var(--teal); transform:translateY(-6px); box-shadow:0 20px 40px rgba(58,143,127,0.12); background:var(--white); }
+    .srv-icon { width:52px; height:52px; background:var(--teal-soft); border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:20px; transition:all 0.3s; }
+    .srv:hover .srv-icon { background:var(--teal); }
+    .srv:hover .srv-icon svg { stroke:#fff; }
+    .srv-name { font-size:1rem; font-weight:700; color:var(--dark); margin-bottom:8px; }
+    .srv-desc { font-size:0.8rem; color:var(--gray); line-height:1.7; margin-bottom:20px; flex:1; }
+    .srv-price { font-size:1.4rem; font-weight:800; color:var(--teal); margin-top:auto; }
+    .srv-price small { font-size:0.65rem; color:var(--gray); font-weight:400; letter-spacing:1px; }
+    .srv-popular { position:absolute; top:14px; right:14px; background:var(--teal); color:#fff; font-size:0.52rem; letter-spacing:1px; text-transform:uppercase; font-weight:700; padding:4px 10px; border-radius:50px; }
+
+    /* GALERÍA */
+    #galeria { padding:100px 60px; background:var(--warm); }
+    .galeria-header { text-align:center; margin-bottom:52px; }
+    .galeria-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:1000px; margin:0 auto; }
+    .gal-item { border-radius:16px; overflow:hidden; position:relative; aspect-ratio:1; background:linear-gradient(135deg,var(--teal-soft),rgba(58,143,127,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; border:1.5px solid rgba(58,143,127,0.15); transition:all 0.3s; }
+    .gal-item:hover { transform:scale(1.02); box-shadow:0 16px 32px rgba(58,143,127,0.15); border-color:var(--teal); }
+    .gal-item.big { grid-row:span 2; }
+    .gal-emoji { font-size:3rem; }
+    .gal-label { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--teal); font-weight:600; }
+
+    /* HORARIOS */
+    #horarios { padding:100px 60px; background:var(--white); }
+    .horarios-wrap { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .horarios-visual { background:linear-gradient(135deg,var(--teal),var(--dark)); border-radius:24px; padding:52px 44px; color:#fff; }
+    .horarios-visual h3 { font-size:2rem; font-weight:800; line-height:1.2; margin-bottom:20px; letter-spacing:-1px; }
+    .horarios-visual p { font-size:0.88rem; opacity:0.7; line-height:1.8; margin-bottom:36px; }
+    .horario-item { display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.1); }
+    .horario-item:last-child { border:none; }
+    .horario-dia { font-size:0.78rem; opacity:0.7; letter-spacing:1px; }
+    .horario-hora { font-size:0.9rem; font-weight:700; color:var(--teal-light); }
+    .horario-cerrado { font-size:0.78rem; opacity:0.3; }
+    .horarios-right { }
+    .horarios-right .sec-title { margin-bottom:20px; }
+    .horarios-right .sec-desc { margin-bottom:36px; }
+    .why-list { display:flex; flex-direction:column; gap:16px; margin-bottom:36px; }
+    .why-item { display:flex; align-items:flex-start; gap:14px; }
+    .why-check { width:24px; height:24px; background:var(--teal-soft); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+    .why-check svg { width:12px; height:12px; }
+    .why-text { font-size:0.85rem; color:var(--dark2); line-height:1.6; }
+
+    /* TESTIMONIOS */
+    #testimonios { padding:100px 60px; background:var(--cream); }
+    .test-header { text-align:center; margin-bottom:56px; }
+    .test-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; max-width:1000px; margin:0 auto; }
+    .test-card { background:var(--white); border:1.5px solid rgba(58,143,127,0.1); border-radius:16px; padding:36px 30px; transition:all 0.3s; position:relative; }
+    .test-card:hover { border-color:var(--teal); box-shadow:0 12px 30px rgba(58,143,127,0.1); }
+    .test-stars { display:flex; gap:3px; margin-bottom:16px; }
+    .test-stars span { color:var(--teal); font-size:0.9rem; }
+    .test-text { font-size:0.85rem; color:#555; line-height:1.85; margin-bottom:24px; font-style:italic; }
+    .test-author { font-weight:700; font-size:0.88rem; color:var(--dark); }
+    .test-pet { font-size:0.68rem; color:var(--teal); letter-spacing:1px; margin-top:3px; }
+    .test-quote { position:absolute; top:20px; right:24px; font-size:3rem; color:rgba(58,143,127,0.06); font-family:'Playfair Display',serif; line-height:1; }
+
+    /* UBICACIÓN */
+    #ubicacion { padding:100px 60px; background:var(--white); }
+    .ubic-wrap { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    .ubic-card { background:var(--cream); border:1.5px solid rgba(58,143,127,0.1); border-radius:20px; padding:44px 40px; }
+    .ubic-card h3 { font-size:1.5rem; font-weight:800; color:var(--dark); margin-bottom:32px; letter-spacing:-0.5px; }
+    .ubic-card h3 span { color:var(--teal); }
+    .ubic-detail { display:flex; gap:14px; align-items:flex-start; margin-bottom:20px; }
+    .ubic-icon-box { width:38px; height:38px; background:var(--teal-soft); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; }
+    .ubic-info-text strong { display:block; font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:3px; font-weight:600; }
+    .ubic-info-text span { font-size:0.85rem; color:var(--dark2); }
+    .ubic-info-text a { font-size:0.85rem; color:var(--dark2); text-decoration:none; }
+    .map-card { background:linear-gradient(135deg,var(--teal-soft),rgba(58,143,127,0.2)); border:1.5px solid rgba(58,143,127,0.2); border-radius:20px; height:100%; min-height:320px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; text-decoration:none; transition:all 0.3s; padding:40px; }
+    .map-card:hover { background:linear-gradient(135deg,rgba(58,143,127,0.2),rgba(58,143,127,0.3)); border-color:var(--teal); transform:translateY(-4px); }
+    .map-card .map-emoji { font-size:3rem; }
+    .map-card span { font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--teal); font-weight:700; text-align:center; }
+
+    /* CONTACTO */
+    #contacto { padding:100px 60px; background:var(--cream); }
+    .contact-wrap { max-width:640px; margin:0 auto; }
+    .contact-header { text-align:center; margin-bottom:48px; }
+    .contact-desc { font-size:0.9rem; color:var(--gray); line-height:1.8; margin-top:12px; }
+    .form { display:flex; flex-direction:column; gap:14px; }
+    .form-row2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .fg { display:flex; flex-direction:column; gap:6px; }
+    .fg label { font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; color:var(--teal); font-weight:600; }
+    .fg input,.fg select,.fg textarea { background:var(--white); border:1.5px solid rgba(58,143,127,0.2); color:var(--dark); padding:14px 18px; font-family:'Poppins',sans-serif; font-size:0.85rem; outline:none; transition:all 0.3s; resize:none; border-radius:10px; -webkit-appearance:none; appearance:none; }
+    .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(58,143,127,0.08); }
+    .fg select option { background:#fff; }
+    .btn-submit { margin-top:8px; width:100%; background:var(--teal); color:#fff; padding:18px; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; font-weight:600; border:none; cursor:pointer; transition:all 0.3s; font-family:'Poppins',sans-serif; border-radius:50px; position:relative; overflow:hidden; }
+    .btn-submit::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); animation:btnShine 4.5s ease infinite; }
+    .btn-submit:hover { background:var(--dark); transform:translateY(-2px); box-shadow:0 12px 30px rgba(58,143,127,0.3); }
+    .wa-direct { margin-top:16px; display:flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; color:var(--teal); font-size:0.72rem; letter-spacing:1px; text-transform:uppercase; font-weight:600; padding:16px; border:1.5px solid rgba(58,143,127,0.25); border-radius:50px; transition:all 0.3s; }
+    .wa-direct:hover { background:var(--teal); color:#fff; border-color:var(--teal); }
+
+    /* REDES */
+    #redes { padding:80px 60px; background:var(--teal); }
+    .redes-wrap { max-width:600px; margin:0 auto; text-align:center; }
+    .redes-title { font-size:1.6rem; font-weight:800; color:#fff; margin-bottom:10px; letter-spacing:-0.5px; }
+    .redes-sub { font-size:0.85rem; color:rgba(255,255,255,0.65); margin-bottom:36px; }
+    .redes-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .red-btn { display:flex; align-items:center; gap:10px; padding:14px 28px; border:1.5px solid rgba(255,255,255,0.3); text-decoration:none; color:#fff; font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; font-weight:500; transition:all 0.3s; border-radius:50px; }
+    .red-btn:hover { background:rgba(255,255,255,0.15); border-color:#fff; transform:translateY(-2px); }
+
+    /* FOOTER */
+    footer { padding:40px 60px; border-top:1px solid rgba(58,143,127,0.1); display:flex; justify-content:space-between; align-items:center; background:var(--dark); flex-wrap:wrap; gap:14px; position:relative; z-index:2; }
+    .footer-logo { font-size:1.1rem; font-weight:800; color:#fff; letter-spacing:-0.5px; }
+    .footer-logo span { color:var(--teal-light); }
+    .footer-copy { font-size:0.68rem; color:rgba(255,255,255,0.35); }
+    .footer-credit { font-size:0.68rem; color:rgba(255,255,255,0.2); }
+    .footer-credit a { color:rgba(93,184,166,0.6); text-decoration:none; transition:color 0.3s; }
+    .footer-credit a:hover { color:var(--teal-light); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes btnShine { 0%{left:-100%} 20%{left:100%} 100%{left:100%} }
+    .reveal { opacity:0; transform:translateY(32px); transition:all 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* MOBILE */
+    @media (max-width:768px) {
+      nav { padding:16px 24px; }
+      nav.scrolled { padding:12px 24px; }
+      .nav-links { display:none; }
+      .nav-cta { display:none; }
+      #hero { padding:120px 28px 80px; }
+      .hero-btns { flex-direction:column; align-items:center; }
+      .btn-teal,.btn-outline { width:100%; max-width:280px; text-align:center; }
+      .hero-stats { gap:24px; }
+      #servicios,#galeria,#horarios,#testimonios,#ubicacion,#contacto,#redes { padding:80px 28px; }
+      .servicios-grid,.test-grid { grid-template-columns:1fr; }
+      .galeria-grid { grid-template-columns:1fr 1fr; }
+      .gal-item.big { grid-row:span 1; }
+      .horarios-wrap,.ubic-wrap { grid-template-columns:1fr; gap:32px; }
+      .form-row2 { grid-template-columns:1fr; }
+      .fg select,.btn-submit { width:100%; max-width:340px; display:block; margin:0 auto; }
+      footer { flex-direction:column; text-align:center; padding:32px 28px; }
+    }
+    @media (max-width:420px) {
+      .redes-btns { flex-direction:column; align-items:center; }
+      .red-btn { width:100%; max-width:260px; justify-content:center; }
+      .galeria-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🐾</div>
+    <span class="nav-logo-text">Aper<span>rados</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#testimonios">Reseñas</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Reservar hora</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">🐾 Estética Canina — Padre Hurtado</div>
+  <h1 class="hero-title">
+    <span class="line1">Tu perro merece</span>
+    <span class="line2">lo mejor.</span>
+  </h1>
+  <p class="hero-sub">Baño, corte y cuidado profesional para que tu mascota siempre luzca y se sienta increíble</p>
+  <div class="hero-btns">
+    <a href="#contacto" class="btn-teal">Reservar hora ahora</a>
+    <a href="#servicios" class="btn-outline">Ver servicios</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="600">0</div>
+      <div class="hero-stat-lbl">Perritos atendidos</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="5">0</div>
+      <div class="hero-stat-lbl">Años de experiencia</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="100">0</div>
+      <div class="hero-stat-lbl">% satisfacción</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span>Aperrados</span><span>Padre Hurtado</span><span>Baño y Secado</span><span>Corte Profesional</span><span>Uñas y Oídos</span><span>Reserva Online</span><span>Santiago de Chile</span><span>Estética Canina</span>
+    <span>Aperrados</span><span>Padre Hurtado</span><span>Baño y Secado</span><span>Corte Profesional</span><span>Uñas y Oídos</span><span>Reserva Online</span><span>Santiago de Chile</span><span>Estética Canina</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="servicios-header reveal">
+    <p class="sec-label">Lo que ofrecemos</p>
+    <h2 class="sec-title">Nuestros <span>servicios</span></h2>
+    <p class="sec-desc">Cada servicio pensado para el bienestar y la comodidad de tu mascota</p>
+  </div>
+  <div class="servicios-grid">
+
+    <div class="srv reveal">
+      <div class="srv-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3a8f7f" stroke-width="1.8" stroke-linecap="round">
+          <path d="M7 16c0 2.2 1.8 4 4 4h2c2.2 0 4-1.8 4-4V8c0-2.2-1.8-4-4-4h-2C9 4 7 5.8 7 8v8z"/>
+          <path d="M12 4V2M8 6L6 4M16 6l2-4"/>
+        </svg>
+      </div>
+      <h3 class="srv-name">Baño y Secado</h3>
+      <p class="srv-desc">Baño con shampoo especial, acondicionador y secado profesional — tu perro sale limpio y perfumado</p>
+      <div class="srv-price">$8.000 <small>CLP</small></div>
+    </div>
+
+    <div class="srv reveal">
+      <div class="srv-popular">Más pedido</div>
+      <div class="srv-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3a8f7f" stroke-width="1.8" stroke-linecap="round">
+          <path d="M6 3l2 8M18 3l-2 8M9 11h6l-1 8H10l-1-8z"/>
+          <path d="M5 11h14"/>
+        </svg>
+      </div>
+      <h3 class="srv-name">Corte y Peinado</h3>
+      <p class="srv-desc">Corte personalizado según la raza y preferencia del dueño — con acabado profesional y prolijo</p>
+      <div class="srv-price">$15.000 <small>CLP</small></div>
+    </div>
+
+    <div class="srv reveal">
+      <div class="srv-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3a8f7f" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 8v4l3 3"/>
+        </svg>
+      </div>
+      <h3 class="srv-name">Corte de Uñas</h3>
+      <p class="srv-desc">Corte seguro y preciso para que tu perro camine cómodo y sin lastimarse</p>
+      <div class="srv-price">$3.000 <small>CLP</small></div>
+    </div>
+
+    <div class="srv reveal">
+      <div class="srv-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3a8f7f" stroke-width="1.8" stroke-linecap="round">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </div>
+      <h3 class="srv-name">Limpieza de Oídos</h3>
+      <p class="srv-desc">Limpieza profunda y cuidadosa para prevenir infecciones y mantener la salud auditiva</p>
+      <div class="srv-price">$3.000 <small>CLP</small></div>
+    </div>
+
+    <div class="srv reveal">
+      <div class="srv-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3a8f7f" stroke-width="1.8" stroke-linecap="round">
+          <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>
+        </svg>
+      </div>
+      <h3 class="srv-name">Paquete Completo</h3>
+      <p class="srv-desc">Baño, secado, corte, uñas y oídos — la experiencia completa para que tu perro salga renovado</p>
+      <div class="srv-price">$22.000 <small>CLP</small></div>
+    </div>
+
+    <div class="srv reveal">
+      <div class="srv-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3a8f7f" stroke-width="1.8" stroke-linecap="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <h3 class="srv-name">Spa Canino</h3>
+      <p class="srv-desc">Hidratación de pelaje, masaje relajante y aromaterapia — el lujo que tu perro merece</p>
+      <div class="srv-price">$18.000 <small>CLP</small></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="galeria-header reveal">
+    <p class="sec-label">Nuestro trabajo</p>
+    <h2 class="sec-title">Perritos <span>felices</span></h2>
+    <p class="sec-desc" style="margin:0 auto">Cada cliente que sale de Aperrados sale convertido en otro perro</p>
+  </div>
+  <div class="galeria-grid reveal">
+    <div class="gal-item big">
+      <div class="gal-emoji">🐩</div>
+      <div class="gal-label">Antes y después</div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-emoji">🐕</div>
+      <div class="gal-label">Corte fade canino</div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-emoji">🛁</div>
+      <div class="gal-label">Baño premium</div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-emoji">✂️</div>
+      <div class="gal-label">Corte raza</div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-emoji">🐾</div>
+      <div class="gal-label">Spa completo</div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<section id="horarios">
+  <div class="horarios-wrap">
+    <div class="horarios-visual reveal">
+      <h3>Abiertos de lunes a sábado para tu mascota</h3>
+      <p>Reserva online y llega directo a la hora — sin esperas, sin llamadas</p>
+      <div class="horario-item">
+        <span class="horario-dia">Lunes a Viernes</span>
+        <span class="horario-hora">09:00 — 18:00</span>
+      </div>
+      <div class="horario-item">
+        <span class="horario-dia">Sábado</span>
+        <span class="horario-hora">09:00 — 15:00</span>
+      </div>
+      <div class="horario-item">
+        <span class="horario-dia">Domingo</span>
+        <span class="horario-cerrado">Cerrado</span>
+      </div>
+    </div>
+    <div class="horarios-right reveal">
+      <p class="sec-label">Por qué elegirnos</p>
+      <h2 class="sec-title">La diferencia <span>Aperrados</span></h2>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-check">
+            <svg viewBox="0 0 12 12" fill="none" stroke="#3a8f7f" stroke-width="2" stroke-linecap="round"><polyline points="2,6 5,9 10,3"/></svg>
+          </div>
+          <span class="why-text">Tratamos a tu perro como si fuera nuestro — con paciencia y cariño</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check">
+            <svg viewBox="0 0 12 12" fill="none" stroke="#3a8f7f" stroke-width="2" stroke-linecap="round"><polyline points="2,6 5,9 10,3"/></svg>
+          </div>
+          <span class="why-text">Productos 100% seguros para mascotas — sin químicos agresivos</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check">
+            <svg viewBox="0 0 12 12" fill="none" stroke="#3a8f7f" stroke-width="2" stroke-linecap="round"><polyline points="2,6 5,9 10,3"/></svg>
+          </div>
+          <span class="why-text">Reserva online — agenda en segundos desde tu celular</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check">
+            <svg viewBox="0 0 12 12" fill="none" stroke="#3a8f7f" stroke-width="2" stroke-linecap="round"><polyline points="2,6 5,9 10,3"/></svg>
+          </div>
+          <span class="why-text">5 años de experiencia con todo tipo de razas y tamaños</span>
+        </div>
+      </div>
+      <a href="#contacto" class="btn-teal">Reservar ahora</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="test-header reveal">
+    <p class="sec-label">Lo que dicen nuestros clientes</p>
+    <h2 class="sec-title">Reseñas <span>reales</span></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Mi golden retriever salió como nuevo — el corte quedó perfecto y lo trataron con mucho cariño. Se notó que lo pasó bien porque entró asustado y salió tranquilo</p>
+      <p class="test-author">Carla M.</p>
+      <p class="test-pet">🐕 Dueña de Golden Retriever</p>
+    </div>
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Llevo 2 años trayendo a mi Schnauzer y siempre queda impecable. El precio es muy justo y nunca me han fallado. La mejor estética canina de Padre Hurtado sin duda</p>
+      <p class="test-author">Diego F.</p>
+      <p class="test-pet">🐩 Dueño de Schnauzer</p>
+    </div>
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">El paquete completo vale cada peso — baño, corte, uñas y oídos todo en una visita. Mi perrita salió oliendo increíble y con un moñito precioso. Totalmente recomendado</p>
+      <p class="test-author">Valentina R.</p>
+      <p class="test-pet">🐶 Dueña de Bichón Frisé</p>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion">
+  <div class="ubic-wrap">
+    <div class="ubic-card reveal">
+      <h3>Encuéntranos en <span>Padre Hurtado</span></h3>
+      <div class="ubic-detail">
+        <div class="ubic-icon-box">📍</div>
+        <div class="ubic-info-text">
+          <strong>Dirección</strong>
+          <span>Padre Hurtado, Región Metropolitana<br/>CP 9710000, Chile</span>
+        </div>
+      </div>
+      <div class="ubic-detail">
+        <div class="ubic-icon-box">🕘</div>
+        <div class="ubic-info-text">
+          <strong>Horario</strong>
+          <span>Lun–Vie 09:00–18:00 · Sáb 09:00–15:00</span>
+        </div>
+      </div>
+      <div class="ubic-detail">
+        <div class="ubic-icon-box">💬</div>
+        <div class="ubic-info-text">
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me/56939665163">+56 9 XXXX XXXX</a>
+        </div>
+      </div>
+      <div class="ubic-detail">
+        <div class="ubic-icon-box">✉️</div>
+        <div class="ubic-info-text">
+          <strong>Correo</strong>
+          <a href="mailto:contacto@aperrados.cl">contacto@aperrados.cl</a>
+        </div>
+      </div>
+    </div>
+    <a href="https://maps.google.com/?q=Padre+Hurtado+Santiago+Chile" target="_blank" class="map-card reveal">
+      <div class="map-emoji">🗺️</div>
+      <span>Ver en Google Maps</span>
+      <span style="font-size:0.6rem;opacity:0.6;">Padre Hurtado · Región Metropolitana</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-wrap">
+    <div class="contact-header reveal">
+      <p class="sec-label">Reserva tu hora</p>
+      <h2 class="sec-title">¿Cuándo traes <span>a tu perro?</span></h2>
+      <p class="contact-desc">Llena el formulario y te confirmamos tu hora al tiro — sin llamadas ni complicaciones</p>
+    </div>
+    <form class="form reveal" id="contactForm">
+      <div class="form-row2">
+        <div class="fg">
+          <label>Tu nombre</label>
+          <input type="text" id="nombre" placeholder="Ej: Carlos González" required/>
+        </div>
+        <div class="fg">
+          <label>Tu teléfono</label>
+          <input type="tel" id="telefono" placeholder="+56 9 XXXX XXXX" required/>
+        </div>
+      </div>
+      <div class="form-row2">
+        <div class="fg">
+          <label>Nombre del perro</label>
+          <input type="text" id="perro" placeholder="Ej: Firulais"/>
+        </div>
+        <div class="fg">
+          <label>Raza</label>
+          <input type="text" id="raza" placeholder="Ej: Golden Retriever"/>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Servicio que quieres</label>
+        <select id="servicio">
+          <option value="Baño y Secado — $8.000">Baño y Secado — $8.000</option>
+          <option value="Corte y Peinado — $15.000">Corte y Peinado — $15.000</option>
+          <option value="Corte de Uñas — $3.000">Corte de Uñas — $3.000</option>
+          <option value="Limpieza de Oídos — $3.000">Limpieza de Oídos — $3.000</option>
+          <option value="Paquete Completo — $22.000">Paquete Completo — $22.000</option>
+          <option value="Spa Canino — $18.000">Spa Canino — $18.000</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Día y hora preferida</label>
+        <input type="text" id="horario" placeholder="Ej: Jueves a las 10am"/>
+      </div>
+      <button type="submit" class="btn-submit">Enviar reserva por WhatsApp 🐾</button>
+    </form>
+    <a href="https://wa.me/56939665163" target="_blank" class="wa-direct reveal">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#3a8f7f"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span>O escríbenos directo por WhatsApp</span>
+    </a>
+  </div>
+</section>
+
+<!-- REDES -->
+<section id="redes">
+  <div class="redes-wrap reveal">
+    <h3 class="redes-title">Síguenos en redes</h3>
+    <p class="redes-sub">Mira los perritos antes y después y mantente al día con las novedades de Aperrados</p>
+    <div class="redes-btns">
+      <a href="#" class="red-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a href="#" class="red-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Aper<span>rados</span></div>
+  <div class="footer-copy">© 2025 — Todos los derechos reservados · Padre Hurtado, Chile</div>
+  <div class="footer-credit">Web por <a href="https://alonsostudiodigital.com" target="_blank">Alonso Studio</a></div>
+</footer>
+
+<script>
+  // CURSOR
+  const cur=document.getElementById('cursor');
+  const ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function tick(){
+    cur.style.left=mx-5+'px';cur.style.top=my-5+'px';
+    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+    ring.style.left=rx-17+'px';ring.style.top=ry-17+'px';
+    requestAnimationFrame(tick);
+  })();
+  document.querySelectorAll('a,button,.srv,.test-card,.gal-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2.5)';ring.style.transform='scale(1.5)';});
+    el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.transform='scale(1)';});
+  });
+
+  // NAV
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+
+  // REVEAL
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // CONTADOR HERO — una sola vez
+  let counted=false;
+  const heroObs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting&&!counted){
+      counted=true;
+      document.querySelectorAll('[data-target]').forEach(el=>{
+        const target=parseInt(el.dataset.target);
+        let current=0;
+        const step=Math.ceil(target/40);
+        const suffix=target===100?'%':target===600?'+':'';
+        const timer=setInterval(()=>{
+          current=Math.min(current+step,target);
+          el.textContent=current+suffix;
+          if(current>=target)clearInterval(timer);
+        },30);
+      });
+    }
+  },{threshold:0.5});
+  const heroSection=document.getElementById('hero');
+  if(heroSection)heroObs.observe(heroSection);
+
+  // FORM → WHATSAPP
+  document.getElementById('contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const n=document.getElementById('nombre').value;
+    const t=document.getElementById('telefono').value;
+    const p=document.getElementById('perro').value;
+    const r=document.getElementById('raza').value;
+    const s=document.getElementById('servicio').value;
+    const h=document.getElementById('horario').value;
+    const txt=`Hola Aperrados! Quiero reservar una hora 🐾\n\n*Nombre:* ${n}\n*Teléfono:* ${t}${p?'\n*Perro:* '+p:''}${r?'\n*Raza:* '+r:''}\n*Servicio:* ${s}\n*Horario preferido:* ${h||'A coordinar'}`;
+    window.open(`https://wa.me/56939665163?text=${encodeURIComponent(txt)}`,'_blank');
+  });
+</script>
+</body>
+</html>
