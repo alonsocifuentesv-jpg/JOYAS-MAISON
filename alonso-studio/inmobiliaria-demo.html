@@ -63,12 +63,13 @@ nav.solid{background:rgba(8,8,8,.96);backdrop-filter:blur(16px);border-bottom:1p
 .btn-outline{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:16px 40px;font-size:.72rem;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .3s;}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
 
-.hero-counters{display:flex;gap:48px;}
-.hc-item{text-align:center;}
+.hero-counters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--border);margin-top:52px;}
+.hc-item{text-align:center;padding:24px 16px;}
+.hc-item:not(:last-child){border-right:1px solid var(--border);}
 .hc-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--white);line-height:1;}
 .hc-num span{color:var(--gold);}
 .hc-label{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
-.hc-line{width:1px;background:var(--border);align-self:stretch;}
+.hc-line{display:none;}
 
 /* HERO RIGHT */
 .hero-right{display:flex;flex-direction:column;gap:20px;}
@@ -126,10 +127,10 @@ nav.solid{background:rgba(8,8,8,.96);backdrop-filter:blur(16px);border-bottom:1p
 .prop-desc{font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:20px;}
 .prop-price{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold);margin-bottom:16px;}
 .prop-price small{font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted);}
-.prop-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-top:16px;border-top:1px solid var(--border);}
-.ps-item{text-align:center;}
-.ps-val{font-size:.95rem;font-weight:600;color:var(--white);}
-.ps-key{font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.prop-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:16px;border-top:1px solid var(--border);}
+.ps-item{text-align:center;background:rgba(255,255,255,.04);border:1px solid var(--border);padding:12px 8px;}
+.ps-val{font-size:1rem;font-weight:700;color:var(--white);}
+.ps-key{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:3px;}
 @media(max-width:768px){.properties{padding:60px 20px;}.props-grid{grid-template-columns:1fr;}.section-header{flex-direction:column;align-items:flex-start;gap:20px;}}
 
 /* WHY */
@@ -641,6 +642,12 @@ footer{background:#050505;padding:40px 60px;border-top:1px solid var(--border);}
     <div>
       <div class="footer-logo">ALTOS<span> DEL VALLE</span></div>
       <div class="footer-tagline">Inmobiliaria de Lujo · Santiago de Chile</div>
+      <div style="display:flex;gap:14px;margin-top:16px;">
+        <a href="https://instagram.com/altosdelvalle.cl" target="_blank" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;font-size:.8rem;transition:all .3s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='rgba(255,255,255,.12)';this.style.color='rgba(255,255,255,.4)'">IG</a>
+        <a href="https://facebook.com/altosdelvalle.cl" target="_blank" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;font-size:.8rem;transition:all .3s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='rgba(255,255,255,.12)';this.style.color='rgba(255,255,255,.4)'">FB</a>
+        <a href="https://tiktok.com/@altosdelvalle.cl" target="_blank" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;font-size:.8rem;transition:all .3s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='rgba(255,255,255,.12)';this.style.color='rgba(255,255,255,.4)'">TK</a>
+        <a href="mailto:contacto@altosdelvalle.cl" style="width:36px;height:36px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;font-size:.65rem;transition:all .3s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='rgba(255,255,255,.12)';this.style.color='rgba(255,255,255,.4)'">✉</a>
+      </div>
     </div>
     <div class="footer-links">
       <a href="#propiedades">Propiedades</a>
