@@ -281,9 +281,15 @@
     }
     .svc-desc { font-size:0.82rem; color:rgba(255,255,255,0.45); line-height:1.6; }
     @media(max-width:768px){
-      #servicios { padding:60px 20px; }
-      .services-row { grid-template-columns:1fr; gap:2px; }
-      .svc-card { padding:28px 22px; }
+      #servicios { padding:60px 0; }
+      #servicios .section-head { padding:0 20px; }
+      .services-row {
+        display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        gap:2px; padding:0 20px 20px; scrollbar-width:none;
+      }
+      .services-row::-webkit-scrollbar { display:none; }
+      .svc-card { flex:0 0 72vw; scroll-snap-align:start; padding:28px 22px; }
       .svc-num { font-size:2.2rem; margin-bottom:12px; }
       .svc-name { font-size:1.1rem; }
     }
@@ -412,9 +418,17 @@
     .faq-item.open .faq-icon { transform:rotate(45deg); color:var(--gold); }
 
     @media(max-width:768px){
-      #precios { padding:60px 20px; }
-      .plans-row { grid-template-columns:1fr; max-width:100%; gap:14px; }
-      .plan-card { padding:28px 22px; }
+      #precios { padding:60px 0; }
+      #precios .section-head { padding:0 20px; }
+      .plans-row {
+        display:flex; flex-direction:row;
+        overflow-x:auto; scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        gap:14px; padding:0 20px 24px;
+        scrollbar-width:none; max-width:100%;
+      }
+      .plans-row::-webkit-scrollbar { display:none; }
+      .plan-card { flex:0 0 82vw; scroll-snap-align:start; padding:28px 22px; }
       .plan-price { font-size:2.1rem; }
       .plan-name { font-size:1.25rem; }
       .plan-item { font-size:0.78rem; }
@@ -488,9 +502,16 @@
     .step-name { font-size:0.88rem; font-weight:700; margin-bottom:8px; }
     .step-desc { font-size:0.78rem; color:var(--gray); line-height:1.5; }
     @media(max-width:768px){
-      #proceso { padding:60px 20px; }
-      .steps-row { grid-template-columns:1fr 1fr; gap:30px; }
+      #proceso { padding:60px 0; }
+      #proceso .section-head { padding:0 20px; }
+      .steps-row {
+        display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        gap:0; padding:0 20px 20px; scrollbar-width:none;
+      }
+      .steps-row::-webkit-scrollbar { display:none; }
       .steps-row::before { display:none; }
+      .step { flex:0 0 60vw; scroll-snap-align:start; padding:0 16px; }
       .step-num { width:54px; height:54px; font-size:1.2rem; }
       .step-name { font-size:0.82rem; }
       .step-desc { font-size:0.74rem; }
