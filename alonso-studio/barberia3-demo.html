@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Barber | Barbería de Lujo · Providencia, Santiago</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#c9a84c;
+  --gold2:#e8c96a;
+  --dark:#080808;
+  --dark2:#0f0f0f;
+  --dark3:#161616;
+  --white:#ffffff;
+  --muted:rgba(255,255,255,.45);
+  --border:rgba(255,255,255,.08);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none;}
+
+.cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
+.cursor-ring{width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease;opacity:.5;}
+@media(hover:none),(max-width:768px){.cursor,.cursor-ring{display:none;}body{cursor:auto;}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 60px;height:76px;display:flex;align-items:center;justify-content:space-between;transition:all .5s;}
+nav.solid{background:rgba(8,8,8,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;letter-spacing:4px;color:var(--white);}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:40px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;transition:color .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:11px 28px;font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .3s;}
+.nav-cta:hover{background:var(--gold);color:var(--dark);}
+@media(max-width:768px){nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1800&q=80') center/cover no-repeat;filter:brightness(.3);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,.92) 0%,rgba(8,8,8,.5) 60%,rgba(8,8,8,.2) 100%);}
+.hero-particles{position:absolute;inset:0;overflow:hidden;}
+.hero-particles::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 70%);top:-100px;right:0;animation:float1 8s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,30px)}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:80px 80px;}
+.hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:140px 60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;}
+
+.hero-tag{font-size:.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
+.hero-tag::before{content:'';width:36px;height:1px;background:var(--gold);}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:1;margin-bottom:16px;letter-spacing:-1px;}
+.hero h1 em{font-style:italic;color:var(--gold);display:block;}
+.hero-sub{font-size:.9rem;color:var(--muted);line-height:2;max-width:420px;margin-bottom:48px;font-weight:300;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:0;}
+.btn-gold{background:var(--gold);color:var(--dark);padding:16px 40px;font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .3s;position:relative;overflow:hidden;}
+.btn-gold::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shine 3s ease infinite;}
+@keyframes shine{0%{left:-100%}50%,100%{left:100%}}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-outline{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:16px 40px;font-size:.72rem;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;cursor:none;transition:all .3s;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+.hero-counters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--border);margin-top:52px;}
+.hc-item{text-align:center;padding:24px 16px;}
+.hc-item:not(:last-child){border-right:1px solid var(--border);}
+.hc-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--white);line-height:1;}
+.hc-num span{color:var(--gold);}
+.hc-label{font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+
+.hero-right{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);}
+.hero-right-img{height:300px;overflow:hidden;}
+.hero-right-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.8);transition:transform .6s ease;}
+.hero-right:hover .hero-right-img img{transform:scale(1.04);}
+.hero-right-body{padding:28px;}
+.hero-right-tag{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.hero-right-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:8px;line-height:1.2;}
+.hero-right-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:20px;}
+.hero-right-badge{background:var(--gold);color:var(--dark);padding:12px 20px;display:flex;align-items:center;gap:12px;margin:0 28px 28px;}
+.hrb-text{font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.hrb-sub{font-size:.62rem;color:rgba(8,8,8,.6);margin-top:1px;}
+
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr;padding:100px 20px 60px;gap:40px;}.hero-right{display:none;}.hero-counters{margin-top:40px;}}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;background:var(--dark2);}
+.marquee-track{display:flex;animation:marquee 22s linear infinite;white-space:nowrap;}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:0 36px;display:flex;align-items:center;gap:36px;}
+.marquee-item span{color:var(--gold);font-size:.7rem;}
+
+/* SERVICES */
+.services{padding:120px 60px;background:var(--dark);}
+.services-inner{max-width:1200px;margin:0 auto;}
+.section-tag{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.section-tag::before{content:'';width:28px;height:1px;background:var(--gold);}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:300;line-height:1.05;margin-bottom:16px;}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-sub{font-size:.9rem;color:var(--muted);line-height:2;max-width:480px;margin-bottom:64px;font-weight:300;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.srv-card{background:var(--dark);padding:0;transition:all .3s;cursor:none;overflow:hidden;}
+.srv-img{height:200px;overflow:hidden;}
+.srv-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.7);transition:transform .5s ease;}
+.srv-card:hover .srv-img img{transform:scale(1.06);}
+.srv-body{padding:28px 24px;}
+.srv-num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:rgba(201,168,76,.15);line-height:1;margin-bottom:10px;}
+.srv-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:8px;}
+.srv-desc{font-size:.8rem;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.srv-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);font-weight:300;}
+.srv-time{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+@media(max-width:768px){.services{padding:60px 20px;}.services-grid{grid-template-columns:1fr;}}
+
+/* GALLERY */
+.gallery{padding:120px 60px;background:var(--dark2);}
+.gallery-inner{max-width:1200px;margin:0 auto;}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto;gap:8px;margin-top:64px;}
+.g-item{overflow:hidden;position:relative;cursor:none;}
+.g-item:nth-child(1){grid-column:span 2;grid-row:span 2;}
+.g-item:nth-child(4){grid-column:span 2;}
+.g-item img{width:100%;height:100%;object-fit:cover;min-height:200px;display:block;filter:brightness(.8);transition:transform .6s ease,filter .4s;}
+.g-item:hover img{transform:scale(1.05);filter:brightness(.95);}
+.g-label{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(8,8,8,.75));color:var(--white);font-size:.65rem;letter-spacing:2px;text-transform:uppercase;opacity:0;transition:opacity .3s;}
+.g-item:hover .g-label{opacity:1;}
+@media(max-width:768px){.gallery{padding:60px 20px;}.gallery-grid{grid-template-columns:1fr 1fr;}.g-item:nth-child(1){grid-column:span 2;}.g-item:nth-child(4){grid-column:span 1;}}
+
+/* WHY */
+.why{padding:120px 60px;background:var(--dark);}
+.why-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+.why-img-wrap{position:relative;}
+.why-img{width:100%;height:560px;object-fit:cover;filter:brightness(.85);}
+.why-img-badge{position:absolute;bottom:32px;left:32px;background:var(--gold);color:var(--dark);padding:20px 24px;}
+.why-img-badge-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;line-height:1;}
+.why-img-badge-label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.why-content .section-tag{margin-bottom:14px;}
+.why-sub{font-size:.9rem;color:var(--muted);line-height:2;margin-bottom:48px;font-weight:300;}
+.why-list{display:flex;flex-direction:column;}
+.why-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);}
+.why-item:last-child{border-bottom:none;}
+.why-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);opacity:.4;min-width:32px;line-height:1.2;}
+.why-text strong{display:block;font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:4px;}
+.why-text span{font-size:.82rem;color:var(--muted);line-height:1.7;}
+@media(max-width:768px){.why{padding:60px 20px;}.why-inner{grid-template-columns:1fr;gap:48px;}}
+
+/* TESTIMONIALS */
+.testimonials{padding:120px 60px;background:var(--dark2);}
+.testimonials-inner{max-width:1200px;margin:0 auto;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:64px;}
+.testi-card{background:var(--dark2);padding:40px;transition:all .4s;cursor:none;}
+.testi-card:hover{background:var(--dark3);}
+.testi-stars{color:var(--gold);font-size:.75rem;letter-spacing:3px;margin-bottom:20px;}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;font-style:italic;line-height:1.8;color:rgba(255,255,255,.75);margin-bottom:28px;}
+.testi-author{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--border);}
+.testi-avatar{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--dark);font-weight:700;}
+.testi-name{font-weight:600;font-size:.88rem;}
+.testi-role{font-size:.7rem;color:var(--muted);margin-top:2px;}
+@media(max-width:768px){.testimonials{padding:60px 20px;}.testi-grid{grid-template-columns:1fr;}}
+
+/* HORARIOS */
+.horarios{padding:100px 60px;background:var(--dark);border-top:1px solid var(--border);}
+.horarios-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;}
+.horario-list{margin-top:40px;}
+.horario-row{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--border);font-size:.9rem;}
+.horario-row:last-child{border-bottom:none;}
+.horario-dia{color:var(--muted);}
+.horario-hora{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);}
+.horario-closed{color:rgba(255,255,255,.2);}
+.map-box{height:300px;overflow:hidden;border:1px solid var(--border);}
+.map-box iframe{width:100%;height:100%;border:none;filter:grayscale(100%) invert(90%) contrast(85%);}
+@media(max-width:768px){.horarios{padding:60px 20px;}.horarios-inner{grid-template-columns:1fr;gap:40px;}}
+
+/* CONTACT */
+.contact{padding:120px 60px;background:var(--dark2);position:relative;overflow:hidden;}
+.contact::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;}
+.contact h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:300;line-height:1.05;margin-bottom:16px;}
+.contact h2 em{font-style:italic;color:var(--gold);}
+.contact-sub{font-size:.88rem;color:var(--muted);line-height:2;margin-bottom:40px;font-weight:300;}
+.cinfo{display:flex;flex-direction:column;gap:20px;}
+.cinfo-item{display:flex;align-items:center;gap:16px;font-size:.85rem;color:var(--muted);}
+.cinfo-item svg{width:18px;height:18px;color:var(--gold);flex-shrink:0;}
+.contact-form{display:flex;flex-direction:column;gap:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);padding:15px 18px;font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:border .3s;cursor:none;}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.2);}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg select option{background:var(--dark);}
+.fg textarea{resize:none;height:110px;}
+.btn-submit{background:var(--gold);color:var(--dark);border:none;padding:18px 44px;font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:none;transition:all .3s;align-self:flex-start;position:relative;overflow:hidden;}
+.btn-submit::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shine 3s ease infinite;}
+.btn-submit:hover{background:var(--gold2);transform:translateY(-2px);}
+@media(max-width:768px){.contact{padding:60px 20px;}.contact-inner{grid-template-columns:1fr;gap:48px;}.form-row{grid-template-columns:1fr;}}
+
+/* FOOTER */
+footer{background:#050505;padding:48px 60px;border-top:1px solid var(--border);}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--border);}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:4px;margin-bottom:8px;}
+.footer-logo span{color:var(--gold);}
+.footer-tagline{font-size:.68rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-socials{display:flex;gap:10px;}
+.social-btn{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.72rem;text-decoration:none;transition:all .3s;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+.footer-links{display:flex;flex-direction:column;gap:12px;}
+.footer-links a{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:.68rem;color:rgba(255,255,255,.2);}
+@media(max-width:768px){footer{padding:40px 20px;}.footer-top{flex-direction:column;gap:32px;}.footer-bottom{flex-direction:column;gap:8px;text-align:center;}}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:32px;right:32px;z-index:200;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(37,211,102,.35);transition:all .3s;cursor:none;text-decoration:none;}
+.wa-float:hover{transform:scale(1.1);}
+.wa-float svg{width:28px;height:28px;fill:#fff;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .9s ease,transform .9s ease;}
+.reveal-l.visible{opacity:1;transform:none;}
+.reveal-r{opacity:0;transform:translateX(32px);transition:opacity .9s ease,transform .9s ease;}
+.reveal-r.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<a href="https://wa.me/56939665163" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">LE<span> BARBER</span></div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Reservar</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Reservar hora</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-particles"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Barbería 5 Estrellas · Providencia, Santiago</div>
+      <h1>El arte<br>del corte<br><em>perfecto.</em></h1>
+      <p class="hero-sub">Barberos maestros con técnica europea y productos premium. Para el hombre que no acepta menos que la excelencia.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-gold">Reservar hora →</a>
+        <a href="#servicios" class="btn-outline">Ver servicios</a>
+      </div>
+      <div class="hero-counters">
+        <div class="hc-item">
+          <div class="hc-num" data-target="800" data-suffix="+">0</div>
+          <div class="hc-label">Clientes felices</div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-num"><span>5.0</span>★</div>
+          <div class="hc-label">Google Reviews</div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-num" data-target="8" data-suffix=" años">0</div>
+          <div class="hc-label">De experiencia</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right reveal-r">
+      <div class="hero-right-img">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80" alt="Barbería de lujo">
+      </div>
+      <div class="hero-right-body">
+        <div class="hero-right-tag">Servicio estrella</div>
+        <div class="hero-right-title">Experiencia Premium Completa</div>
+        <div class="hero-right-sub">Corte + barba + tratamiento con productos de alta gama. Una hora de lujo absoluto.</div>
+      </div>
+      <div class="hero-right-badge">
+        <div style="font-size:1.4rem;">🏆</div>
+        <div>
+          <div class="hrb-text">Mejor Barbería Providencia 2024</div>
+          <div class="hrb-sub">Premio Excelencia · Santiago de Chile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Corte Clásico <span>✦</span></div>
+    <div class="marquee-item">Fade Degradé <span>✦</span></div>
+    <div class="marquee-item">Arreglo de Barba <span>✦</span></div>
+    <div class="marquee-item">Afeitado con Navaja <span>✦</span></div>
+    <div class="marquee-item">Tratamiento Capilar <span>✦</span></div>
+    <div class="marquee-item">Diseño de Líneas <span>✦</span></div>
+    <div class="marquee-item">Corte + Barba <span>✦</span></div>
+    <div class="marquee-item">Corte Clásico <span>✦</span></div>
+    <div class="marquee-item">Fade Degradé <span>✦</span></div>
+    <div class="marquee-item">Arreglo de Barba <span>✦</span></div>
+    <div class="marquee-item">Afeitado con Navaja <span>✦</span></div>
+    <div class="marquee-item">Tratamiento Capilar <span>✦</span></div>
+    <div class="marquee-item">Diseño de Líneas <span>✦</span></div>
+    <div class="marquee-item">Corte + Barba <span>✦</span></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="services-inner">
+    <div class="reveal">
+      <div class="section-tag">Servicios</div>
+      <h2 class="section-title">Lo que hacemos,<br><em>lo hacemos perfecto.</em></h2>
+      <p class="section-sub">Cada servicio es una experiencia en sí misma. Productos europeos de primera línea, técnica impecable y atención personalizada.</p>
+    </div>
+    <div class="services-grid">
+      <div class="srv-card reveal">
+        <div class="srv-img"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Corte clásico"></div>
+        <div class="srv-body">
+          <div class="srv-num">01</div>
+          <div class="srv-name">Corte Clásico</div>
+          <div class="srv-desc">Corte de precisión con tijera y máquina. Asesoría de estilo personalizada según tu tipo de cabello y rostro.</div>
+          <div class="srv-price">$12.000</div>
+          <div class="srv-time">45 minutos</div>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-img"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Fade degradé"></div>
+        <div class="srv-body">
+          <div class="srv-num">02</div>
+          <div class="srv-name">Fade Degradé</div>
+          <div class="srv-desc">Degradé de alta precisión desde skin fade hasta high fade. La técnica más solicitada, ejecutada a la perfección.</div>
+          <div class="srv-price">$15.000</div>
+          <div class="srv-time">55 minutos</div>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-img"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Barba premium"></div>
+        <div class="srv-body">
+          <div class="srv-num">03</div>
+          <div class="srv-name">Barba Premium</div>
+          <div class="srv-desc">Perfilado, degradé y afeitado con navaja española. Toalla caliente y productos hidratantes de alta gama.</div>
+          <div class="srv-price">$10.000</div>
+          <div class="srv-time">40 minutos</div>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-img"><img src="https://images.unsplash.com/photo-1532710093739-9470acff878f?w=600&q=80" alt="Corte y barba"></div>
+        <div class="srv-body">
+          <div class="srv-num">04</div>
+          <div class="srv-name">Corte + Barba</div>
+          <div class="srv-desc">El combo completo. Corte a medida más arreglo de barba con navaja. La experiencia Le Barber al máximo.</div>
+          <div class="srv-price">$20.000</div>
+          <div class="srv-time">90 minutos</div>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Tratamiento capilar"></div>
+        <div class="srv-body">
+          <div class="srv-num">05</div>
+          <div class="srv-name">Tratamiento Capilar</div>
+          <div class="srv-desc">Hidratación profunda, anticaída o anticaspa. Diagnóstico de cuero cabelludo y aplicación de producto premium.</div>
+          <div class="srv-price">$18.000</div>
+          <div class="srv-time">60 minutos</div>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-img"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&q=80" alt="Experiencia completa"></div>
+        <div class="srv-body">
+          <div class="srv-num">06</div>
+          <div class="srv-name">Experiencia Completa</div>
+          <div class="srv-desc">Corte + barba + tratamiento capilar + masaje de cuero cabelludo. Una hora y media de lujo absoluto.</div>
+          <div class="srv-price">$35.000</div>
+          <div class="srv-time">90 minutos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galeria">
+  <div class="gallery-inner">
+    <div class="reveal">
+      <div class="section-tag">Galería</div>
+      <h2 class="section-title">El trabajo<br><em>habla solo.</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&q=80" alt="Le Barber interior">
+        <div class="g-label">Nuestro espacio</div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Barba premium">
+        <div class="g-label">Barba Premium</div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Corte clásico">
+        <div class="g-label">Corte Clásico</div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&q=80" alt="Fade degradé">
+        <div class="g-label">Fade Degradé</div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1532710093739-9470acff878f?w=600&q=80" alt="Detalle corte">
+        <div class="g-label">Detalle y precisión</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="nosotros">
+  <div class="why-inner">
+    <div class="why-img-wrap reveal-l">
+      <img class="why-img" src="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=800&q=80" alt="Barbero profesional">
+      <div class="why-img-badge">
+        <div class="why-img-badge-num">8</div>
+        <div class="why-img-badge-label">Años de experiencia</div>
+      </div>
+    </div>
+    <div class="why-content reveal-r">
+      <div class="section-tag">¿Por qué nosotros?</div>
+      <h2 class="section-title" style="font-size:clamp(2rem,3.5vw,3.5rem);margin-bottom:20px;">Más de 800 hombres<br><em>confían en nosotros.</em></h2>
+      <p class="why-sub">No somos una barbería más de Providencia. Somos el lugar donde el detalle importa, el producto es premium y el resultado siempre supera las expectativas.</p>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <div class="why-text">
+            <strong>Barberos certificados en Europa</strong>
+            <span>Formación en técnicas españolas e italianas. Más de 8 años de experiencia y perfeccionamiento constante.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <div class="why-text">
+            <strong>Productos europeos de primera línea</strong>
+            <span>Trabajamos solo con marcas premium — Proraso, American Crew, Reuzel. Sin atajos en la calidad.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <div class="why-text">
+            <strong>Espacio exclusivo y privado</strong>
+            <span>Un ambiente de lujo diseñado para que te relajes. Sin apuros, sin ruido, solo tú y tu barbero.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">04</div>
+          <div class="why-text">
+            <strong>5.0 estrellas en Google</strong>
+            <span>Más de 100 reseñas verificadas. El resultado habla por sí solo — nuestros clientes vuelven siempre.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="reveal">
+      <div class="section-tag">Testimonios</div>
+      <h2 class="section-title">Lo que dicen<br><em>nuestros clientes.</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"El mejor corte que me han dado en mi vida y llevo más de 10 años probando barberías en Santiago. El nivel de detalle y la atención son incomparables."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Matías Herrera</div>
+            <div class="testi-role">Cliente desde 2021 · Las Condes</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Vine por el fade y me quedé por todo lo demás. El ambiente, los productos, el trato — todo es de primer nivel. No voy a ningún otro lado."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sebastián Vidal</div>
+            <div class="testi-role">Cliente desde 2022 · Providencia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Traje a mi papá que nunca había ido a una barbería de este nivel. Salió completamente distinto y feliz. Ahora viene todos los meses. Los recomiendo sin dudarlo."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div>
+            <div class="testi-name">Cristóbal Muñoz</div>
+            <div class="testi-role">Cliente desde 2023 · Ñuñoa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<section class="horarios">
+  <div class="horarios-inner">
+    <div class="reveal-l">
+      <div class="section-tag">Horarios</div>
+      <h2 class="section-title" style="font-size:clamp(2rem,3.5vw,3.5rem);">Estamos cuando<br><em>nos necesitas.</em></h2>
+      <p style="font-size:.88rem;color:var(--muted);line-height:1.9;margin-top:16px;max-width:360px;">Reserva tu hora por WhatsApp y asegura tu espacio. También atendemos sin cita si hay disponibilidad.</p>
+      <div class="horario-list">
+        <div class="horario-row"><span class="horario-dia">Lunes</span><span class="horario-hora">10:00 — 20:00</span></div>
+        <div class="horario-row"><span class="horario-dia">Martes</span><span class="horario-hora">10:00 — 20:00</span></div>
+        <div class="horario-row"><span class="horario-dia">Miércoles</span><span class="horario-hora">10:00 — 20:00</span></div>
+        <div class="horario-row"><span class="horario-dia">Jueves</span><span class="horario-hora">10:00 — 20:00</span></div>
+        <div class="horario-row"><span class="horario-dia">Viernes</span><span class="horario-hora">10:00 — 21:00</span></div>
+        <div class="horario-row"><span class="horario-dia">Sábado</span><span class="horario-hora">09:00 — 20:00</span></div>
+        <div class="horario-row"><span class="horario-dia">Domingo</span><span class="horario-closed">Cerrado</span></div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <div class="map-box">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.8!2d-70.636!3d-33.432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf7e1b2e!2sProvidencia%2C%20Santiago!5e0!3m2!1ses!2scl!4v1234567890" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <div>
+      <div class="section-tag">Reservas</div>
+      <h2>Reserva tu<br>hora <em>ahora.</em></h2>
+      <p class="contact-sub">Completa el formulario y te confirmamos por WhatsApp en minutos. Sin esperas, sin complicaciones.</p>
+      <div class="cinfo">
+        <div class="cinfo-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <span>+56 9 XXXX XXXX</span>
+        </div>
+        <div class="cinfo-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Providencia, Santiago de Chile</span>
+        </div>
+        <div class="cinfo-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span>@lebarbersantiago</span>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="enviarWA(event)">
+      <div class="form-row">
+        <div class="fg">
+          <label>Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="fg">
+          <label>Teléfono</label>
+          <input type="tel" id="telefono" placeholder="+56 9 XXXX XXXX">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Servicio</label>
+        <select id="servicio">
+          <option value="">Selecciona un servicio</option>
+          <option>Corte Clásico — $12.000</option>
+          <option>Fade Degradé — $15.000</option>
+          <option>Barba Premium — $10.000</option>
+          <option>Corte + Barba — $20.000</option>
+          <option>Tratamiento Capilar — $18.000</option>
+          <option>Experiencia Completa — $35.000</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Mensaje (opcional)</label>
+        <textarea id="mensaje" placeholder="¿Tienes alguna referencia de corte o algo especial que quieras?"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Reservar por WhatsApp →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">LE<span> BARBER</span></div>
+        <div class="footer-tagline">Barbería de Lujo · Providencia, Santiago</div>
+        <div class="footer-socials">
+          <a href="https://instagram.com/lebarbersantiago" target="_blank" class="social-btn">IG</a>
+          <a href="https://facebook.com/lebarbersantiago" target="_blank" class="social-btn">FB</a>
+          <a href="https://tiktok.com/@lebarbersantiago" target="_blank" class="social-btn">TK</a>
+          <a href="mailto:contacto@lebarber.cl" class="social-btn">✉</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Reservar</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Le Barber · Todos los derechos reservados</div>
+      <div class="footer-copy">Providencia, Santiago de Chile</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
+  ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
+});
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('solid',window.scrollY>60);
+});
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!e.target.counted){
+      e.target.counted=true;
+      const target=+e.target.dataset.target;
+      const suffix=e.target.dataset.suffix||'';
+      let current=0;
+      const step=target/80;
+      const timer=setInterval(()=>{
+        current+=step;
+        if(current>=target){current=target;clearInterval(timer);}
+        e.target.textContent=Math.floor(current)+suffix;
+      },16);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(c=>cObs.observe(c));
+
+function enviarWA(e){
+  e.preventDefault();
+  const nombre=document.getElementById('nombre').value;
+  const tel=document.getElementById('telefono').value;
+  const servicio=document.getElementById('servicio').value;
+  const mensaje=document.getElementById('mensaje').value;
+  const texto=`Hola, quiero reservar una hora en Le Barber.\n\n👤 Nombre: ${nombre}\n📞 Teléfono: ${tel||'no indicado'}\n✂️ Servicio: ${servicio||'por definir'}\n💬 Mensaje: ${mensaje||'ninguno'}`;
+  window.open('https://wa.me/56939665163?text='+encodeURIComponent(texto),'_blank');
+}
+</script>
+</body>
+</html>
