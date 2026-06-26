@@ -468,6 +468,13 @@
     }
     .pq-item strong { display:block; font-size:0.92rem; font-weight:700; margin-bottom:4px; }
     .pq-item p { font-size:0.82rem; color:var(--gray); line-height:1.5; }
+    .testimonial {
+      margin-top:36px; padding:20px 24px;
+      border-left:3px solid var(--gold);
+      background:var(--off); border-radius:0 8px 8px 0;
+    }
+    .testimonial p { font-size:0.88rem; color:var(--dark); line-height:1.6; font-style:italic; margin:0 0 8px; }
+    .testimonial cite { font-size:0.75rem; color:var(--gray); font-style:normal; letter-spacing:1px; }
     @media(max-width:768px){
       #porque { grid-template-columns:1fr; min-height:auto; }
       .pq-img { height:220px; }
@@ -681,8 +688,8 @@
     <div class="hero-card">
       <div class="hc-icon">⚡</div>
       <div class="hc-text">
-        <strong>5 a 21 días hábiles</strong>
-        <span>Plazo desde que nos envías la información de tu negocio</span>
+        <strong>Lista en menos de 3 semanas</strong>
+        <span>Desde que nos envías la información de tu negocio</span>
       </div>
     </div>
     <div class="hero-card">
@@ -706,8 +713,8 @@
 <!-- STATS -->
 <div id="stats">
   <div class="stat-item">
-    <span class="stat-num">6</span>
-    <span class="stat-lbl">Demos de muestra</span>
+    <span class="stat-num">&lt; 2 hrs</span>
+    <span class="stat-lbl">Tiempo de respuesta</span>
   </div>
   <div class="stat-item">
     <span class="stat-num">100%</span>
@@ -809,6 +816,9 @@
     </div>
     <div class="carousel-dots" id="dots"></div>
   </div>
+  <div style="text-align:center;margin-top:36px;">
+    <a href="#contacto" class="btn-dark">¿Te gustó lo que viste? Cotiza aquí →</a>
+  </div>
 </section>
 
 <!-- SERVICIOS -->
@@ -888,6 +898,10 @@
         </div>
       </div>
     </div>
+    <blockquote class="testimonial reveal">
+      <p>"Mi negocio empezó a recibir clientes por internet al día siguiente de publicar la web. No esperaba resultados tan rápidos."</p>
+      <cite>— Tu nombre aquí, Rubro · Ciudad</cite>
+    </blockquote>
   </div>
 </section>
 
