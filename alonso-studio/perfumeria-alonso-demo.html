@@ -414,6 +414,47 @@ footer{background:var(--dark);padding:64px 56px 40px;}
 @media(max-width:860px){footer{padding:40px 20px 28px;}.footer-grid{grid-template-columns:1fr 1fr;gap:28px;}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr;}}
 
+/* MODAL PRODUCTO */
+.prod-modal{position:fixed;inset:0;z-index:700;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.prod-modal.open{opacity:1;pointer-events:all;}
+.prod-backdrop{position:absolute;inset:0;background:rgba(17,12,7,.88);backdrop-filter:blur(8px);}
+.prod-box{position:relative;background:#fff;border-radius:20px;width:100%;max-width:860px;max-height:92vh;overflow-y:auto;box-shadow:0 32px 80px rgba(17,12,7,.5);display:grid;grid-template-columns:1fr 1fr;}
+.prod-img-col{position:relative;overflow:hidden;border-radius:20px 0 0 20px;background:var(--gold3);}
+.prod-img-col img{width:100%;height:100%;object-fit:cover;display:block;min-height:420px;}
+.prod-badge-modal{position:absolute;top:16px;left:16px;background:var(--red);color:#fff;font-size:.62rem;font-weight:800;padding:5px 12px;border-radius:7px;letter-spacing:.5px;text-transform:uppercase;}
+.prod-info-col{padding:36px 32px;display:flex;flex-direction:column;gap:0;}
+.prod-close{position:absolute;top:16px;right:16px;background:rgba(17,12,7,.08);border:none;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s;z-index:2;}
+.prod-close:hover{background:var(--dark);color:#fff;}
+.prod-cat-tag{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.prod-name-modal{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--dark);line-height:1.1;margin-bottom:10px;letter-spacing:-.5px;}
+.prod-stars-modal{display:flex;align-items:center;gap:6px;margin-bottom:16px;}
+.prod-stars-modal .s{color:#f59e0b;font-size:.9rem;}
+.prod-stars-modal .r{font-size:.72rem;color:var(--muted);font-weight:600;}
+.prod-divider{width:40px;height:1.5px;background:var(--gold);margin-bottom:18px;border-radius:2px;}
+.prod-desc{font-size:.82rem;color:var(--muted);line-height:1.85;margin-bottom:20px;}
+.prod-notas{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:22px;}
+.prod-nota{background:var(--gold3);border-radius:10px;padding:10px 8px;text-align:center;}
+.prod-nota-lbl{font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px;display:block;}
+.prod-nota-val{font-size:.76rem;font-weight:700;color:var(--dark);}
+.prod-detalles{display:flex;flex-direction:column;gap:6px;margin-bottom:22px;}
+.prod-det-row{display:flex;justify-content:space-between;font-size:.76rem;padding:6px 0;border-bottom:1px solid var(--border);}
+.prod-det-row:last-child{border-bottom:none;}
+.prod-det-lbl{color:var(--muted);}
+.prod-det-val{font-weight:700;color:var(--dark);}
+.prod-prices-modal{margin-bottom:18px;}
+.prod-old{font-size:.8rem;color:#94a3b8;text-decoration:line-through;margin-bottom:2px;}
+.prod-price-modal{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--dark);line-height:1;letter-spacing:-1px;}
+.prod-price-modal span{font-size:.9rem;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-left:8px;}
+.prod-actions{display:flex;gap:10px;}
+.prod-btn-add{flex:1;background:var(--red);color:#fff;border:none;padding:13px 20px;border-radius:10px;font-size:.8rem;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:7px;}
+.prod-btn-add:hover{background:#b91c1c;transform:translateY(-1px);box-shadow:0 8px 22px rgba(220,38,38,.35);}
+.prod-btn-add.added{background:#16a34a;}
+.prod-btn-wa{background:none;border:1.5px solid #25d366;color:#25d366;padding:13px 16px;border-radius:10px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;white-space:nowrap;}
+.prod-btn-wa:hover{background:#25d366;color:#fff;}
+.prod-envio{display:flex;align-items:center;gap:8px;font-size:.7rem;color:var(--muted);margin-top:14px;}
+.prod-envio span{color:#22c55e;font-weight:700;}
+@media(max-width:680px){.prod-box{grid-template-columns:1fr;}.prod-img-col{border-radius:20px 20px 0 0;}.prod-img-col img{min-height:260px;}.prod-info-col{padding:22px 20px;}.prod-notas{grid-template-columns:1fr 1fr 1fr;}.prod-name-modal{font-size:1.5rem;}}
+
 /* WA FLOAT */
 .wa-float{position:fixed;bottom:22px;right:22px;z-index:500;background:#25d366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(37,211,102,.4);text-decoration:none;transition:transform .2s;}
 .wa-float:hover{transform:scale(1.1);}
@@ -667,189 +708,189 @@ footer{background:var(--dark);padding:64px 56px 40px;}
     </div>
     <div class="cat-grid" id="catGrid">
       <!-- HOMBRE -->
-      <div class="cat-card" data-cat="hombre">
+      <div class="cat-card" data-cat="hombre" onclick="openProd('Aqua Montana')" style="cursor:pointer;">
         <div class="cat-badge">29% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop&q=85" alt="Aqua Montana"/>
         <div class="cat-body"><div class="cat-cat">Hombre</div><div class="cat-name">Aqua Montana</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(52 compras)</span></div>
           <div class="cat-vol">100ml · Eau de Parfum</div>
           <div class="cat-prices"><div class="cat-price-old">$41.990</div><div class="cat-price">$29.990</div></div>
-          <button class="btn-add" onclick="addCart('Aqua Montana',29990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Aqua Montana',29990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="hombre">
+      <div class="cat-card" data-cat="hombre" onclick="openProd('Black Forest')" style="cursor:pointer;">
         <div class="cat-badge">30% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&h=400&fit=crop&q=85" alt="Black Forest"/>
         <div class="cat-body"><div class="cat-cat">Hombre</div><div class="cat-name">Black Forest</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(41 compras)</span></div>
           <div class="cat-vol">75ml · Extrait de Parfum</div>
           <div class="cat-prices"><div class="cat-price-old">$49.990</div><div class="cat-price">$34.990</div></div>
-          <button class="btn-add" onclick="addCart('Black Forest',34990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Black Forest',34990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="hombre">
+      <div class="cat-card" data-cat="hombre" onclick="openProd('El Conquistador')" style="cursor:pointer;">
         <div class="cat-badge">28% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop&q=85" alt="El Conquistador"/>
         <div class="cat-body"><div class="cat-cat">Hombre</div><div class="cat-name">El Conquistador</div>
           <div class="cat-stars"><span class="cat-star">★★★★☆</span><span class="cat-reviews">(38 compras)</span></div>
           <div class="cat-vol">100ml · Eau de Toilette</div>
           <div class="cat-prices"><div class="cat-price-old">$34.990</div><div class="cat-price">$24.990</div></div>
-          <button class="btn-add" onclick="addCart('El Conquistador',24990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('El Conquistador',24990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="hombre">
+      <div class="cat-card" data-cat="hombre" onclick="openProd('Dark Summit')" style="cursor:pointer;">
         <div class="cat-badge">27% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&h=400&fit=crop&q=85" alt="Dark Summit"/>
         <div class="cat-body"><div class="cat-cat">Hombre</div><div class="cat-name">Dark Summit</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(67 compras)</span></div>
           <div class="cat-vol">50ml · Extrait de Parfum</div>
           <div class="cat-prices"><div class="cat-price-old">$54.990</div><div class="cat-price">$39.990</div></div>
-          <button class="btn-add" onclick="addCart('Dark Summit',39990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Dark Summit',39990,this)">🛒 Agregar al carrito</button></div></div>
 
       <!-- MUJER -->
-      <div class="cat-card" data-cat="mujer">
+      <div class="cat-card" data-cat="mujer" onclick="openProd('Rose Blanche')" style="cursor:pointer;">
         <div class="cat-badge">28% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=400&fit=crop&q=85" alt="Rose Blanche"/>
         <div class="cat-body"><div class="cat-cat">Mujer</div><div class="cat-name">Rose Blanche</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(89 compras)</span></div>
           <div class="cat-vol">100ml · Eau de Parfum</div>
           <div class="cat-prices"><div class="cat-price-old">$38.990</div><div class="cat-price">$27.990</div></div>
-          <button class="btn-add" onclick="addCart('Rose Blanche',27990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Rose Blanche',27990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="mujer">
+      <div class="cat-card" data-cat="mujer" onclick="openProd('Celeste Infinita')" style="cursor:pointer;">
         <div class="cat-badge">27% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop&q=85" alt="Celeste Infinita"/>
         <div class="cat-body"><div class="cat-cat">Mujer</div><div class="cat-name">Celeste Infinita</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(74 compras)</span></div>
           <div class="cat-vol">75ml · Eau de Parfum</div>
           <div class="cat-prices"><div class="cat-price-old">$44.990</div><div class="cat-price">$32.990</div></div>
-          <button class="btn-add" onclick="addCart('Celeste Infinita',32990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Celeste Infinita',32990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="mujer">
+      <div class="cat-card" data-cat="mujer" onclick="openProd('La Femme')" style="cursor:pointer;">
         <div class="cat-badge">28% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=400&h=400&fit=crop&q=85" alt="La Femme"/>
         <div class="cat-body"><div class="cat-cat">Mujer</div><div class="cat-name">La Femme</div>
           <div class="cat-stars"><span class="cat-star">★★★★☆</span><span class="cat-reviews">(45 compras)</span></div>
           <div class="cat-vol">100ml · Extrait de Parfum</div>
           <div class="cat-prices"><div class="cat-price-old">$39.990</div><div class="cat-price">$28.990</div></div>
-          <button class="btn-add" onclick="addCart('La Femme',28990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('La Femme',28990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="mujer">
+      <div class="cat-card" data-cat="mujer" onclick="openProd('Aurora')" style="cursor:pointer;">
         <div class="cat-badge">29% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop&q=85" alt="Aurora"/>
         <div class="cat-body"><div class="cat-cat">Mujer</div><div class="cat-name">Aurora</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(61 compras)</span></div>
           <div class="cat-vol">50ml · Eau de Parfum</div>
           <div class="cat-prices"><div class="cat-price-old">$41.990</div><div class="cat-price">$29.990</div></div>
-          <button class="btn-add" onclick="addCart('Aurora',29990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Aurora',29990,this)">🛒 Agregar al carrito</button></div></div>
 
       <!-- NIÑO -->
-      <div class="cat-card" data-cat="nino">
+      <div class="cat-card" data-cat="nino" onclick="openProd('Little Explorer')" style="cursor:pointer;">
         <div class="cat-badge">25% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop&crop=right&q=85" alt="Little Explorer"/>
         <div class="cat-body"><div class="cat-cat">Niño</div><div class="cat-name">Little Explorer</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(33 compras)</span></div>
           <div class="cat-vol">50ml · Colonia</div>
           <div class="cat-prices"><div class="cat-price-old">$19.990</div><div class="cat-price">$14.990</div></div>
-          <button class="btn-add" onclick="addCart('Little Explorer',14990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Little Explorer',14990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="nino">
+      <div class="cat-card" data-cat="nino" onclick="openProd('Ocean Boy')" style="cursor:pointer;">
         <div class="cat-badge">26% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&h=400&fit=crop&crop=left&q=85" alt="Ocean Boy"/>
         <div class="cat-body"><div class="cat-cat">Niño</div><div class="cat-name">Ocean Boy</div>
           <div class="cat-stars"><span class="cat-star">★★★★☆</span><span class="cat-reviews">(31 compras)</span></div>
           <div class="cat-vol">50ml · Colonia</div>
           <div class="cat-prices"><div class="cat-price-old">$18.990</div><div class="cat-price">$13.990</div></div>
-          <button class="btn-add" onclick="addCart('Ocean Boy',13990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Ocean Boy',13990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="nino">
+      <div class="cat-card" data-cat="nino" onclick="openProd('Sky Captain')" style="cursor:pointer;">
         <div class="cat-badge">26% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop&crop=bottom&q=85" alt="Sky Captain"/>
         <div class="cat-body"><div class="cat-cat">Niño</div><div class="cat-name">Sky Captain</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(44 compras)</span></div>
           <div class="cat-vol">75ml · Eau de Toilette</div>
           <div class="cat-prices"><div class="cat-price-old">$22.990</div><div class="cat-price">$16.990</div></div>
-          <button class="btn-add" onclick="addCart('Sky Captain',16990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Sky Captain',16990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="nino">
+      <div class="cat-card" data-cat="nino" onclick="openProd('Adventure')" style="cursor:pointer;">
         <div class="cat-badge">28% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&h=400&fit=crop&crop=top&q=85" alt="Adventure"/>
         <div class="cat-body"><div class="cat-cat">Niño</div><div class="cat-name">Adventure</div>
           <div class="cat-stars"><span class="cat-star">★★★★☆</span><span class="cat-reviews">(36 compras)</span></div>
           <div class="cat-vol">50ml · Colonia</div>
           <div class="cat-prices"><div class="cat-price-old">$17.990</div><div class="cat-price">$12.990</div></div>
-          <button class="btn-add" onclick="addCart('Adventure',12990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Adventure',12990,this)">🛒 Agregar al carrito</button></div></div>
 
       <!-- NIÑA -->
-      <div class="cat-card" data-cat="nina">
+      <div class="cat-card" data-cat="nina" onclick="openProd('Sweet Princess')" style="cursor:pointer;">
         <div class="cat-badge">25% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=400&fit=crop&crop=right&q=85" alt="Sweet Princess"/>
         <div class="cat-body"><div class="cat-cat">Niña</div><div class="cat-name">Sweet Princess</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(57 compras)</span></div>
           <div class="cat-vol">50ml · Colonia</div>
           <div class="cat-prices"><div class="cat-price-old">$19.990</div><div class="cat-price">$14.990</div></div>
-          <button class="btn-add" onclick="addCart('Sweet Princess',14990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Sweet Princess',14990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="nina">
+      <div class="cat-card" data-cat="nina" onclick="openProd('Little Rose')" style="cursor:pointer;">
         <div class="cat-badge">26% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop&crop=right&q=85" alt="Little Rose"/>
         <div class="cat-body"><div class="cat-cat">Niña</div><div class="cat-name">Little Rose</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(42 compras)</span></div>
           <div class="cat-vol">50ml · Colonia</div>
           <div class="cat-prices"><div class="cat-price-old">$18.990</div><div class="cat-price">$13.990</div></div>
-          <button class="btn-add" onclick="addCart('Little Rose',13990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Little Rose',13990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="nina">
+      <div class="cat-card" data-cat="nina" onclick="openProd('Magic Butterfly')" style="cursor:pointer;">
         <div class="cat-badge">26% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=400&h=400&fit=crop&crop=right&q=85" alt="Magic Butterfly"/>
         <div class="cat-body"><div class="cat-cat">Niña</div><div class="cat-name">Magic Butterfly</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(39 compras)</span></div>
           <div class="cat-vol">75ml · Eau de Toilette</div>
           <div class="cat-prices"><div class="cat-price-old">$22.990</div><div class="cat-price">$16.990</div></div>
-          <button class="btn-add" onclick="addCart('Magic Butterfly',16990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Magic Butterfly',16990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="nina">
+      <div class="cat-card" data-cat="nina" onclick="openProd('Dream Garden')" style="cursor:pointer;">
         <div class="cat-badge">28% OFF</div><div class="cat-online">Oferta online</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop&crop=right&q=85" alt="Dream Garden"/>
         <div class="cat-body"><div class="cat-cat">Niña</div><div class="cat-name">Dream Garden</div>
           <div class="cat-stars"><span class="cat-star">★★★★☆</span><span class="cat-reviews">(34 compras)</span></div>
           <div class="cat-vol">50ml · Colonia</div>
           <div class="cat-prices"><div class="cat-price-old">$17.990</div><div class="cat-price">$12.990</div></div>
-          <button class="btn-add" onclick="addCart('Dream Garden',12990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Dream Garden',12990,this)">🛒 Agregar al carrito</button></div></div>
 
       <!-- COLECCIÓN -->
-      <div class="cat-card" data-cat="coleccion">
+      <div class="cat-card" data-cat="coleccion" onclick="openProd('Summit Reserve')" style="cursor:pointer;">
         <div class="cat-badge">28% OFF</div><div class="cat-online">Ed. Limitada</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&h=400&fit=crop&q=85" alt="Summit Reserve"/>
         <div class="cat-body"><div class="cat-cat">Colección</div><div class="cat-name">Summit Reserve</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(118 compras)</span></div>
           <div class="cat-vol">100ml · Extrait · Ed. Limitada</div>
           <div class="cat-prices"><div class="cat-price-old">$124.990</div><div class="cat-price">$89.990</div></div>
-          <button class="btn-add" onclick="addCart('Summit Reserve',89990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Summit Reserve',89990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="coleccion">
+      <div class="cat-card" data-cat="coleccion" onclick="openProd('Eternal Peak')" style="cursor:pointer;">
         <div class="cat-badge">27% OFF</div><div class="cat-online">Ed. Limitada</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop&crop=left&q=85" alt="Eternal Peak"/>
         <div class="cat-body"><div class="cat-cat">Colección</div><div class="cat-name">Eternal Peak</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(93 compras)</span></div>
           <div class="cat-vol">75ml · Extrait · Ed. Limitada</div>
           <div class="cat-prices"><div class="cat-price-old">$109.990</div><div class="cat-price">$79.990</div></div>
-          <button class="btn-add" onclick="addCart('Eternal Peak',79990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Eternal Peak',79990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="coleccion">
+      <div class="cat-card" data-cat="coleccion" onclick="openProd('Cumbre Dorada')" style="cursor:pointer;">
         <div class="cat-badge">27% OFF</div><div class="cat-online">Ed. Limitada</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&h=400&fit=crop&crop=right&q=85" alt="Cumbre Dorada"/>
         <div class="cat-body"><div class="cat-cat">Colección</div><div class="cat-name">Cumbre Dorada</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(76 compras)</span></div>
           <div class="cat-vol">50ml · Extrait · Numerada</div>
           <div class="cat-prices"><div class="cat-price-old">$129.990</div><div class="cat-price">$94.990</div></div>
-          <button class="btn-add" onclick="addCart('Cumbre Dorada',94990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Cumbre Dorada',94990,this)">🛒 Agregar al carrito</button></div></div>
 
-      <div class="cat-card" data-cat="coleccion">
+      <div class="cat-card" data-cat="coleccion" onclick="openProd('Alpine Exclusive')" style="cursor:pointer;">
         <div class="cat-badge">26% OFF</div><div class="cat-online">Ed. Limitada</div>
         <img class="cat-img" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop&crop=top&q=85" alt="Alpine Exclusive"/>
         <div class="cat-body"><div class="cat-cat">Colección</div><div class="cat-name">Alpine Exclusive</div>
           <div class="cat-stars"><span class="cat-star">★★★★★</span><span class="cat-reviews">(84 compras)</span></div>
           <div class="cat-vol">100ml · Extrait · Numerada</div>
           <div class="cat-prices"><div class="cat-price-old">$94.990</div><div class="cat-price">$69.990</div></div>
-          <button class="btn-add" onclick="addCart('Alpine Exclusive',69990,this)">🛒 Agregar al carrito</button></div></div>
+          <button class="btn-add" onclick="event.stopPropagation();addCart('Alpine Exclusive',69990,this)">🛒 Agregar al carrito</button></div></div>
     </div>
   </div>
 </section>
@@ -1116,6 +1157,45 @@ footer{background:var(--dark);padding:64px 56px 40px;}
   </div>
 </section>
 
+<!-- MODAL PRODUCTO -->
+<div class="prod-modal" id="prodModal">
+  <div class="prod-backdrop" onclick="closeProd()"></div>
+  <div class="prod-box">
+    <div class="prod-img-col">
+      <span class="prod-badge-modal" id="pmBadge">28% OFF</span>
+      <img id="pmImg" src="" alt=""/>
+    </div>
+    <div class="prod-info-col">
+      <button class="prod-close" onclick="closeProd()">×</button>
+      <div class="prod-cat-tag" id="pmCat">Hombre</div>
+      <div class="prod-name-modal" id="pmName">Nombre</div>
+      <div class="prod-stars-modal"><span class="s" id="pmStars">★★★★★</span><span class="r" id="pmReviews">(0 compras)</span></div>
+      <div class="prod-divider"></div>
+      <p class="prod-desc" id="pmDesc"></p>
+      <div class="prod-notas">
+        <div class="prod-nota"><span class="prod-nota-lbl">Salida</span><span class="prod-nota-val" id="pmN1">—</span></div>
+        <div class="prod-nota"><span class="prod-nota-lbl">Corazón</span><span class="prod-nota-val" id="pmN2">—</span></div>
+        <div class="prod-nota"><span class="prod-nota-lbl">Fondo</span><span class="prod-nota-val" id="pmN3">—</span></div>
+      </div>
+      <div class="prod-detalles">
+        <div class="prod-det-row"><span class="prod-det-lbl">Presentación</span><span class="prod-det-val" id="pmVol">—</span></div>
+        <div class="prod-det-row"><span class="prod-det-lbl">Intensidad</span><span class="prod-det-val" id="pmIntensidad">—</span></div>
+        <div class="prod-det-row"><span class="prod-det-lbl">Duración</span><span class="prod-det-val" id="pmDuracion">—</span></div>
+        <div class="prod-det-row"><span class="prod-det-lbl">Ocasión</span><span class="prod-det-val" id="pmOcasion">—</span></div>
+      </div>
+      <div class="prod-prices-modal">
+        <div class="prod-old" id="pmOld">—</div>
+        <div class="prod-price-modal" id="pmPrice">—<span id="pmDisc"></span></div>
+      </div>
+      <div class="prod-actions">
+        <button class="prod-btn-add" id="pmAddBtn" onclick="prodAddCart()">🛒 Agregar al carrito</button>
+        <a class="prod-btn-wa" href="https://wa.me/56939665163?text=Hola%2C%20me%20interesa%20un%20perfume" target="_blank">💬 Consultar</a>
+      </div>
+      <div class="prod-envio">🚚 <span>Envío gratis</span> a todo Chile en compras sobre $29.990</div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1325,6 +1405,66 @@ goStep(1);
 
 // ── FAQ ──
 function toggleFaq(btn){const item=btn.parentElement;item.classList.toggle('open');}
+
+// ── MODAL PRODUCTO ──
+const PRODUCTOS={
+  'Aqua Montana':{cat:'Hombre',img:'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=700&h=900&fit=crop&q=90',badge:'29% OFF',stars:'★★★★★',reviews:'(52 compras)',desc:'Aqua Montana es una fragancia fresca y acuática que evoca la pureza del aire de montaña después de la lluvia. Ideal para el hombre moderno que busca una presencia sutil pero memorable en el día a día.',n1:'Bergamota',n2:'Cedro',n3:'Almizcle blanco',vol:'100ml · Eau de Parfum',intensidad:'Media',duracion:'6–8 horas',ocasion:'Diario · Trabajo · Casual',old:'$41.990',price:'$29.990',disc:'29% OFF',name:'Aqua Montana',rawPrice:29990},
+  'Black Forest':{cat:'Hombre',img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=700&h=900&fit=crop&q=90',badge:'30% OFF',stars:'★★★★★',reviews:'(41 compras)',desc:'Black Forest captura la esencia oscura y profunda del bosque en invierno. Una fragancia amaderada e intensa para el hombre que no pasa desapercibido. Proyección excepcional.',n1:'Pimienta negra',n2:'Vetiver',n3:'Oud',vol:'75ml · Extrait de Parfum',intensidad:'Alta',duracion:'10–14 horas',ocasion:'Noche · Eventos · Citas',old:'$49.990',price:'$34.990',disc:'30% OFF',name:'Black Forest',rawPrice:34990},
+  'El Conquistador':{cat:'Hombre',img:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700&h=900&fit=crop&q=90',badge:'28% OFF',stars:'★★★★☆',reviews:'(38 compras)',desc:'El Conquistador es una fragancia oriental especiada con carácter. Sus notas cálidas y envolventes transmiten confianza y elegancia en cada situación.',n1:'Cardamomo',n2:'Rosa de Damasco',n3:'Ámbar',vol:'100ml · Eau de Toilette',intensidad:'Media-alta',duracion:'7–9 horas',ocasion:'Casual · Noche · Fin de semana',old:'$34.990',price:'$24.990',disc:'28% OFF',name:'El Conquistador',rawPrice:24990},
+  'Dark Summit':{cat:'Hombre',img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&h=900&fit=crop&q=90',badge:'27% OFF',stars:'★★★★★',reviews:'(67 compras)',desc:'Dark Summit es nuestra fragancia masculina más vendida. Un extrait intenso con corazón de sándalo y base de cuero que genera una estela irresistible y duradera.',n1:'Limón negro',n2:'Sándalo',n3:'Cuero',vol:'50ml · Extrait de Parfum',intensidad:'Muy alta',duracion:'12–16 horas',ocasion:'Noche · Eventos formales · Lujo',old:'$54.990',price:'$39.990',disc:'27% OFF',name:'Dark Summit',rawPrice:39990},
+  'Rose Blanche':{cat:'Mujer',img:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=700&h=900&fit=crop&q=90',badge:'28% OFF',stars:'★★★★★',reviews:'(89 compras)',desc:'Rose Blanche es la esencia de la feminidad en su forma más pura. Una rosa centifolia envuelta en notas polveadas y musgo blanco que crea una nube de elegancia y delicadeza.',n1:'Peonía',n2:'Rosa centifolia',n3:'Musgo blanco',vol:'100ml · Eau de Parfum',intensidad:'Media',duracion:'7–9 horas',ocasion:'Diario · Trabajo · Romántica',old:'$38.990',price:'$27.990',disc:'28% OFF',name:'Rose Blanche',rawPrice:27990},
+  'Celeste Infinita':{cat:'Mujer',img:'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=700&h=900&fit=crop&q=90',badge:'27% OFF',stars:'★★★★★',reviews:'(74 compras)',desc:'Celeste Infinita es una fragancia floral acuática inspirada en un jardín al amanecer. Fresca, luminosa y con una permanencia que te acompañará durante todo el día.',n1:'Jazmín',n2:'Gardenia',n3:'Sándalo cremoso',vol:'75ml · Eau de Parfum',intensidad:'Media',duracion:'6–8 horas',ocasion:'Primavera · Verano · Brunch',old:'$44.990',price:'$32.990',disc:'27% OFF',name:'Celeste Infinita',rawPrice:32990},
+  'La Femme':{cat:'Mujer',img:'https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=700&h=900&fit=crop&q=90',badge:'28% OFF',stars:'★★★★☆',reviews:'(45 compras)',desc:'La Femme es una fragancia sofisticada y sensual que celebra la mujer moderna. Sus notas orientales florales crean un misterio irresistible que permanece en la piel durante horas.',n1:'Bergamota',n2:'Iris',n3:'Pachulí',vol:'100ml · Extrait de Parfum',intensidad:'Alta',duracion:'10–12 horas',ocasion:'Noche · Cenas · Ocasiones especiales',old:'$39.990',price:'$28.990',disc:'28% OFF',name:'La Femme',rawPrice:28990},
+  'Aurora':{cat:'Mujer',img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&h=900&fit=crop&q=90',badge:'29% OFF',stars:'★★★★★',reviews:'(61 compras)',desc:'Aurora captura los primeros rayos del día en un frasco. Una fragancia luminosa y radiante con notas de mandarina y flor de azahar, perfecta para comenzar el día con energía positiva.',n1:'Mandarina',n2:'Flor de azahar',n3:'Vainilla suave',vol:'50ml · Eau de Parfum',intensidad:'Ligera-media',duracion:'5–7 horas',ocasion:'Mañana · Diario · Oficina',old:'$41.990',price:'$29.990',disc:'29% OFF',name:'Aurora',rawPrice:29990},
+  'Little Explorer':{cat:'Niño',img:'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=700&h=900&fit=crop&crop=right&q=90',badge:'25% OFF',stars:'★★★★★',reviews:'(33 compras)',desc:'Little Explorer es una colonia fresca y suave especialmente formulada para niños. Con notas cítricas y verdes que evocan la aventura y el juego al aire libre. Sin alcohol agresivo.',n1:'Limón',n2:'Manzana verde',n3:'Almizcle suave',vol:'50ml · Colonia',intensidad:'Ligera',duracion:'3–4 horas',ocasion:'Diario · Escuela · Actividades',old:'$19.990',price:'$14.990',disc:'25% OFF',name:'Little Explorer',rawPrice:14990},
+  'Ocean Boy':{cat:'Niño',img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&h=900&fit=crop&crop=left&q=90',badge:'26% OFF',stars:'★★★★☆',reviews:'(31 compras)',desc:'Ocean Boy es una colonia marina y fresca que los niños adoran. Inspirada en el mar y la aventura costera, es perfecta para niños activos que disfrutan estar al aire libre.',n1:'Marino',n2:'Melón',n3:'Sándalo blanco',vol:'50ml · Colonia',intensidad:'Ligera',duracion:'3–5 horas',ocasion:'Diario · Deportes · Playa',old:'$18.990',price:'$13.990',disc:'26% OFF',name:'Ocean Boy',rawPrice:13990},
+  'Sky Captain':{cat:'Niño',img:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700&h=900&fit=crop&crop=bottom&q=90',badge:'26% OFF',stars:'★★★★★',reviews:'(44 compras)',desc:'Sky Captain es una fragancia fresca y juvenil que combina notas dulces y cítricas. Formulada especialmente para niños con ingredientes suaves y seguros para la piel delicada.',n1:'Naranja',n2:'Lavanda dulce',n3:'Vainilla',vol:'75ml · Eau de Toilette',intensidad:'Ligera-media',duracion:'4–6 horas',ocasion:'Diario · Cumpleaños · Salidas',old:'$22.990',price:'$16.990',disc:'26% OFF',name:'Sky Captain',rawPrice:16990},
+  'Adventure':{cat:'Niño',img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=700&h=900&fit=crop&crop=top&q=90',badge:'28% OFF',stars:'★★★★☆',reviews:'(36 compras)',desc:'Adventure es la colonia ideal para el niño curioso y lleno de energía. Una fragancia fresca con un toque dulce que dura todo el día de escuela y juegos.',n1:'Pomelo',n2:'Menta',n3:'Musgo',vol:'50ml · Colonia',intensidad:'Ligera',duracion:'3–4 horas',ocasion:'Escuela · Juegos · Diario',old:'$17.990',price:'$12.990',disc:'28% OFF',name:'Adventure',rawPrice:12990},
+  'Sweet Princess':{cat:'Niña',img:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=700&h=900&fit=crop&crop=right&q=90',badge:'25% OFF',stars:'★★★★★',reviews:'(57 compras)',desc:'Sweet Princess es un sueño hecho fragancia. Notas de frambuesa, flor de algodón y vainilla rosada crean una combinación mágica que encanta a las niñas y sus mamás.',n1:'Frambuesa',n2:'Flor de algodón',n3:'Vainilla rosada',vol:'50ml · Colonia',intensidad:'Ligera',duracion:'4–5 horas',ocasion:'Diario · Cumpleaños · Escuela',old:'$19.990',price:'$14.990',disc:'25% OFF',name:'Sweet Princess',rawPrice:14990},
+  'Little Rose':{cat:'Niña',img:'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=700&h=900&fit=crop&crop=right&q=90',badge:'26% OFF',stars:'★★★★★',reviews:'(42 compras)',desc:'Little Rose es la primera rosa de tu princesa. Una colonia floral suave y encantadora con pétalos de rosa, durazno y un fondo de musgo blanco. Delicada y perfecta para niñas.',n1:'Durazno',n2:'Rosa rosada',n3:'Musgo blanco',vol:'50ml · Colonia',intensidad:'Ligera',duracion:'3–5 horas',ocasion:'Diario · Fiestas · Escuela',old:'$18.990',price:'$13.990',disc:'26% OFF',name:'Little Rose',rawPrice:13990},
+  'Magic Butterfly':{cat:'Niña',img:'https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=700&h=900&fit=crop&crop=right&q=90',badge:'26% OFF',stars:'★★★★★',reviews:'(39 compras)',desc:'Magic Butterfly es una fragancia mágica y colorida para niñas soñadoras. Sus notas frutales y florales crean una estela alegre que encantará a tu pequeña princesa.',n1:'Cereza',n2:'Jazmín tierno',n3:'Sándalo dulce',vol:'75ml · Eau de Toilette',intensidad:'Ligera-media',duracion:'4–6 horas',ocasion:'Fiestas · Diario · Ocasiones',old:'$22.990',price:'$16.990',disc:'26% OFF',name:'Magic Butterfly',rawPrice:16990},
+  'Dream Garden':{cat:'Niña',img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&h=900&fit=crop&crop=right&q=90',badge:'28% OFF',stars:'★★★★☆',reviews:'(34 compras)',desc:'Dream Garden es un jardín encantado en miniatura. Una colonia fresca y floral que combina flores silvestres con un toque de pera y almizcle suave. Para niñas que sueñan despierta.',n1:'Pera',n2:'Flores silvestres',n3:'Almizcle suave',vol:'50ml · Colonia',intensidad:'Ligera',duracion:'3–4 horas',ocasion:'Diario · Escuela · Jugar',old:'$17.990',price:'$12.990',disc:'28% OFF',name:'Dream Garden',rawPrice:12990},
+  'Summit Reserve':{cat:'Colección',img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=700&h=900&fit=crop&q=90',badge:'28% OFF',stars:'★★★★★',reviews:'(118 compras)',desc:'Summit Reserve es nuestra obra maestra. Construida sobre un trío de cedro del Atlas, oud de Medio Oriente y vetiver de Haití. Solo 200 unidades numeradas disponibles en todo Chile.',n1:'Cedro del Atlas',n2:'Oud',n3:'Vetiver de Haití',vol:'100ml · Extrait · Ed. Limitada',intensidad:'Muy alta',duracion:'18–24 horas',ocasion:'Lujo · Colección · Regalo premium',old:'$124.990',price:'$89.990',disc:'28% OFF',name:'Summit Reserve',rawPrice:89990},
+  'Eternal Peak':{cat:'Colección',img:'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=700&h=900&fit=crop&crop=left&q=90',badge:'27% OFF',stars:'★★★★★',reviews:'(93 compras)',desc:'Eternal Peak es una fragancia de colección que captura la eternidad en un frasco. Sus notas de incienso, rosa de Taif y madera de cachemira crean una experiencia olfativa única.',n1:'Rosa de Taif',n2:'Incienso',n3:'Madera de cachemira',vol:'75ml · Extrait · Ed. Limitada',intensidad:'Alta',duracion:'14–20 horas',ocasion:'Colección · Eventos · Regalo',old:'$109.990',price:'$79.990',disc:'27% OFF',name:'Eternal Peak',rawPrice:79990},
+  'Cumbre Dorada':{cat:'Colección',img:'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&h=900&fit=crop&crop=right&q=90',badge:'27% OFF',stars:'★★★★★',reviews:'(76 compras)',desc:'Cumbre Dorada es la fragancia más exclusiva de nuestra colección. Numerada y firmada, combina azafrán iraní, rosa búlgara y ámbar gris en una composición de lujo absoluto.',n1:'Azafrán iraní',n2:'Rosa búlgara',n3:'Ámbar gris',vol:'50ml · Extrait · Numerada',intensidad:'Muy alta',duracion:'20–26 horas',ocasion:'Lujo extremo · Colección · Regalo',old:'$129.990',price:'$94.990',disc:'27% OFF',name:'Cumbre Dorada',rawPrice:94990},
+  'Alpine Exclusive':{cat:'Colección',img:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700&h=900&fit=crop&crop=top&q=90',badge:'26% OFF',stars:'★★★★★',reviews:'(84 compras)',desc:'Alpine Exclusive nace de la inspiración en los Alpes suizos. Una fragancia limpia, mineral y majestuosa con pino negro, lavanda alpina y un fondo de ámbar amaderado.',n1:'Pino negro',n2:'Lavanda alpina',n3:'Ámbar amaderado',vol:'100ml · Extrait · Numerada',intensidad:'Alta',duracion:'12–16 horas',ocasion:'Colección · Lujo · Invierno',old:'$94.990',price:'$69.990',disc:'26% OFF',name:'Alpine Exclusive',rawPrice:69990}
+};
+let currentProd=null;
+function openProd(name){
+  const p=PRODUCTOS[name];if(!p)return;
+  currentProd=p;
+  document.getElementById('pmBadge').textContent=p.badge;
+  document.getElementById('pmImg').src=p.img;
+  document.getElementById('pmImg').alt=p.name;
+  document.getElementById('pmCat').textContent=p.cat;
+  document.getElementById('pmName').textContent=p.name;
+  document.getElementById('pmStars').textContent=p.stars;
+  document.getElementById('pmReviews').textContent=p.reviews;
+  document.getElementById('pmDesc').textContent=p.desc;
+  document.getElementById('pmN1').textContent=p.n1;
+  document.getElementById('pmN2').textContent=p.n2;
+  document.getElementById('pmN3').textContent=p.n3;
+  document.getElementById('pmVol').textContent=p.vol;
+  document.getElementById('pmIntensidad').textContent=p.intensidad;
+  document.getElementById('pmDuracion').textContent=p.duracion;
+  document.getElementById('pmOcasion').textContent=p.ocasion;
+  document.getElementById('pmOld').textContent=p.old;
+  document.getElementById('pmPrice').childNodes[0].textContent=p.price;
+  document.getElementById('pmDisc').textContent=' · '+p.disc;
+  const btn=document.getElementById('pmAddBtn');
+  btn.textContent='🛒 Agregar al carrito';btn.classList.remove('added');
+  document.getElementById('prodModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeProd(){document.getElementById('prodModal').classList.remove('open');document.body.style.overflow='';}
+function prodAddCart(){
+  if(!currentProd)return;
+  addCart(currentProd.name,currentProd.rawPrice,document.getElementById('pmAddBtn'));
+  const btn=document.getElementById('pmAddBtn');
+  btn.textContent='✓ Agregado';btn.classList.add('added');
+  setTimeout(()=>{btn.innerHTML='🛒 Agregar al carrito';btn.classList.remove('added');},1500);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProd();});
 
 // ── CURSOR PERSONALIZADO ──
 (function(){
