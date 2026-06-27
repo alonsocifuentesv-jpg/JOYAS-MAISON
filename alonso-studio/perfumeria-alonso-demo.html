@@ -275,22 +275,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:64px;display:flex;ali
 .btn-next:disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
 @media(max-width:860px){.ab{padding:18px;}.serv-grid{grid-template-columns:repeat(2,1fr);}.slots-grid{grid-template-columns:repeat(3,1fr);}.pago-grid{grid-template-columns:1fr;}}
 
-/* GALERÍA */
-#galeria{background:#fff;}
-.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.gal-item{border-radius:10px;overflow:hidden;cursor:pointer;aspect-ratio:1;position:relative;}
-.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
-.gal-item:hover img{transform:scale(1.07);}
-.gal-item::after{content:'🔍';position:absolute;inset:0;background:rgba(10,14,26,.45);display:flex;align-items:center;justify-content:center;font-size:1.5rem;opacity:0;transition:opacity .3s;}
-.gal-item:hover::after{opacity:1;}
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
-.lightbox.open{opacity:1;pointer-events:all;}
-.lb-img{max-width:90vw;max-height:85vh;border-radius:8px;object-fit:contain;}
-.lb-close{position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;}
-.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:1.8rem;cursor:pointer;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
-.lb-prev{left:16px;}.lb-next{right:16px;}
-.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.22);}
-@media(max-width:860px){.galeria-grid{grid-template-columns:repeat(2,1fr);}}
+/* GALERÍA VIDEOS */
+#galeria{background:var(--dark);}
+.galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.gal-item{border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#000;}
+.gal-item.wide{grid-column:span 2;aspect-ratio:16/9;}
+.gal-item.tall{aspect-ratio:9/16;}
+.gal-item.sq{aspect-ratio:1;}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s,opacity .3s;display:block;}
+.gal-item:hover img{transform:scale(1.04);opacity:.8;}
+.gal-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:opacity .25s;}
+.gal-play{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;}
+.gal-item:hover .gal-play{transform:scale(1.12);background:#fff;}
+.gal-play svg{width:22px;height:22px;fill:var(--dark);margin-left:3px;}
+.gal-duration{background:rgba(0,0,0,.7);color:#fff;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.5px;}
+.gal-title{position:absolute;bottom:0;left:0;right:0;padding:12px 14px 14px;background:linear-gradient(0deg,rgba(5,10,28,.85) 0%,transparent 100%);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.3px;opacity:0;transition:opacity .25s;}
+.gal-item:hover .gal-title{opacity:1;}
+.gal-type{position:absolute;top:10px;left:10px;background:rgba(91,163,217,.9);color:#fff;font-size:.55rem;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;}
+@media(max-width:860px){.galeria-grid{grid-template-columns:repeat(2,1fr);}.gal-item.wide{grid-column:span 2;}.gal-item.tall{aspect-ratio:4/5;}}
+@media(max-width:480px){.galeria-grid{grid-template-columns:1fr;}.gal-item.wide{grid-column:span 1;aspect-ratio:16/9;}}
 
 /* BLOG */
 #blog{background:var(--gray);}
@@ -381,6 +384,52 @@ footer{background:var(--dark);padding:48px;}
 .wa-float{position:fixed;bottom:22px;right:22px;z-index:500;background:#25d366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(37,211,102,.4);text-decoration:none;transition:transform .2s;}
 .wa-float:hover{transform:scale(1.1);}
 .wa-float svg{width:26px;height:26px;fill:#fff;}
+
+/* MOBILE GLOBAL */
+@media(max-width:600px){
+  nav{padding:0 14px;height:56px;}
+  .nav-logo{font-size:1rem;}
+  .hero{padding:0 18px;min-height:520px;}
+  .hero-title{font-size:2rem;}
+  .hero-sub{font-size:.8rem;}
+  .hero-btns{flex-direction:column;gap:10px;}
+  .btn-sky,.btn-ghost{text-align:center;padding:12px 20px;font-size:.82rem;}
+  .sec{padding:40px 16px;}
+  .stitle{font-size:1.5rem;}
+  .stats{padding:18px 14px;}
+  .stats-grid{grid-template-columns:repeat(3,1fr);}
+  .stat-num{font-size:1.4rem;}
+  .filtros-bar{gap:6px;}
+  .filtro-btn{padding:6px 12px;font-size:.68rem;}
+  .search-input{width:100%;margin-left:0;margin-top:6px;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .cat-name{font-size:.8rem;}
+  .cat-price{font-size:1rem;}
+  .btn-add{font-size:.68rem;padding:9px 8px;}
+  .barber-grid{grid-template-columns:1fr;}
+  .serv-grid{grid-template-columns:1fr 1fr;}
+  .slots-grid{grid-template-columns:repeat(3,1fr);}
+  .pago-grid{grid-template-columns:1fr;}
+  .agenda-box{border-radius:10px;}
+  .ab{padding:14px;}
+  .steps-bar{padding:12px 14px;}
+  .sl{display:none;}
+  .galeria-grid{grid-template-columns:1fr 1fr;gap:8px;}
+  .gal-item.wide{grid-column:span 2;}
+  .gal-play{width:42px;height:42px;}
+  .gal-play svg{width:16px;height:16px;}
+  .blog-grid{grid-template-columns:1fr;}
+  .est-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .porq-grid{grid-template-columns:1fr 1fr;}
+  footer{padding:28px 16px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .ck-body{padding:14px;}
+  .ck-head{padding:14px 16px;}
+  .ck-2col{grid-template-columns:1fr;}
+  .banner-wa{padding:18px 16px;}
+  .banner-wa-inner{flex-direction:column;align-items:flex-start;}
+  .porq-grid{grid-template-columns:1fr;}
+}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
@@ -728,28 +777,6 @@ footer{background:var(--dark);padding:48px;}
   </div>
 </section>
 
-<!-- COTIZADOR -->
-<section class="sec" id="cotizador">
-  <div class="si">
-    <div class="sh reveal"><span class="st">Cotizador</span><h2 class="stitle">Arma tu <em>pedido</em> y cotiza</h2><p class="ssub">Agrega cuántas unidades quieres y te enviamos la cotización por WhatsApp al instante.</p></div>
-    <div class="cot-box reveal" id="cotBox">
-      <div class="cot-row"><div><div class="cot-name">Aqua Montana</div><div class="cot-cat">Hombre · 100ml</div></div><input class="cot-qty" type="number" min="0" value="0" data-price="29990" onchange="calcCot()"><div class="cot-sub" id="cs0">$0</div></div>
-      <div class="cot-row"><div><div class="cot-name">Black Forest</div><div class="cot-cat">Hombre · 75ml</div></div><input class="cot-qty" type="number" min="0" value="0" data-price="34990" onchange="calcCot()"><div class="cot-sub" id="cs1">$0</div></div>
-      <div class="cot-row"><div><div class="cot-name">Rose Blanche</div><div class="cot-cat">Mujer · 100ml</div></div><input class="cot-qty" type="number" min="0" value="0" data-price="27990" onchange="calcCot()"><div class="cot-sub" id="cs2">$0</div></div>
-      <div class="cot-row"><div><div class="cot-name">Celeste Infinita</div><div class="cot-cat">Mujer · 75ml</div></div><input class="cot-qty" type="number" min="0" value="0" data-price="32990" onchange="calcCot()"><div class="cot-sub" id="cs3">$0</div></div>
-      <div class="cot-row"><div><div class="cot-name">Little Explorer</div><div class="cot-cat">Niño · 50ml</div></div><input class="cot-qty" type="number" min="0" value="0" data-price="14990" onchange="calcCot()"><div class="cot-sub" id="cs4">$0</div></div>
-      <div class="cot-row"><div><div class="cot-name">Sweet Princess</div><div class="cot-cat">Niña · 50ml</div></div><input class="cot-qty" type="number" min="0" value="0" data-price="14990" onchange="calcCot()"><div class="cot-sub" id="cs5">$0</div></div>
-      <div class="cot-row"><div><div class="cot-name">Summit Reserve</div><div class="cot-cat">Colección · Ed. Limitada</div></div><input class="cot-qty" type="number" min="0" value="0" data-price="89990" onchange="calcCot()"><div class="cot-sub" id="cs6">$0</div></div>
-      <div class="cot-total-bar">
-        <div><div class="cot-total-label">Total cotización</div></div>
-        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-          <div class="cot-total-price" id="cotTotal">$0</div>
-          <button class="btn-cot" onclick="enviarCotWA()">Enviar por WhatsApp →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- BANNER CONSULTAS/PEDIDOS -->
 <div class="banner-wa">
@@ -828,28 +855,75 @@ footer{background:var(--dark);padding:48px;}
   </div>
 </section>
 
-<!-- GALERÍA -->
-<section class="sec" id="galeria">
+<!-- GALERÍA VIDEOS -->
+<section class="sec" id="galeria" style="background:var(--dark);padding:64px 48px;">
   <div class="si">
-    <div class="sh reveal"><span class="st">Galería</span><h2 class="stitle">Nuestra <em>tienda</em></h2></div>
-    <div class="galeria-grid reveal" id="galeriaGrid">
-      <div class="gal-item" onclick="openLb(0)"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80" alt="Galería 1"/></div>
-      <div class="gal-item" onclick="openLb(1)"><img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Galería 2"/></div>
-      <div class="gal-item" onclick="openLb(2)"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80" alt="Galería 3"/></div>
-      <div class="gal-item" onclick="openLb(3)"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80" alt="Galería 4"/></div>
-      <div class="gal-item" onclick="openLb(4)"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Galería 5"/></div>
-      <div class="gal-item" onclick="openLb(5)"><img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80" alt="Galería 6"/></div>
-      <div class="gal-item" onclick="openLb(6)"><img src="https://images.unsplash.com/photo-1564207550709-97d6dd36b0b0?w=600&q=80" alt="Galería 7"/></div>
-      <div class="gal-item" onclick="openLb(7)"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="Galería 8"/></div>
+    <div class="sh reveal"><span class="st" style="color:rgba(168,212,245,.5);">Video galería</span><h2 class="stitle" style="color:#fff;">Conoce nuestra <em style="color:var(--sky2)">tienda</em></h2><p class="ssub" style="color:rgba(255,255,255,.4);">Recorrido virtual · Perfumes exclusivos · Detrás de escena</p></div>
+    <div class="galeria-grid reveal">
+
+      <div class="gal-item wide">
+        <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=900&h=506&fit=crop&q=85" alt="Video tienda"/>
+        <div class="gal-type">🎬 Destacado</div>
+        <div class="gal-overlay">
+          <div class="gal-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="gal-duration">2:34</div>
+        </div>
+        <div class="gal-title">Tour completo por Perfumería Alonso — Santiago</div>
+      </div>
+
+      <div class="gal-item sq">
+        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500&h=500&fit=crop&q=85" alt="Video perfume"/>
+        <div class="gal-type">📦 Unboxing</div>
+        <div class="gal-overlay">
+          <div class="gal-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="gal-duration">1:12</div>
+        </div>
+        <div class="gal-title">Summit Reserve — Edición Limitada</div>
+      </div>
+
+      <div class="gal-item sq">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&h=500&fit=crop&q=85" alt="Video aromas"/>
+        <div class="gal-type">🌿 Proceso</div>
+        <div class="gal-overlay">
+          <div class="gal-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="gal-duration">0:58</div>
+        </div>
+        <div class="gal-title">Cómo elegir tu fragancia ideal</div>
+      </div>
+
+      <div class="gal-item sq">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&h=500&fit=crop&q=85" alt="Colección mujer"/>
+        <div class="gal-type">👗 Mujer</div>
+        <div class="gal-overlay">
+          <div class="gal-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="gal-duration">1:47</div>
+        </div>
+        <div class="gal-title">Colección Mujer — Primavera 2025</div>
+      </div>
+
+      <div class="gal-item sq">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&h=500&fit=crop&q=85" alt="Colección hombre"/>
+        <div class="gal-type">👔 Hombre</div>
+        <div class="gal-overlay">
+          <div class="gal-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="gal-duration">1:22</div>
+        </div>
+        <div class="gal-title">Dark Summit — El perfume más vendido</div>
+      </div>
+
+      <div class="gal-item wide">
+        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=900&h=506&fit=crop&q=85" alt="Behind scenes"/>
+        <div class="gal-type">🎥 BTS</div>
+        <div class="gal-overlay">
+          <div class="gal-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="gal-duration">3:05</div>
+        </div>
+        <div class="gal-title">Detrás de escena — Sesión fotográfica Colección 2025</div>
+      </div>
+
     </div>
   </div>
 </section>
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" onclick="closeLb()">×</button>
-  <button class="lb-prev" onclick="moveLb(-1)">‹</button>
-  <img class="lb-img" id="lbImg" src="" alt=""/>
-  <button class="lb-next" onclick="moveLb(1)">›</button>
-</div>
 
 <!-- BLOG -->
 <section class="sec" id="blog" style="background:var(--gray);">
@@ -1102,39 +1176,6 @@ function renderCart(){
 function removeCart(i){cart.splice(i,1);renderCart();}
 function toggleCart(){document.getElementById('cartDrawer').classList.toggle('open');document.getElementById('cartOverlay').classList.toggle('open');}
 
-// ── COTIZADOR ──
-function calcCot(){
-  const rows=document.querySelectorAll('.cot-qty');
-  let total=0;
-  rows.forEach((inp,i)=>{
-    const qty=parseInt(inp.value)||0;
-    const price=parseInt(inp.dataset.price)||0;
-    const sub=qty*price;
-    document.getElementById('cs'+i).textContent=sub?'$'+sub.toLocaleString('es-CL'):'$0';
-    total+=sub;
-  });
-  document.getElementById('cotTotal').textContent=total?'$'+total.toLocaleString('es-CL'):'$0';
-}
-function enviarCotWA(){
-  const rows=document.querySelectorAll('#cotBox .cot-row');
-  const names=['Aqua Montana','Black Forest','Rose Blanche','Celeste Infinita','Little Explorer','Sweet Princess','Summit Reserve'];
-  let lines=[];let total=0;
-  document.querySelectorAll('.cot-qty').forEach((inp,i)=>{
-    const qty=parseInt(inp.value)||0;
-    if(qty>0){const p=parseInt(inp.dataset.price);const sub=qty*p;lines.push(`• ${names[i]} ×${qty} = $${sub.toLocaleString('es-CL')}`);total+=sub;}
-  });
-  if(!lines.length){alert('Agrega al menos 1 producto al cotizador.');return;}
-  const txt=`Hola Perfumería Alonso 👋\n\n*Cotización online:*\n\n${lines.join('\n')}\n\n*Total:* $${total.toLocaleString('es-CL')}\n\n¿Tienen stock disponible?`;
-  window.open('https://wa.me/56939665163?text='+encodeURIComponent(txt),'_blank');
-}
-
-// ── LIGHTBOX ──
-const lbImgs=['https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=1200&q=90','https://images.unsplash.com/photo-1541643600914-78b084683702?w=1200&q=90','https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=1200&q=90','https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200&q=90','https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=90','https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=1200&q=90','https://images.unsplash.com/photo-1564207550709-97d6dd36b0b0?w=1200&q=90','https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=90'];
-let lbIdx=0;
-function openLb(i){lbIdx=i;document.getElementById('lbImg').src=lbImgs[i];document.getElementById('lightbox').classList.add('open');}
-function closeLb(){document.getElementById('lightbox').classList.remove('open');}
-function moveLb(d){lbIdx=(lbIdx+d+lbImgs.length)%lbImgs.length;document.getElementById('lbImg').src=lbImgs[lbIdx];}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')moveLb(-1);if(e.key==='ArrowRight')moveLb(1);});
 
 // ── BLOG ──
 function toggleBlog(i,btn){const el=document.getElementById('bf'+i);el.classList.toggle('open');btn.textContent=el.classList.contains('open')?'Leer menos ↑':'Leer más →';}
