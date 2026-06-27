@@ -91,19 +91,29 @@ nav.solid{background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1p
 .hero-counter-num{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:var(--gold);line-height:1;display:block;}
 .hero-counter-lbl{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
 
-/* Rotating bottle */
-.bottle-wrap{position:absolute;right:8%;top:50%;transform:translateY(-50%);z-index:10;width:280px;height:420px;display:flex;align-items:center;justify-content:center;}
-.bottle-scene{perspective:1200px;width:200px;height:380px;}
-.bottle-3d{width:100%;height:100%;transform-style:preserve-3d;animation:spin360 10s linear infinite;position:relative;}
-@keyframes spin360{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
-.bottle-img{width:200px;height:380px;object-fit:contain;filter:drop-shadow(0 0 40px rgba(201,168,76,.4)) drop-shadow(0 0 80px rgba(139,92,246,.2));backface-visibility:hidden;}
-.bottle-glow{position:absolute;inset:-40px;background:radial-gradient(circle,rgba(201,168,76,.15) 0%,transparent 70%);animation:glowPulse 3s ease-in-out infinite;}
-@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
+/* ── CSS BOTTLE ── */
+.bottle-wrap{position:absolute;right:8%;top:50%;transform:translateY(-50%);z-index:10;display:flex;align-items:center;justify-content:center;}
+.bottle-glow{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(139,92,246,.25) 0%,rgba(232,160,192,.15) 40%,transparent 70%);border-radius:50%;animation:glowPulse 3s ease-in-out infinite;}
+@keyframes glowPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.css-bottle{position:relative;animation:bottleFloat 5s ease-in-out infinite;filter:drop-shadow(0 40px 80px rgba(139,92,246,.5)) drop-shadow(0 0 40px rgba(201,168,76,.3));}
+@keyframes bottleFloat{0%,100%{transform:translateY(0) rotate(-1deg)}25%{transform:translateY(-18px) rotate(1deg)}50%{transform:translateY(-8px) rotate(0deg)}75%{transform:translateY(-18px) rotate(-1deg)}}
+.b-cap{width:52px;height:28px;background:linear-gradient(135deg,#e8c96a,#8a6520,#c9a84c,#8a6520,#e8c96a);margin:0 auto;border-radius:4px 4px 0 0;box-shadow:0 -4px 16px rgba(201,168,76,.3);}
+.b-neck{width:34px;height:52px;background:linear-gradient(90deg,rgba(201,168,76,.15),rgba(255,255,255,.12),rgba(139,92,246,.2),rgba(255,255,255,.08),rgba(201,168,76,.15));border:1px solid rgba(201,168,76,.25);margin:0 auto;}
+.b-body{width:150px;height:240px;background:linear-gradient(145deg,rgba(15,5,30,.97) 0%,rgba(60,20,100,.85) 20%,rgba(139,92,246,.55) 40%,rgba(232,160,192,.35) 55%,rgba(60,20,100,.85) 75%,rgba(10,3,20,.97) 100%);border:1px solid rgba(201,168,76,.35);border-radius:14px 14px 10px 10px;position:relative;overflow:hidden;}
+.b-liquid{position:absolute;bottom:0;left:0;right:0;height:68%;background:linear-gradient(180deg,rgba(232,160,192,.1) 0%,rgba(139,92,246,.35) 40%,rgba(80,20,140,.6) 100%);border-top:1px solid rgba(201,168,76,.1);}
+.b-shine{position:absolute;top:8%;left:8%;width:22%;height:58%;background:linear-gradient(170deg,rgba(255,255,255,.18),rgba(255,255,255,.04),transparent);border-radius:50%;animation:shineMove 3s ease-in-out infinite;}
+@keyframes shineMove{0%,100%{opacity:.7;transform:translateX(0)}50%{opacity:1;transform:translateX(4px)}}
+.b-shine2{position:absolute;top:15%;right:12%;width:8%;height:35%;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent);border-radius:50%;}
+.b-label-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;border:1px solid rgba(201,168,76,.4);padding:10px 14px;width:110px;}
+.b-label-wrap::before{content:'';position:absolute;inset:3px;border:1px solid rgba(201,168,76,.15);}
+.b-brand{font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:4px;color:rgba(201,168,76,.95);font-weight:600;display:block;}
+.b-sub{font-family:'Cormorant Garamond',serif;font-size:.55rem;letter-spacing:6px;color:rgba(201,168,76,.6);font-weight:300;display:block;margin-top:3px;}
+.b-deco{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent);}
+.b-base{width:130px;height:14px;background:linear-gradient(135deg,#c9a84c,#8a6520,#c9a84c);margin:0 auto;border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(201,168,76,.2);}
 
 @media(max-width:900px){
   .hero{padding:120px 24px 80px;flex-direction:column;align-items:flex-start;}
-  .bottle-wrap{position:relative;right:auto;top:auto;transform:none;width:160px;height:280px;margin-bottom:40px;order:-1;align-self:center;}
-  .bottle-img{width:160px;height:280px;}
+  .bottle-wrap{position:relative;right:auto;top:auto;transform:none;margin-bottom:40px;order:-1;align-self:center;scale:.75;}
   .hero-counter{position:relative;bottom:auto;right:auto;text-align:left;margin-top:40px;}
   .hero-counter-num{font-size:3.5rem;}
 }
@@ -129,9 +139,11 @@ nav.solid{background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1p
 
 /* ── PERFUMES DESTACADOS ── */
 #perfumes{background:var(--dark);}
-.perfumes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
-.perf-card{position:relative;overflow:hidden;cursor:none;group:true;}
-.perf-card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .8s ease;}
+.perfumes-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:2px;scrollbar-width:none;}
+.perfumes-carousel::-webkit-scrollbar{display:none;}
+.perf-card{position:relative;overflow:hidden;cursor:none;flex:0 0 340px;scroll-snap-align:start;}
+@media(max-width:768px){.perf-card{flex:0 0 80vw;}}
+.perf-card-img{width:100%;height:460px;object-fit:cover;display:block;transition:transform .8s ease;}
 .perf-card:hover .perf-card-img{transform:scale(1.06);}
 .perf-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.95) 0%,rgba(8,8,8,.4) 50%,transparent 100%);transition:background .4s;}
 .perf-card:hover .perf-card-overlay{background:linear-gradient(to top,rgba(8,8,8,.98) 0%,rgba(8,8,8,.6) 60%,rgba(139,92,246,.1) 100%);}
@@ -146,8 +158,6 @@ nav.solid{background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1p
 .perf-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--gold);}
 .perf-btn{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--white);border-bottom:1px solid var(--gold);padding-bottom:2px;text-decoration:none;transition:color .3s;cursor:none;}
 .perf-btn:hover{color:var(--gold);}
-@media(max-width:900px){.perfumes-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:580px){.perfumes-grid{grid-template-columns:1fr;}}
 
 /* ── STATS ── */
 #stats{background:linear-gradient(135deg,#0d0d0d 0%,#100a1a 50%,#0d0d0d 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -207,8 +217,9 @@ nav.solid{background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1p
 .filtros{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
 .filtro-btn{padding:10px 24px;border:1px solid var(--border);color:var(--muted);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;background:none;cursor:pointer;transition:all .3s;}
 .filtro-btn:hover,.filtro-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06);}
-.catalogo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.cat-card{background:#0d0d0d;border:1px solid var(--border);overflow:hidden;transition:border-color .3s,transform .3s;}
+.catalogo-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;scrollbar-width:none;padding-bottom:8px;}
+.catalogo-grid::-webkit-scrollbar{display:none;}
+.cat-card{background:#0d0d0d;border:1px solid var(--border);overflow:hidden;transition:border-color .3s,transform .3s;flex:0 0 260px;scroll-snap-align:start;}
 .cat-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-4px);}
 .cat-card.hidden{display:none;}
 .cat-img{width:100%;aspect-ratio:1;object-fit:cover;}
@@ -373,10 +384,20 @@ footer{background:#040404;border-top:1px solid var(--border);padding:60px 80px 4
 
   <div class="bottle-wrap">
     <div class="bottle-glow"></div>
-    <div class="bottle-scene">
-      <div class="bottle-3d">
-        <img class="bottle-img" src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=400&q=90" alt="Maison Noir Perfume"/>
+    <div class="css-bottle">
+      <div class="b-cap"></div>
+      <div class="b-neck"></div>
+      <div class="b-body">
+        <div class="b-liquid"></div>
+        <div class="b-shine"></div>
+        <div class="b-shine2"></div>
+        <div class="b-label-wrap">
+          <span class="b-brand">MAISON</span>
+          <span class="b-sub">NOIR</span>
+        </div>
+        <div class="b-deco"></div>
       </div>
+      <div class="b-base"></div>
     </div>
   </div>
 
@@ -411,7 +432,7 @@ footer{background:#040404;border-top:1px solid var(--border);padding:60px 80px 4
     <h2 class="sec-title">Fragancias <em>destacadas</em></h2>
     <p class="sec-sub">Cada aroma es seleccionado por nuestros expertos entre cientos de candidatos. Solo los mejores llegan a Maison Noir.</p>
   </div>
-  <div class="perfumes-grid reveal">
+  <div class="perfumes-carousel reveal">
     <div class="perf-card">
       <img class="perf-card-img" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80" alt="Rose Éternelle"/>
       <div class="perf-card-overlay"></div>
@@ -497,6 +518,7 @@ footer{background:#040404;border-top:1px solid var(--border);padding:60px 80px 4
       </div>
     </div>
   </div>
+  <p style="text-align:center;font-size:.65rem;letter-spacing:2px;color:var(--muted);padding:20px 0 0;text-transform:uppercase;">← Desliza para ver más →</p>
 </section>
 
 <!-- STATS -->
