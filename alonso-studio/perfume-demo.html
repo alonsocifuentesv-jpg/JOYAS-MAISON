@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Noir | Perfumes de Lujo · Santiago de Chile</title>
+<meta name="description" content="Maison Noir — Perfumes de lujo exclusivos en Santiago de Chile. Fragancias únicas importadas desde los mejores ateliers del mundo.">
+<meta property="og:title" content="Maison Noir | Perfumes de Lujo"/>
+<meta property="og:description" content="Fragancias de lujo exclusivas en Santiago de Chile. Descubre tu aroma perfecto."/>
+<meta property="og:image" content="https://images.unsplash.com/photo-1541643600914-78b084683702?w=1200&q=80"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#c9a84c;
+  --gold2:#e8d5a3;
+  --rose:#e8a0c0;
+  --purple:#8b5cf6;
+  --dark:#080808;
+  --dark2:#0d0d0d;
+  --dark3:#141414;
+  --white:#ffffff;
+  --muted:rgba(255,255,255,.45);
+  --border:rgba(255,255,255,.07);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none;}
+
+/* ── CURSOR ── */
+.cursor{width:6px;height:6px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;}
+.cursor-ring{width:32px;height:32px;border:1px solid rgba(201,168,76,.6);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.7;}
+body:has(a:hover) .cursor{width:14px;height:14px;background:var(--rose);}
+body:has(a:hover) .cursor-ring{width:44px;height:44px;border-color:var(--rose);opacity:.4;}
+@media(hover:none),(max-width:768px){.cursor,.cursor-ring{display:none;}body{cursor:auto;}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 80px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:all .6s;}
+nav.solid{background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;letter-spacing:4px;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.68rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;transition:color .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{border:1px solid var(--gold);color:var(--gold);padding:12px 30px;font-size:.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none;}
+.nav-cta:hover{background:var(--gold);color:var(--dark);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:1px;background:var(--white);transition:all .4s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,.98);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:40px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--white);text-decoration:none;letter-spacing:3px;transition:color .3s;}
+.mobile-menu a:hover{color:var(--gold);}
+@media(max-width:900px){nav{padding:0 24px;}.nav-links{display:none;}.nav-cta{display:none;}.hamburger{display:flex;}}
+
+/* ── HERO ── */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;padding:0 80px;}
+.hero-bg{position:absolute;inset:0;background:#080808;}
+.smoke{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
+.smoke-1{width:700px;height:700px;background:radial-gradient(circle,rgba(232,160,192,.18) 0%,transparent 70%);top:-200px;right:-100px;animation:drift1 12s ease-in-out infinite;}
+.smoke-2{width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,.15) 0%,transparent 70%);bottom:-150px;left:-100px;animation:drift2 15s ease-in-out infinite;}
+.smoke-3{width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,.1) 0%,transparent 70%);top:30%;left:30%;animation:drift3 10s ease-in-out infinite;}
+.smoke-4{width:300px;height:300px;background:radial-gradient(circle,rgba(232,160,192,.1) 0%,transparent 70%);bottom:20%;right:20%;animation:drift4 18s ease-in-out infinite;}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,40px) scale(1.1)}66%{transform:translate(40px,-30px) scale(.95)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,-60px) scale(1.15)}}
+@keyframes drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,50px)}}
+@keyframes drift4{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
+
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:100px 100px;}
+
+/* Particles */
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--gold);opacity:0;animation:floatUp var(--dur,8s) var(--delay,0s) infinite;}
+@keyframes floatUp{0%{transform:translateY(100vh) translateX(0);opacity:0;}10%{opacity:.8;}90%{opacity:.3;}100%{transform:translateY(-100px) translateX(var(--drift,20px));opacity:0;}}
+
+.hero-content{position:relative;z-index:10;max-width:650px;}
+.hero-tag{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.hero-tag::before{content:'';width:40px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:300;line-height:1.05;letter-spacing:2px;margin-bottom:24px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-title strong{font-weight:600;}
+.hero-sub{font-size:.88rem;color:var(--muted);line-height:1.8;max-width:480px;margin-bottom:48px;font-weight:300;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--dark);padding:16px 40px;font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-outline{border:1px solid rgba(255,255,255,.25);color:var(--white);padding:16px 40px;font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+.hero-counter{position:absolute;bottom:60px;right:80px;z-index:10;text-align:right;}
+.hero-counter-num{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:var(--gold);line-height:1;display:block;}
+.hero-counter-lbl{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+
+/* Rotating bottle */
+.bottle-wrap{position:absolute;right:8%;top:50%;transform:translateY(-50%);z-index:10;width:280px;height:420px;display:flex;align-items:center;justify-content:center;}
+.bottle-scene{perspective:1200px;width:200px;height:380px;}
+.bottle-3d{width:100%;height:100%;transform-style:preserve-3d;animation:spin360 10s linear infinite;position:relative;}
+@keyframes spin360{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.bottle-img{width:200px;height:380px;object-fit:contain;filter:drop-shadow(0 0 40px rgba(201,168,76,.4)) drop-shadow(0 0 80px rgba(139,92,246,.2));backface-visibility:hidden;}
+.bottle-glow{position:absolute;inset:-40px;background:radial-gradient(circle,rgba(201,168,76,.15) 0%,transparent 70%);animation:glowPulse 3s ease-in-out infinite;}
+@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+@media(max-width:900px){
+  .hero{padding:120px 24px 80px;flex-direction:column;align-items:flex-start;}
+  .bottle-wrap{position:relative;right:auto;top:auto;transform:none;width:160px;height:280px;margin-bottom:40px;order:-1;align-self:center;}
+  .bottle-img{width:160px;height:280px;}
+  .hero-counter{position:relative;bottom:auto;right:auto;text-align:left;margin-top:40px;}
+  .hero-counter-num{font-size:3.5rem;}
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap{background:#0d0d0d;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;overflow:hidden;}
+.marquee-track{display:flex;gap:0;animation:marquee 30s linear infinite;width:max-content;}
+.marquee-item{display:flex;align-items:center;gap:20px;padding:0 40px;white-space:nowrap;}
+.marquee-item span{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.marquee-item strong{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--white);letter-spacing:2px;}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTION COMMONS ── */
+.sec-wrap{padding:120px 80px;}
+.sec-head{text-align:center;margin-bottom:80px;}
+.sec-tag{font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:12px;margin-bottom:20px;}
+.sec-tag::before,.sec-tag::after{content:'';width:30px;height:1px;background:var(--gold);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;line-height:1.15;letter-spacing:1px;}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-sub{font-size:.85rem;color:var(--muted);margin-top:16px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto;}
+@media(max-width:768px){.sec-wrap{padding:80px 20px;}.sec-head{margin-bottom:48px;}}
+
+/* ── PERFUMES DESTACADOS ── */
+#perfumes{background:var(--dark);}
+.perfumes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.perf-card{position:relative;overflow:hidden;cursor:none;group:true;}
+.perf-card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .8s ease;}
+.perf-card:hover .perf-card-img{transform:scale(1.06);}
+.perf-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.95) 0%,rgba(8,8,8,.4) 50%,transparent 100%);transition:background .4s;}
+.perf-card:hover .perf-card-overlay{background:linear-gradient(to top,rgba(8,8,8,.98) 0%,rgba(8,8,8,.6) 60%,rgba(139,92,246,.1) 100%);}
+.perf-card-tag{position:absolute;top:20px;left:20px;background:var(--gold);color:var(--dark);font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;}
+.perf-card-content{position:absolute;bottom:0;left:0;right:0;padding:32px 28px;}
+.perf-fam{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.perf-name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;letter-spacing:1px;margin-bottom:12px;}
+.perf-notes{font-size:.68rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:16px;transform:translateY(10px);opacity:0;transition:all .4s;}
+.perf-card:hover .perf-notes{transform:translateY(0);opacity:1;}
+.perf-notes strong{color:var(--gold);font-weight:500;}
+.perf-footer{display:flex;align-items:center;justify-content:space-between;}
+.perf-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--gold);}
+.perf-btn{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--white);border-bottom:1px solid var(--gold);padding-bottom:2px;text-decoration:none;transition:color .3s;cursor:none;}
+.perf-btn:hover{color:var(--gold);}
+@media(max-width:900px){.perfumes-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:580px){.perfumes-grid{grid-template-columns:1fr;}}
+
+/* ── STATS ── */
+#stats{background:linear-gradient(135deg,#0d0d0d 0%,#100a1a 50%,#0d0d0d 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.stat-box{padding:60px 40px;text-align:center;border-right:1px solid var(--border);position:relative;overflow:hidden;}
+.stat-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(201,168,76,.04) 0%,transparent 70%);opacity:0;transition:opacity .4s;}
+.stat-box:hover::before{opacity:1;}
+.stat-box:last-child{border-right:none;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;color:var(--gold);line-height:1;display:block;}
+.stat-suffix{font-size:1.5rem;color:var(--rose);}
+.stat-lbl{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:12px;display:block;}
+@media(max-width:768px){.stats-grid{grid-template-columns:1fr 1fr;}.stat-box{border-bottom:1px solid var(--border);padding:40px 20px;}.stat-box:nth-child(even){border-right:none;}.stat-num{font-size:2.8rem;}}
+
+/* ── POR QUÉ ELEGIRNOS ── */
+#porque{background:var(--dark);}
+.porque-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.porque-item{background:#0d0d0d;padding:60px 50px;position:relative;overflow:hidden;transition:background .4s;}
+.porque-item::before{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:linear-gradient(90deg,var(--gold),var(--purple));transition:width .6s;}
+.porque-item:hover{background:#111;}
+.porque-item:hover::before{width:100%;}
+.porque-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(201,168,76,.08);position:absolute;top:20px;right:30px;line-height:1;}
+.porque-icon{font-size:2rem;margin-bottom:20px;}
+.porque-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;margin-bottom:14px;color:var(--white);}
+.porque-text{font-size:.82rem;color:var(--muted);line-height:1.7;}
+@media(max-width:768px){.porque-grid{grid-template-columns:1fr;}.porque-item{padding:40px 24px;}}
+
+/* ── PROCESO ── */
+#proceso{background:#070707;}
+.proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:60px;}
+.proceso-steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--purple),var(--gold),transparent);}
+.paso{text-align:center;padding:0 20px;}
+.paso-num{width:64px;height:64px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--gold);margin:0 auto 28px;background:var(--dark);position:relative;z-index:1;}
+.paso-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:12px;}
+.paso-text{font-size:.78rem;color:var(--muted);line-height:1.6;}
+@media(max-width:768px){.proceso-steps{grid-template-columns:1fr 1fr;gap:40px;}.proceso-steps::before{display:none;}}
+
+/* ── GALERÍA LIGHTBOX ── */
+#galeria{background:var(--dark);}
+.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.galeria-item{position:relative;overflow:hidden;cursor:none;aspect-ratio:1;}
+.galeria-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.galeria-item:hover img{transform:scale(1.08);}
+.galeria-item-overlay{position:absolute;inset:0;background:rgba(8,8,8,0);display:flex;align-items:center;justify-content:center;transition:background .4s;}
+.galeria-item:hover .galeria-item-overlay{background:rgba(201,168,76,.2);}
+.galeria-zoom{color:var(--white);font-size:1.5rem;opacity:0;transition:opacity .4s;}
+.galeria-item:hover .galeria-zoom{opacity:1;}
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:500;display:none;align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;}
+.lightbox-close{position:absolute;top:24px;right:32px;color:var(--white);font-size:2rem;cursor:pointer;background:none;border:none;line-height:1;}
+.lightbox-close:hover{color:var(--gold);}
+@media(max-width:768px){.galeria-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* ── CATÁLOGO CON FILTROS ── */
+#catalogo{background:#070707;}
+.filtros{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
+.filtro-btn{padding:10px 24px;border:1px solid var(--border);color:var(--muted);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;background:none;cursor:pointer;transition:all .3s;}
+.filtro-btn:hover,.filtro-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06);}
+.catalogo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.cat-card{background:#0d0d0d;border:1px solid var(--border);overflow:hidden;transition:border-color .3s,transform .3s;}
+.cat-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-4px);}
+.cat-card.hidden{display:none;}
+.cat-img{width:100%;aspect-ratio:1;object-fit:cover;}
+.cat-body{padding:24px;}
+.cat-fam{font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:8px;}
+.cat-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:6px;}
+.cat-ml{font-size:.72rem;color:var(--muted);margin-bottom:16px;}
+.cat-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);font-weight:600;}
+@media(max-width:768px){.catalogo-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.catalogo-grid{grid-template-columns:1fr;}}
+
+/* ── COTIZADOR DE SETS ── */
+#cotizador{background:var(--dark);}
+.cotizador-box{max-width:720px;margin:0 auto;background:#0d0d0d;border:1px solid var(--border);padding:60px;}
+.cotizador-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:8px;text-align:center;}
+.cotizador-sub{font-size:.78rem;color:var(--muted);text-align:center;margin-bottom:40px;}
+.cot-row{display:flex;gap:16px;margin-bottom:16px;}
+.cot-select{flex:1;background:#141414;border:1px solid var(--border);color:var(--white);padding:14px 16px;font-size:.82rem;font-family:'Inter',sans-serif;cursor:pointer;appearance:none;outline:none;transition:border-color .3s;}
+.cot-select:focus{border-color:var(--gold);}
+.cot-result{margin-top:32px;padding:28px;background:#141414;border-left:2px solid var(--gold);display:none;}
+.cot-result.show{display:block;}
+.cot-result-title{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.cot-items{font-size:.82rem;color:var(--muted);line-height:2;margin-bottom:16px;}
+.cot-total{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);}
+.cot-saving{font-size:.75rem;color:var(--rose);margin-top:4px;}
+.btn-cot{width:100%;margin-top:24px;background:var(--gold);color:var(--dark);padding:16px;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;}
+.btn-cot:hover{background:var(--gold2);}
+@media(max-width:768px){.cotizador-box{padding:32px 20px;}.cot-row{flex-direction:column;}}
+
+/* ── TESTIMONIOS ── */
+#testimonios{background:#070707;}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.test-card{background:#0d0d0d;border:1px solid var(--border);padding:40px 32px;position:relative;transition:border-color .4s;}
+.test-card:hover{border-color:rgba(201,168,76,.3);}
+.test-quote{font-size:3rem;color:var(--gold);font-family:'Cormorant Garamond',serif;line-height:.8;margin-bottom:20px;opacity:.4;}
+.test-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:28px;}
+.test-author{display:flex;align-items:center;gap:16px;}
+.test-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid var(--gold);}
+.test-name{font-size:.82rem;font-weight:600;color:var(--white);}
+.test-role{font-size:.7rem;color:var(--muted);margin-top:2px;}
+.test-stars{color:var(--gold);font-size:.75rem;margin-bottom:16px;letter-spacing:2px;}
+@media(max-width:768px){.test-grid{grid-template-columns:1fr;}}
+
+/* ── BLOG ── */
+#blog{background:var(--dark);}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.blog-card{position:relative;overflow:hidden;cursor:none;}
+.blog-img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:transform .7s;}
+.blog-card:hover .blog-img{transform:scale(1.05);}
+.blog-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.95) 0%,transparent 60%);}
+.blog-body{position:absolute;bottom:0;left:0;right:0;padding:28px;}
+.blog-date{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.blog-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;line-height:1.3;margin-bottom:8px;}
+.blog-excerpt{font-size:.72rem;color:var(--muted);line-height:1.5;opacity:0;transform:translateY(8px);transition:all .4s;}
+.blog-card:hover .blog-excerpt{opacity:1;transform:translateY(0);}
+@media(max-width:768px){.blog-grid{grid-template-columns:1fr;}}
+
+/* ── CONTACTO ── */
+#contacto{background:#070707;}
+.contacto-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+.contacto-left h3{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;line-height:1.2;margin-bottom:24px;}
+.contacto-left h3 em{font-style:italic;color:var(--gold);}
+.contacto-left p{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:40px;}
+.contacto-info{display:flex;flex-direction:column;gap:20px;}
+.contacto-info-item{display:flex;align-items:center;gap:14px;font-size:.8rem;color:var(--muted);}
+.contacto-info-icon{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.form-field{margin-bottom:16px;}
+.form-field input,.form-field select,.form-field textarea{width:100%;background:#0d0d0d;border:none;border-bottom:1px solid var(--border);color:var(--white);padding:14px 0;font-size:.85rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .3s;appearance:none;}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-bottom-color:var(--gold);}
+.form-field input::placeholder,.form-field textarea::placeholder{color:rgba(255,255,255,.25);}
+.form-field textarea{resize:none;height:100px;}
+.form-field select{background:#0d0d0d;cursor:pointer;}
+.form-field select option{background:#141414;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.btn-submit{width:100%;margin-top:8px;background:var(--gold);color:var(--dark);padding:18px;font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;}
+.btn-submit:hover{background:var(--gold2);transform:translateY(-1px);}
+@media(max-width:900px){.contacto-wrap{grid-template-columns:1fr;gap:48px;}.form-row{grid-template-columns:1fr;}}
+
+/* ── FOOTER ── */
+footer{background:#040404;border-top:1px solid var(--border);padding:60px 80px 40px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;letter-spacing:4px;margin-bottom:16px;}
+.footer-logo span{color:var(--gold);}
+.footer-desc{font-size:.78rem;color:var(--muted);line-height:1.7;max-width:280px;}
+.footer-col-title{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .3s;}
+.footer-col ul a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:.68rem;color:rgba(255,255,255,.25);letter-spacing:1px;}
+.footer-socials{display:flex;gap:16px;}
+.footer-social{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.8rem;transition:all .3s;cursor:none;}
+.footer-social:hover{border-color:var(--gold);color:var(--gold);}
+@media(max-width:900px){footer{padding:48px 20px 32px;}.footer-top{grid-template-columns:1fr 1fr;gap:40px;}.footer-bottom{flex-direction:column;gap:16px;text-align:center;}}
+@media(max-width:480px){.footer-top{grid-template-columns:1fr;}}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:32px;right:32px;width:56px;height:56px;background:linear-gradient(135deg,var(--gold),#a07830);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;z-index:300;box-shadow:0 8px 32px rgba(201,168,76,.3);animation:waPulse 3s ease-in-out infinite;cursor:none;}
+@keyframes waPulse{0%,100%{box-shadow:0 8px 32px rgba(201,168,76,.3)}50%{box-shadow:0 8px 48px rgba(201,168,76,.5)}}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#perfumes" onclick="closeMobile()">Perfumes</a>
+  <a href="#catalogo" onclick="closeMobile()">Catálogo</a>
+  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#blog" onclick="closeMobile()">Editorial</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">Maison<span>Noir</span></a>
+  <ul class="nav-links">
+    <li><a href="#perfumes">Perfumes</a></li>
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#blog">Editorial</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Descubre tu aroma</a>
+  <div class="hamburger" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="smoke smoke-1"></div>
+  <div class="smoke smoke-2"></div>
+  <div class="smoke smoke-3"></div>
+  <div class="smoke smoke-4"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Haute Parfumerie · Santiago de Chile</div>
+    <h1 class="hero-title">
+      El aroma que<br>
+      te <em>define</em><br>
+      <strong>para siempre.</strong>
+    </h1>
+    <p class="hero-sub">Fragancias únicas creadas en los ateliers más exclusivos del mundo. Cada botella es una obra de arte. Cada aroma, una memoria.</p>
+    <div class="hero-btns">
+      <a href="#perfumes" class="btn-gold">Explorar fragancias</a>
+      <a href="#contacto" class="btn-outline">Consultar ahora</a>
+    </div>
+  </div>
+
+  <div class="bottle-wrap">
+    <div class="bottle-glow"></div>
+    <div class="bottle-scene">
+      <div class="bottle-3d">
+        <img class="bottle-img" src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=400&q=90" alt="Maison Noir Perfume"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-counter">
+    <span class="hero-counter-num" id="heroCount">0</span>
+    <span class="hero-counter-lbl">Fragancias exclusivas</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="mtrack">
+    <div class="marquee-item"><span>Floral</span><div class="marquee-dot"></div><strong>Rose Éternelle</strong><span>$89.900</span></div>
+    <div class="marquee-item"><span>Oriental</span><div class="marquee-dot"></div><strong>Nuit Ambrée</strong><span>$124.900</span></div>
+    <div class="marquee-item"><span>Amaderado</span><div class="marquee-dot"></div><strong>Bois Sacré</strong><span>$98.900</span></div>
+    <div class="marquee-item"><span>Cítrico</span><div class="marquee-dot"></div><strong>Lumière d'Or</strong><span>$79.900</span></div>
+    <div class="marquee-item"><span>Chypre</span><div class="marquee-dot"></div><strong>Velours Noir</strong><span>$139.900</span></div>
+    <div class="marquee-item"><span>Acuático</span><div class="marquee-dot"></div><strong>Brume Marine</strong><span>$85.900</span></div>
+    <div class="marquee-item"><span>Floral</span><div class="marquee-dot"></div><strong>Rose Éternelle</strong><span>$89.900</span></div>
+    <div class="marquee-item"><span>Oriental</span><div class="marquee-dot"></div><strong>Nuit Ambrée</strong><span>$124.900</span></div>
+    <div class="marquee-item"><span>Amaderado</span><div class="marquee-dot"></div><strong>Bois Sacré</strong><span>$98.900</span></div>
+    <div class="marquee-item"><span>Cítrico</span><div class="marquee-dot"></div><strong>Lumière d'Or</strong><span>$79.900</span></div>
+    <div class="marquee-item"><span>Chypre</span><div class="marquee-dot"></div><strong>Velours Noir</strong><span>$139.900</span></div>
+    <div class="marquee-item"><span>Acuático</span><div class="marquee-dot"></div><strong>Brume Marine</strong><span>$85.900</span></div>
+  </div>
+</div>
+
+<!-- PERFUMES DESTACADOS -->
+<section id="perfumes" class="sec-wrap" style="padding-left:0;padding-right:0;padding-top:100px;padding-bottom:0;">
+  <div class="sec-head reveal" style="padding:0 80px;">
+    <div class="sec-tag">Colección</div>
+    <h2 class="sec-title">Fragancias <em>destacadas</em></h2>
+    <p class="sec-sub">Cada aroma es seleccionado por nuestros expertos entre cientos de candidatos. Solo los mejores llegan a Maison Noir.</p>
+  </div>
+  <div class="perfumes-grid reveal">
+    <div class="perf-card">
+      <img class="perf-card-img" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80" alt="Rose Éternelle"/>
+      <div class="perf-card-overlay"></div>
+      <div class="perf-card-tag">Exclusivo</div>
+      <div class="perf-card-content">
+        <div class="perf-fam">Floral · Francia</div>
+        <div class="perf-name">Rose Éternelle</div>
+        <div class="perf-notes"><strong>Salida:</strong> Rosa centifolia, Bergamota<br><strong>Corazón:</strong> Jazmín, Iris<br><strong>Fondo:</strong> Sándalo, Almizcle</div>
+        <div class="perf-footer">
+          <span class="perf-price">$89.900</span>
+          <a href="#contacto" class="perf-btn">Adquirir →</a>
+        </div>
+      </div>
+    </div>
+    <div class="perf-card">
+      <img class="perf-card-img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Nuit Ambrée"/>
+      <div class="perf-card-overlay"></div>
+      <div class="perf-card-tag">Más vendido</div>
+      <div class="perf-card-content">
+        <div class="perf-fam">Oriental · Medio Oriente</div>
+        <div class="perf-name">Nuit Ambrée</div>
+        <div class="perf-notes"><strong>Salida:</strong> Cardamomo, Azafrán<br><strong>Corazón:</strong> Rosa Negra, Oud<br><strong>Fondo:</strong> Ámbar, Vainilla</div>
+        <div class="perf-footer">
+          <span class="perf-price">$124.900</span>
+          <a href="#contacto" class="perf-btn">Adquirir →</a>
+        </div>
+      </div>
+    </div>
+    <div class="perf-card">
+      <img class="perf-card-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80" alt="Bois Sacré"/>
+      <div class="perf-card-overlay"></div>
+      <div class="perf-card-tag">Nuevo</div>
+      <div class="perf-card-content">
+        <div class="perf-fam">Amaderado · Italia</div>
+        <div class="perf-name">Bois Sacré</div>
+        <div class="perf-notes"><strong>Salida:</strong> Cedro, Pimienta Negra<br><strong>Corazón:</strong> Patchouli, Vetiver<br><strong>Fondo:</strong> Musgo, Cachemira</div>
+        <div class="perf-footer">
+          <span class="perf-price">$98.900</span>
+          <a href="#contacto" class="perf-btn">Adquirir →</a>
+        </div>
+      </div>
+    </div>
+    <div class="perf-card">
+      <img class="perf-card-img" src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80" alt="Lumière d'Or"/>
+      <div class="perf-card-overlay"></div>
+      <div class="perf-card-tag">Edición limitada</div>
+      <div class="perf-card-content">
+        <div class="perf-fam">Cítrico · España</div>
+        <div class="perf-name">Lumière d'Or</div>
+        <div class="perf-notes"><strong>Salida:</strong> Limón Siciliano, Pomelo<br><strong>Corazón:</strong> Neroli, Flor de Azahar<br><strong>Fondo:</strong> Musgo Blanco, Almizcle</div>
+        <div class="perf-footer">
+          <span class="perf-price">$79.900</span>
+          <a href="#contacto" class="perf-btn">Adquirir →</a>
+        </div>
+      </div>
+    </div>
+    <div class="perf-card">
+      <img class="perf-card-img" src="https://images.unsplash.com/photo-1564207550709-97d6dd36b0b0?w=600&q=80" alt="Velours Noir"/>
+      <div class="perf-card-overlay"></div>
+      <div class="perf-card-tag">Premium</div>
+      <div class="perf-card-content">
+        <div class="perf-fam">Chypre · Francia</div>
+        <div class="perf-name">Velours Noir</div>
+        <div class="perf-notes"><strong>Salida:</strong> Bergamota, Mandarina<br><strong>Corazón:</strong> Rosa, Jazmín Absoluto<br><strong>Fondo:</strong> Labdanum, Musgo de Roble</div>
+        <div class="perf-footer">
+          <span class="perf-price">$139.900</span>
+          <a href="#contacto" class="perf-btn">Adquirir →</a>
+        </div>
+      </div>
+    </div>
+    <div class="perf-card">
+      <img class="perf-card-img" src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Brume Marine"/>
+      <div class="perf-card-overlay"></div>
+      <div class="perf-card-tag">Bestseller</div>
+      <div class="perf-card-content">
+        <div class="perf-fam">Acuático · Portugal</div>
+        <div class="perf-name">Brume Marine</div>
+        <div class="perf-notes"><strong>Salida:</strong> Sal Marina, Cítrico<br><strong>Corazón:</strong> Jacinto, Agua de Mar<br><strong>Fondo:</strong> Cedro, Almizcle Blanco</div>
+        <div class="perf-footer">
+          <span class="perf-price">$85.900</span>
+          <a href="#contacto" class="perf-btn">Adquirir →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats" class="sec-wrap">
+  <div class="stats-grid">
+    <div class="stat-box reveal">
+      <span class="stat-num"><span class="count" data-target="48">0</span></span>
+      <span class="stat-lbl">Fragancias exclusivas</span>
+    </div>
+    <div class="stat-box reveal">
+      <span class="stat-num"><span class="count" data-target="12">0</span></span>
+      <span class="stat-lbl">Países de origen</span>
+    </div>
+    <div class="stat-box reveal">
+      <span class="stat-num"><span class="count" data-target="2400">0</span><span class="stat-suffix">+</span></span>
+      <span class="stat-lbl">Clientes satisfechos</span>
+    </div>
+    <div class="stat-box reveal">
+      <span class="stat-num"><span class="count" data-target="8">0</span></span>
+      <span class="stat-lbl">Años de experiencia</span>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section id="porque" class="sec-wrap" style="padding-left:0;padding-right:0;">
+  <div class="sec-head reveal" style="padding:0 80px;margin-bottom:60px;">
+    <div class="sec-tag">Nuestra promesa</div>
+    <h2 class="sec-title">Por qué elegir <em>Maison Noir</em></h2>
+  </div>
+  <div class="porque-grid">
+    <div class="porque-item reveal">
+      <span class="porque-num">01</span>
+      <div class="porque-icon">✦</div>
+      <div class="porque-title">Exclusividad garantizada</div>
+      <p class="porque-text">Cada fragancia de nuestra colección es importada en lotes limitados. Cuando se acaban, se acaban. Tu aroma no lo tendrá nadie más.</p>
+    </div>
+    <div class="porque-item reveal">
+      <span class="porque-num">02</span>
+      <div class="porque-icon">🌍</div>
+      <div class="porque-title">Ingredientes de origen único</div>
+      <p class="porque-text">Trabajamos con casas perfumistas de Francia, Italia, Medio Oriente y Japón. Solo materias primas de la más alta calidad entran a Maison Noir.</p>
+    </div>
+    <div class="porque-item reveal">
+      <span class="porque-num">03</span>
+      <div class="porque-icon">🚚</div>
+      <div class="porque-title">Envío a todo Chile</div>
+      <p class="porque-text">Desde Arica hasta Punta Arenas. Cada pedido llega en caja de lujo con certificado de autenticidad. El packaging es parte de la experiencia.</p>
+    </div>
+    <div class="porque-item reveal">
+      <span class="porque-num">04</span>
+      <div class="porque-icon">🛡</div>
+      <div class="porque-title">Autenticidad certificada</div>
+      <p class="porque-text">Garantizamos la autenticidad de cada producto. Si tienes dudas, te lo cambiamos. Sin preguntas, sin burocracia. Tu confianza lo vale todo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO DE COMPRA -->
+<section id="proceso" class="sec-wrap">
+  <div class="sec-head reveal">
+    <div class="sec-tag">Cómo funciona</div>
+    <h2 class="sec-title">Tu fragancia, <em>en 4 pasos</em></h2>
+  </div>
+  <div class="proceso-steps">
+    <div class="paso reveal">
+      <div class="paso-num">1</div>
+      <div class="paso-title">Explora</div>
+      <p class="paso-text">Navega nuestra colección y descubre las notas que te definen. Usa nuestros filtros por familia olfativa.</p>
+    </div>
+    <div class="paso reveal">
+      <div class="paso-num">2</div>
+      <div class="paso-title">Consulta</div>
+      <p class="paso-text">Escríbenos por WhatsApp. Te ayudamos a encontrar tu aroma perfecto según tu personalidad y estilo.</p>
+    </div>
+    <div class="paso reveal">
+      <div class="paso-num">3</div>
+      <div class="paso-title">Paga seguro</div>
+      <p class="paso-text">Transferencia, tarjeta o efectivo. Aceptamos todos los medios de pago con total seguridad.</p>
+    </div>
+    <div class="paso reveal">
+      <div class="paso-num">4</div>
+      <div class="paso-title">Recibe</div>
+      <p class="paso-text">Tu pedido llega en caja de lujo con certificado de autenticidad. En 24–72 horas en Santiago.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA LIGHTBOX -->
+<section id="galeria" class="sec-wrap" style="padding-left:0;padding-right:0;padding-bottom:0;">
+  <div class="sec-head reveal" style="padding:0 80px;margin-bottom:60px;">
+    <div class="sec-tag">Galería</div>
+    <h2 class="sec-title">El arte de <em>la fragancia</em></h2>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1541643600914-78b084683702?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Perfume 1"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80" alt="Perfume 2"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Perfume 3"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80" alt="Perfume 4"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1564207550709-97d6dd36b0b0?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1564207550709-97d6dd36b0b0?w=600&q=80" alt="Perfume 5"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80" alt="Perfume 6"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=600&q=80" alt="Perfume 7"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+    <div class="galeria-item" onclick="openLightbox('https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=1200&q=90')">
+      <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80" alt="Perfume 8"/>
+      <div class="galeria-item-overlay"><span class="galeria-zoom">⊕</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<!-- CATÁLOGO CON FILTROS -->
+<section id="catalogo" class="sec-wrap">
+  <div class="sec-head reveal">
+    <div class="sec-tag">Catálogo completo</div>
+    <h2 class="sec-title">Encuentra tu <em>aroma perfecto</em></h2>
+    <p class="sec-sub">Filtra por familia olfativa y encuentra la fragancia que mejor se adapta a ti.</p>
+  </div>
+  <div class="filtros">
+    <button class="filtro-btn active" data-filter="all">Todos</button>
+    <button class="filtro-btn" data-filter="floral">Floral</button>
+    <button class="filtro-btn" data-filter="oriental">Oriental</button>
+    <button class="filtro-btn" data-filter="amaderado">Amaderado</button>
+    <button class="filtro-btn" data-filter="citrico">Cítrico</button>
+  </div>
+  <div class="catalogo-grid">
+    <div class="cat-card reveal" data-familia="floral">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80" alt="Rose Éternelle"/>
+      <div class="cat-body">
+        <div class="cat-fam">Floral</div>
+        <div class="cat-name">Rose Éternelle</div>
+        <div class="cat-ml">100 ml · Eau de Parfum</div>
+        <div class="cat-price">$89.900</div>
+      </div>
+    </div>
+    <div class="cat-card reveal" data-familia="oriental">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&q=80" alt="Nuit Ambrée"/>
+      <div class="cat-body">
+        <div class="cat-fam">Oriental</div>
+        <div class="cat-name">Nuit Ambrée</div>
+        <div class="cat-ml">75 ml · Eau de Parfum</div>
+        <div class="cat-price">$124.900</div>
+      </div>
+    </div>
+    <div class="cat-card reveal" data-familia="amaderado">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&q=80" alt="Bois Sacré"/>
+      <div class="cat-body">
+        <div class="cat-fam">Amaderado</div>
+        <div class="cat-name">Bois Sacré</div>
+        <div class="cat-ml">100 ml · Eau de Parfum</div>
+        <div class="cat-price">$98.900</div>
+      </div>
+    </div>
+    <div class="cat-card reveal" data-familia="citrico">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&q=80" alt="Lumière d'Or"/>
+      <div class="cat-body">
+        <div class="cat-fam">Cítrico</div>
+        <div class="cat-name">Lumière d'Or</div>
+        <div class="cat-ml">50 ml · Eau de Toilette</div>
+        <div class="cat-price">$79.900</div>
+      </div>
+    </div>
+    <div class="cat-card reveal" data-familia="oriental">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1564207550709-97d6dd36b0b0?w=400&q=80" alt="Velours Noir"/>
+      <div class="cat-body">
+        <div class="cat-fam">Oriental · Chypre</div>
+        <div class="cat-name">Velours Noir</div>
+        <div class="cat-ml">100 ml · Extrait de Parfum</div>
+        <div class="cat-price">$139.900</div>
+      </div>
+    </div>
+    <div class="cat-card reveal" data-familia="citrico">
+      <img class="cat-img" src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=400&q=80" alt="Brume Marine"/>
+      <div class="cat-body">
+        <div class="cat-fam">Cítrico · Acuático</div>
+        <div class="cat-name">Brume Marine</div>
+        <div class="cat-ml">100 ml · Eau de Parfum</div>
+        <div class="cat-price">$85.900</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COTIZADOR DE SETS -->
+<section id="cotizador" class="sec-wrap" style="background:#070707;">
+  <div class="sec-head reveal">
+    <div class="sec-tag">Crea tu set</div>
+    <h2 class="sec-title">Arma tu <em>set personal</em></h2>
+    <p class="sec-sub">Combina 2 o 3 fragancias y obtén un descuento exclusivo en tu set personalizado.</p>
+  </div>
+  <div class="cotizador-box reveal">
+    <div class="cotizador-title">Cotizador de Sets</div>
+    <p class="cotizador-sub">Selecciona tus fragancias favoritas y calcula tu precio con descuento</p>
+    <div class="cot-row">
+      <select class="cot-select" id="cot1" onchange="calcSet()">
+        <option value="0">— Fragancia 1 —</option>
+        <option value="89900">Rose Éternelle · $89.900</option>
+        <option value="124900">Nuit Ambrée · $124.900</option>
+        <option value="98900">Bois Sacré · $98.900</option>
+        <option value="79900">Lumière d'Or · $79.900</option>
+        <option value="139900">Velours Noir · $139.900</option>
+        <option value="85900">Brume Marine · $85.900</option>
+      </select>
+      <select class="cot-select" id="cot2" onchange="calcSet()">
+        <option value="0">— Fragancia 2 —</option>
+        <option value="89900">Rose Éternelle · $89.900</option>
+        <option value="124900">Nuit Ambrée · $124.900</option>
+        <option value="98900">Bois Sacré · $98.900</option>
+        <option value="79900">Lumière d'Or · $79.900</option>
+        <option value="139900">Velours Noir · $139.900</option>
+        <option value="85900">Brume Marine · $85.900</option>
+      </select>
+    </div>
+    <div class="cot-row">
+      <select class="cot-select" id="cot3" onchange="calcSet()">
+        <option value="0">— Fragancia 3 (opcional) —</option>
+        <option value="89900">Rose Éternelle · $89.900</option>
+        <option value="124900">Nuit Ambrée · $124.900</option>
+        <option value="98900">Bois Sacré · $98.900</option>
+        <option value="79900">Lumière d'Or · $79.900</option>
+        <option value="139900">Velours Noir · $139.900</option>
+        <option value="85900">Brume Marine · $85.900</option>
+      </select>
+    </div>
+    <div class="cot-result" id="cotResult">
+      <div class="cot-result-title">Resumen de tu set</div>
+      <div class="cot-items" id="cotItems"></div>
+      <div class="cot-total" id="cotTotal"></div>
+      <div class="cot-saving" id="cotSaving"></div>
+      <button class="btn-cot" onclick="pedirSet()">Pedir este set por WhatsApp →</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="sec-wrap">
+  <div class="sec-head reveal">
+    <div class="sec-tag">Experiencias</div>
+    <h2 class="sec-title">Lo que dicen <em>nuestros clientes</em></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"</div>
+      <p class="test-text">Nuit Ambrée se convirtió en mi fragancia de firma desde el primer spray. Nunca había encontrado algo tan sofisticado y duradero en Chile.</p>
+      <div class="test-author">
+        <img class="test-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Valentina M."/>
+        <div>
+          <div class="test-name">Valentina M.</div>
+          <div class="test-role">Directora Creativa · Santiago</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"</div>
+      <p class="test-text">Increíble servicio y productos auténticos. El packaging es de otro nivel. Regalé un set a mi pareja y quedó absolutamente enamorada.</p>
+      <div class="test-author">
+        <img class="test-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Rodrigo A."/>
+        <div>
+          <div class="test-name">Rodrigo A.</div>
+          <div class="test-role">Empresario · Providencia</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"</div>
+      <p class="test-text">Busqué durante años una fragancia que me representara. En Maison Noir la encontré en 10 minutos. El asesoramiento personalizado marca toda la diferencia.</p>
+      <div class="test-author">
+        <img class="test-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Camila R."/>
+        <div>
+          <div class="test-name">Camila R.</div>
+          <div class="test-role">Abogada · Las Condes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG EDITORIAL -->
+<section id="blog" class="sec-wrap" style="background:#070707;padding-left:0;padding-right:0;padding-bottom:0;">
+  <div class="sec-head reveal" style="padding:0 80px;margin-bottom:60px;">
+    <div class="sec-tag">Editorial</div>
+    <h2 class="sec-title">El mundo de <em>la perfumería</em></h2>
+  </div>
+  <div class="blog-grid">
+    <div class="blog-card reveal">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=800&q=80" alt="Blog 1"/>
+      <div class="blog-overlay"></div>
+      <div class="blog-body">
+        <div class="blog-date">Junio 2025</div>
+        <div class="blog-title">Cómo elegir tu fragancia de firma sin equivocarte</div>
+        <div class="blog-excerpt">La fragancia correcta puede cambiar cómo te perciben en una sala. Te enseñamos a elegirla.</div>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&q=80" alt="Blog 2"/>
+      <div class="blog-overlay"></div>
+      <div class="blog-body">
+        <div class="blog-date">Mayo 2025</div>
+        <div class="blog-title">Las notas de Oud: el ingrediente más caro del mundo</div>
+        <div class="blog-excerpt">Conoce por qué el Oud vale más que el oro y cómo identificarlo en un perfume genuino.</div>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=800&q=80" alt="Blog 3"/>
+      <div class="blog-overlay"></div>
+      <div class="blog-body">
+        <div class="blog-date">Abril 2025</div>
+        <div class="blog-title">Guía completa: Eau de Parfum vs Extrait de Parfum</div>
+        <div class="blog-excerpt">No es solo la concentración. La diferencia cambia completamente cómo evoluciona el aroma.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="sec-wrap">
+  <div class="sec-head reveal">
+    <div class="sec-tag">Contacto</div>
+    <h2 class="sec-title">Encuentra tu <em>fragancia perfecta</em></h2>
+    <p class="sec-sub">Cuéntanos tu estilo y te recomendamos el aroma que mejor te define.</p>
+  </div>
+  <div class="contacto-wrap">
+    <div class="contacto-left reveal-left">
+      <h3>Hablemos<br>sobre tu <em>aroma</em></h3>
+      <p>Nuestros asesores de fragancia están disponibles para ayudarte a encontrar el perfume perfecto. Ya sea para ti o como regalo de lujo.</p>
+      <div class="contacto-info">
+        <div class="contacto-info-item">
+          <div class="contacto-info-icon">📍</div>
+          <span>Santiago de Chile · Envíos a todo el país</span>
+        </div>
+        <div class="contacto-info-item">
+          <div class="contacto-info-icon">💬</div>
+          <span>Respuesta en menos de 2 horas</span>
+        </div>
+        <div class="contacto-info-item">
+          <div class="contacto-info-icon">✦</div>
+          <span>Asesoría personalizada sin costo</span>
+        </div>
+        <div class="contacto-info-item">
+          <div class="contacto-info-icon">🚚</div>
+          <span>Despacho en 24–72 hrs · Santiago</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="form-row">
+        <div class="form-field"><input type="text" id="fn" placeholder="Nombre completo"/></div>
+        <div class="form-field"><input type="tel" id="ft" placeholder="Teléfono"/></div>
+      </div>
+      <div class="form-field"><input type="email" id="fe" placeholder="Correo electrónico"/></div>
+      <div class="form-field">
+        <select id="fperf">
+          <option value="">— Fragancia de interés —</option>
+          <option>Rose Éternelle · $89.900</option>
+          <option>Nuit Ambrée · $124.900</option>
+          <option>Bois Sacré · $98.900</option>
+          <option>Lumière d'Or · $79.900</option>
+          <option>Velours Noir · $139.900</option>
+          <option>Brume Marine · $85.900</option>
+          <option>Quiero asesoría personalizada</option>
+        </select>
+      </div>
+      <div class="form-field"><textarea id="fmsg" placeholder="Cuéntanos sobre ti, tu estilo o la ocasión para el perfume…"></textarea></div>
+      <button class="btn-submit" onclick="enviarWA()">Consultar por WhatsApp →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Maison<span>Noir</span></div>
+      <p class="footer-desc">Perfumes de lujo importados de los ateliers más exclusivos del mundo. Disponibles solo en Chile.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Colección</div>
+      <ul>
+        <li><a href="#perfumes">Florales</a></li>
+        <li><a href="#perfumes">Orientales</a></li>
+        <li><a href="#perfumes">Amaderados</a></li>
+        <li><a href="#perfumes">Cítricos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navegación</div>
+      <ul>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#cotizador">Sets</a></li>
+        <li><a href="#blog">Editorial</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contacto</div>
+      <ul>
+        <li><a href="#contacto">WhatsApp</a></li>
+        <li><a href="#contacto">Instagram</a></li>
+        <li><a href="#contacto">Email</a></li>
+        <li><a href="#contacto">Asesoría gratis</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© Maison Noir 2025 · Todos los derechos reservados · Santiago de Chile</span>
+    <div class="footer-socials">
+      <a href="#" class="footer-social">ig</a>
+      <a href="#" class="footer-social">tk</a>
+      <a href="#" class="footer-social">wa</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/56939665163?text=Hola%2C%20me%20interesa%20conocer%20más%20sobre%20los%20perfumes%20de%20Maison%20Noir" target="_blank">💬</a>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cur');
+const ring = document.getElementById('ring');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 80);
+});
+
+// NAV
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+// HAMBURGER
+function toggleMenu() {
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// HERO COUNTER
+(function() {
+  let n = 0;
+  const target = 48;
+  const el = document.getElementById('heroCount');
+  const step = () => {
+    n = Math.min(n + 1, target);
+    el.textContent = n;
+    if (n < target) setTimeout(step, 40);
+  };
+  setTimeout(step, 800);
+})();
+
+// PARTICLES
+const pWrap = document.getElementById('particles');
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.cssText = `left:${Math.random()*100}%;--dur:${6+Math.random()*10}s;--delay:${Math.random()*8}s;--drift:${(Math.random()-0.5)*100}px;opacity:${0.3+Math.random()*0.7};width:${1+Math.random()*3}px;height:${1+Math.random()*3}px;`;
+  pWrap.appendChild(p);
+}
+
+// REVEAL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal,.reveal-left').forEach(el => observer.observe(el));
+
+// COUNTERS
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    let n = 0;
+    const duration = 1800;
+    const steps = 60;
+    const inc = target / steps;
+    const timer = setInterval(() => {
+      n = Math.min(n + inc, target);
+      el.textContent = Math.round(n).toLocaleString('es-CL');
+      if (n >= target) clearInterval(timer);
+    }, duration / steps);
+    countObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count').forEach(el => countObs.observe(el));
+
+// MARQUEE CLONE
+const track = document.getElementById('mtrack');
+track.innerHTML += track.innerHTML;
+
+// LIGHTBOX
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// FILTROS CATÁLOGO
+document.querySelectorAll('.filtro-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.cat-card').forEach(card => {
+      const fam = card.dataset.familia;
+      card.classList.toggle('hidden', filter !== 'all' && fam !== filter);
+    });
+  });
+});
+
+// COTIZADOR
+const perfumes = {
+  '89900': 'Rose Éternelle',
+  '124900': 'Nuit Ambrée',
+  '98900': 'Bois Sacré',
+  '79900': "Lumière d'Or",
+  '139900': 'Velours Noir',
+  '85900': 'Brume Marine'
+};
+function calcSet() {
+  const v1 = +document.getElementById('cot1').value;
+  const v2 = +document.getElementById('cot2').value;
+  const v3 = +document.getElementById('cot3').value;
+  if (!v1 || !v2) { document.getElementById('cotResult').classList.remove('show'); return; }
+  const count = v3 ? 3 : 2;
+  const subtotal = v1 + v2 + v3;
+  const disc = count === 3 ? 0.15 : 0.10;
+  const total = Math.round(subtotal * (1 - disc));
+  const saving = subtotal - total;
+  let items = `· ${perfumes[v1]}: $${v1.toLocaleString('es-CL')}<br>· ${perfumes[v2]}: $${v2.toLocaleString('es-CL')}`;
+  if (v3) items += `<br>· ${perfumes[v3]}: $${v3.toLocaleString('es-CL')}`;
+  document.getElementById('cotItems').innerHTML = items;
+  document.getElementById('cotTotal').textContent = `Total: $${total.toLocaleString('es-CL')}`;
+  document.getElementById('cotSaving').textContent = `Ahorras $${saving.toLocaleString('es-CL')} con el descuento de ${disc*100}%`;
+  document.getElementById('cotResult').classList.add('show');
+  window._cotSet = { items, total, saving, count };
+}
+function pedirSet() {
+  if (!window._cotSet) return;
+  const txt = `Hola Maison Noir, quiero pedir un set de ${window._cotSet.count} fragancias:\n${window._cotSet.items.replace(/<br>/g,'\n')}\nTotal con descuento: $${window._cotSet.total.toLocaleString('es-CL')}`;
+  window.open('https://wa.me/56939665163?text=' + encodeURIComponent(txt), '_blank');
+}
+
+// CONTACTO WHATSAPP
+function enviarWA() {
+  const n = document.getElementById('fn').value.trim();
+  const t = document.getElementById('ft').value.trim();
+  const e = document.getElementById('fe').value.trim();
+  const p = document.getElementById('fperf').value;
+  const m = document.getElementById('fmsg').value.trim();
+  if (!n || !t) { alert('Por favor ingresa tu nombre y teléfono.'); return; }
+  const txt = `Hola Maison Noir, soy ${n}.\nTeléfono: ${t}\nEmail: ${e}\nFragrancia de interés: ${p||'Sin especificar'}\n\n${m}`;
+  window.open('https://wa.me/56939665163?text=' + encodeURIComponent(txt), '_blank');
+}
+</script>
+</body>
+</html>
