@@ -221,6 +221,53 @@ footer{background:var(--dark);padding:40px 48px 24px;}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:none;}
+
+/* ===== MOBILE 480px ===== */
+@media(max-width:480px){
+  /* Hero */
+  .hero{padding:76px 14px 40px;gap:24px;}
+  .hero-title{font-size:1.85rem;}
+  .hero-sub{font-size:.84rem;}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-secondary{text-align:center;padding:13px 20px;}
+  .hero-badge{bottom:-8px;left:8px;padding:9px 12px;}
+  .hero-badge-icon{width:30px;height:30px;font-size:.9rem;}
+  .hero-badge-text strong{font-size:.75rem;}
+  .hero-badge-text span{font-size:.62rem;}
+  /* Sections */
+  .sec{padding:40px 14px;}
+  /* Proceso — 1 columna */
+  #proceso{padding:32px 14px;}
+  .pasos{grid-template-columns:1fr;}
+  .paso{padding:14px 10px;}
+  /* Porqué items */
+  .porq-item{gap:10px;}
+  /* Servicios carousel cards un poco más anchos en mobile */
+  .serv-card{flex:0 0 200px;}
+  .cat-card{flex:0 0 165px;}
+  /* Atención */
+  .atencion-title{font-size:1.2rem;}
+  /* Mapa info */
+  .mapa-info{padding:32px 14px 24px;}
+  /* Redes */
+  #redes{padding:24px 14px;}
+  .redes-btns{flex-direction:column;width:100%;}
+  .red-btn{justify-content:center;}
+  /* Contacto form */
+  #contacto{padding:48px 14px;}
+  .contacto-inner h2{font-size:1.55rem;}
+  /* Testimonios cards */
+  .test-card{flex:0 0 250px;}
+  /* FAQ */
+  .faq-q{font-size:.82rem;}
+  /* Stats */
+  .stat-num{font-size:1.85rem;}
+  /* Footer */
+  footer{padding:28px 14px 18px;}
+  .footer-bottom{font-size:.62rem;}
+  /* Nav mobile menu links */
+  .mobile-menu a{font-size:1.7rem;}
+}
 </style>
 </head>
 <body>

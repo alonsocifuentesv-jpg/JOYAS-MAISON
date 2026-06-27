@@ -224,6 +224,43 @@ footer{background:var(--dark);padding:48px;}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
 .reveal.visible{opacity:1;transform:none;}
+
+/* ===== MOBILE 480px ===== */
+@media(max-width:480px){
+  /* Hero */
+  .hero{padding:76px 14px 40px;gap:24px;}
+  .hero-title{font-size:1.95rem;}
+  .hero-sub{font-size:.84rem;}
+  .hero-btns{flex-direction:column;}
+  .btn-red,.btn-outline{text-align:center;padding:13px 20px;}
+  .hero-badges{gap:8px;}
+  .hbadge{font-size:.68rem;padding:8px 10px;}
+  /* Sections padding */
+  #servicios{padding:40px 14px;}
+  #porque{padding:40px 14px;}
+  #testimonios{padding:40px 14px;}
+  /* Agenda */
+  #agenda{padding:40px 14px;}
+  .agenda-body{padding:16px 14px;}
+  .agenda-header{padding:16px 14px;}
+  .agenda-header h3{font-size:1.1rem;}
+  /* Barber grid → 1 col en phones muy pequeños */
+  .barber-grid{grid-template-columns:1fr;}
+  /* Servicios selector → 1 col */
+  .serv-select-grid{grid-template-columns:1fr 1fr;}
+  /* Horario slots más compactos */
+  .slots-grid{grid-template-columns:repeat(2,1fr);}
+  .slot{padding:8px 4px;font-size:.7rem;}
+  /* Pago ya es 1col, OK */
+  /* Carousel cards */
+  .serv-card{flex:0 0 190px;}
+  .test-card{flex:0 0 250px;}
+  /* Por qué — ya es 1col, OK */
+  /* Footer */
+  footer{padding:28px 14px 18px;}
+  /* Nav mobile menu */
+  .mobile-menu a{font-size:1.7rem;}
+}
 </style>
 </head>
 <body>
