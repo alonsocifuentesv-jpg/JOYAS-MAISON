@@ -51,9 +51,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:64px;display:flex;ali
 @media(max-width:860px){nav{padding:0 18px;}.nav-links{display:none;}.hamburger{display:flex;}}
 
 /* HERO */
-.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:flex-start;padding:0 60px;overflow:hidden;}
-#heroCanvas{position:absolute;inset:0;width:100%;height:100%;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,14,26,.75) 0%,rgba(10,14,26,.3) 60%,transparent 100%);}
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:flex-start;padding:0 60px;overflow:hidden;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=90') center/cover no-repeat;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,28,.82) 0%,rgba(5,10,28,.5) 55%,rgba(5,10,28,.2) 100%);}
 .hero-content{position:relative;z-index:2;max-width:580px;}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(91,163,217,.2);border:1px solid rgba(91,163,217,.4);color:var(--sky2);padding:5px 14px;border-radius:100px;font-size:.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;backdrop-filter:blur(8px);}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:300;line-height:1.1;color:#fff;margin-bottom:8px;letter-spacing:1px;}
@@ -103,10 +102,62 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:64px;display:flex;ali
 .cart-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.82rem;}
 .cart-footer{padding:16px 20px;border-top:1px solid var(--border);}
 .cart-total{display:flex;justify-content:space-between;font-weight:700;font-size:.95rem;margin-bottom:14px;}
-.btn-checkout{width:100%;background:var(--dark);color:#fff;border:none;padding:13px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;}
-.btn-checkout:hover{background:var(--dark2);}
+.btn-checkout{width:100%;background:var(--sky);color:#fff;border:none;padding:13px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-checkout:hover{background:#4a8fc0;}
 .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:399;display:none;}
 .cart-overlay.open{display:block;}
+
+/* CHECKOUT MODAL */
+.ck-modal{position:fixed;inset:0;z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.ck-modal.open{opacity:1;pointer-events:all;}
+.ck-backdrop{position:absolute;inset:0;background:rgba(5,10,28,.85);backdrop-filter:blur(6px);}
+.ck-box{position:relative;background:#fff;border-radius:16px;width:100%;max-width:760px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.4);}
+.ck-head{padding:22px 28px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;}
+.ck-head h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--dark);}
+.ck-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);line-height:1;}
+.ck-body{padding:24px 28px;}
+.ck-steps{display:flex;gap:0;margin-bottom:24px;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
+.ck-step{flex:1;padding:10px 8px;text-align:center;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);background:#fff;transition:all .25s;cursor:default;}
+.ck-step.active{background:var(--sky);color:#fff;}
+.ck-step.done{background:var(--dark);color:#fff;}
+.ck-panel{display:none;}
+.ck-panel.show{display:block;}
+.ck-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ck-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dark);margin-bottom:5px;display:block;}
+.ck-inp{width:100%;border:1.5px solid var(--border);border-radius:7px;padding:10px 13px;font-size:.82rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;background:#fff;}
+.ck-inp:focus{border-color:var(--sky);}
+.ck-field{margin-bottom:14px;}
+.ck-summary{background:var(--gray);border-radius:10px;padding:16px;margin-bottom:18px;}
+.ck-sum-row{display:flex;justify-content:space-between;font-size:.78rem;padding:5px 0;border-bottom:1px solid var(--border);}
+.ck-sum-row:last-child{border-bottom:none;font-weight:700;font-size:.88rem;color:var(--sky);}
+.ck-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);}
+.ck-btn-back{background:none;border:1.5px solid var(--border);color:var(--muted);padding:10px 20px;border-radius:6px;font-size:.76rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;}
+.ck-btn-back:hover{border-color:var(--sky);color:var(--sky);}
+.ck-btn-next{background:var(--sky);color:#fff;padding:10px 24px;border-radius:6px;font-size:.76rem;font-weight:700;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background .2s;}
+.ck-btn-next:hover{background:#4a8fc0;}
+.ck-btn-pay{background:var(--dark);color:#fff;padding:12px 28px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background .2s;}
+.ck-btn-pay:hover{background:var(--dark2);}
+.ck-success{text-align:center;padding:32px 20px;}
+.ck-success-icon{font-size:3.5rem;margin-bottom:16px;}
+.ck-success-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.ck-success-sub{color:var(--muted);font-size:.82rem;line-height:1.75;margin-bottom:20px;}
+.ck-order-code{display:inline-block;background:rgba(91,163,217,.1);border:2px solid rgba(91,163,217,.3);border-radius:8px;padding:10px 24px;font-size:1rem;font-weight:700;color:var(--sky);letter-spacing:3px;margin-bottom:20px;}
+.ck-delivery-box{background:var(--gray);border-radius:10px;padding:14px 18px;text-align:left;font-size:.76rem;color:var(--text);line-height:2;margin-bottom:18px;}
+.card-brand{display:flex;gap:8px;margin-bottom:14px;}
+.card-brand-ic{height:28px;border:1.5px solid var(--border);border-radius:5px;padding:2px 8px;font-size:.62rem;font-weight:700;display:flex;align-items:center;color:var(--muted);}
+.secure-badge{display:flex;align-items:center;gap:6px;font-size:.65rem;color:var(--muted);margin-bottom:14px;}
+
+/* BANNER CONSULTAS */
+.banner-wa{background:var(--dark);padding:22px 48px;}
+.banner-wa-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.banner-wa-txt{color:rgba(255,255,255,.7);font-size:.8rem;line-height:1.6;}
+.banner-wa-txt strong{color:#fff;font-size:.88rem;display:block;margin-bottom:3px;}
+.banner-wa-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.bwa-link{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:7px;font-size:.76rem;font-weight:700;text-decoration:none;transition:all .2s;}
+.bwa-green{background:#25d366;color:#fff;}.bwa-green:hover{background:#1db954;}
+.bwa-sky{background:var(--sky);color:#fff;}.bwa-sky:hover{background:#4a8fc0;}
+@media(max-width:860px){.banner-wa{padding:20px 18px;}.ck-2col{grid-template-columns:1fr;}.ck-body{padding:18px;}.ck-head{padding:16px 18px;}}
+
 
 /* CATÁLOGO */
 #catalogo{background:var(--gray);}
@@ -329,7 +380,82 @@ footer{background:var(--dark);padding:48px;}
   <div class="cart-items" id="cartItems"><div class="cart-empty">Tu carrito está vacío.<br>Agrega productos del catálogo.</div></div>
   <div class="cart-footer" id="cartFooter" style="display:none;">
     <div class="cart-total"><span>Total</span><span id="cartTotalPrice">$0</span></div>
-    <button class="btn-checkout" onclick="cotizarWA()">Enviar cotización por WhatsApp →</button>
+    <button class="btn-checkout" onclick="openCheckout()">🔒 Ir al pago →</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="ck-modal" id="ckModal">
+  <div class="ck-backdrop" onclick="closeCheckout()"></div>
+  <div class="ck-box">
+    <div class="ck-head">
+      <h3 id="ckTitle">Datos de entrega</h3>
+      <button class="ck-close" onclick="closeCheckout()">×</button>
+    </div>
+    <div class="ck-body">
+      <div class="ck-steps">
+        <div class="ck-step active" id="cks1">1. Entrega</div>
+        <div class="ck-step" id="cks2">2. Pago</div>
+        <div class="ck-step" id="cks3">3. Confirmación</div>
+      </div>
+
+      <!-- PANEL 1: DATOS CLIENTE -->
+      <div class="ck-panel show" id="ckp1">
+        <div class="ck-2col">
+          <div class="ck-field"><label class="ck-label">Nombre</label><input class="ck-inp" id="ck_nombre" placeholder="Ej: Alonso" type="text"></div>
+          <div class="ck-field"><label class="ck-label">Apellido</label><input class="ck-inp" id="ck_apellido" placeholder="Ej: Cifuentes" type="text"></div>
+        </div>
+        <div class="ck-field"><label class="ck-label">Correo electrónico</label><input class="ck-inp" id="ck_email" placeholder="tucorreo@gmail.com" type="email"></div>
+        <div class="ck-field"><label class="ck-label">Teléfono</label><input class="ck-inp" id="ck_tel" placeholder="+56 9 XXXX XXXX" type="tel"></div>
+        <div class="ck-field"><label class="ck-label">Dirección de entrega</label><input class="ck-inp" id="ck_dir" placeholder="Ej: Av. Pajaritos 1234, Dpto 5B" type="text"></div>
+        <div class="ck-2col">
+          <div class="ck-field"><label class="ck-label">Ciudad</label><input class="ck-inp" id="ck_ciudad" placeholder="Santiago" type="text"></div>
+          <div class="ck-field"><label class="ck-label">Región</label>
+            <select class="ck-inp" id="ck_region">
+              <option value="">Selecciona...</option>
+              <option>Metropolitana</option><option>Valparaíso</option><option>Biobío</option>
+              <option>Araucanía</option><option>Los Lagos</option><option>Maule</option>
+              <option>O'Higgins</option><option>Antofagasta</option><option>Coquimbo</option>
+            </select>
+          </div>
+        </div>
+        <div class="ck-nav"><button class="ck-btn-next" onclick="ckNext(2)">Continuar al pago →</button></div>
+      </div>
+
+      <!-- PANEL 2: PAGO -->
+      <div class="ck-panel" id="ckp2">
+        <div class="ck-summary" id="ckSummary"></div>
+        <div class="card-brand">
+          <div class="card-brand-ic">VISA</div>
+          <div class="card-brand-ic">MC</div>
+          <div class="card-brand-ic">AMEX</div>
+          <div class="card-brand-ic">Débito</div>
+        </div>
+        <div class="secure-badge">🔒 Pago 100% seguro con encriptación SSL</div>
+        <div class="ck-field"><label class="ck-label">Número de tarjeta</label><input class="ck-inp" id="ck_card" placeholder="4242 4242 4242 4242" maxlength="19" oninput="fmtCkCard(this)"></div>
+        <div class="ck-2col">
+          <div class="ck-field"><label class="ck-label">Vencimiento</label><input class="ck-inp" id="ck_exp" placeholder="MM/AA" maxlength="5" oninput="fmtExp(this)"></div>
+          <div class="ck-field"><label class="ck-label">CVV</label><input class="ck-inp" id="ck_cvv" placeholder="123" maxlength="3" type="password"></div>
+        </div>
+        <div class="ck-field"><label class="ck-label">Nombre del titular</label><input class="ck-inp" id="ck_titular" placeholder="Como aparece en la tarjeta"></div>
+        <div class="ck-nav">
+          <button class="ck-btn-back" onclick="ckNext(1)">← Volver</button>
+          <button class="ck-btn-pay" onclick="ckPagar()">Pagar <span id="ckPayAmt">$0</span> →</button>
+        </div>
+      </div>
+
+      <!-- PANEL 3: ÉXITO -->
+      <div class="ck-panel" id="ckp3">
+        <div class="ck-success">
+          <div class="ck-success-icon">🎉</div>
+          <div class="ck-success-title">¡Pago exitoso!</div>
+          <p class="ck-success-sub">Tu pedido fue confirmado. Recibirás un correo de confirmación y te avisaremos cuando tu fragancia esté en camino.</p>
+          <div class="ck-order-code" id="ckOrderCode">PA-000000</div>
+          <div class="ck-delivery-box" id="ckDelivBox"></div>
+          <button class="ck-btn-next" onclick="closeCheckout()">Volver a la tienda →</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -357,7 +483,6 @@ footer{background:var(--dark);padding:48px;}
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <canvas id="heroCanvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-tag">✦ Pajaritos · Santiago de Chile</div>
@@ -447,6 +572,20 @@ footer{background:var(--dark);padding:48px;}
     </div>
   </div>
 </section>
+
+<!-- BANNER CONSULTAS/PEDIDOS -->
+<div class="banner-wa">
+  <div class="banner-wa-inner">
+    <div class="banner-wa-txt">
+      <strong>¿Tienes una duda antes de comprar?</strong>
+      Escríbenos por WhatsApp para consultas. Para tus pedidos, usa nuestra tienda online — es más rápido y seguro.
+    </div>
+    <div class="banner-wa-btns">
+      <a href="https://wa.me/56939665163?text=Hola%2C%20tengo%20una%20consulta%20sobre%20un%20perfume" target="_blank" class="bwa-link bwa-green">💬 Consultas WhatsApp</a>
+      <a href="#catalogo" class="bwa-link bwa-sky">🛍️ Comprar en la web</a>
+    </div>
+  </div>
+</div>
 
 <!-- AGENDA -->
 <section class="sec" id="agenda" style="background:var(--gray);">
@@ -650,77 +789,64 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 const co=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.querySelectorAll('.count').forEach(c=>{const t=+c.dataset.target;let n=0;const s=t/55;const i=setInterval(()=>{n=Math.min(n+s,t);c.textContent=Math.floor(n).toLocaleString('es-CL');if(n>=t)clearInterval(i);},22);});co.unobserve(x.target);}});},{threshold:.3});
 document.querySelectorAll('.stats').forEach(el=>co.observe(el));
 
-// ── HERO CANVAS ──
-(function(){
-  const c=document.getElementById('heroCanvas');
-  const ctx=c.getContext('2d');
-  let W,H,particles=[];
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-  function initP(){particles=[];for(let i=0;i<120;i++)particles.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.3,s:Math.random()*.8+.3,o:Math.random()*.7+.2});}
-  initP();
-  function drawBg(){
-    const g=ctx.createLinearGradient(0,0,0,H);
-    g.addColorStop(0,'#050a1a');g.addColorStop(.5,'#0a1428');g.addColorStop(1,'#0d1f3c');
-    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+// ── CHECKOUT ──
+let ckStep=1;
+function openCheckout(){
+  if(!cart.length)return;
+  ckStep=1;showCkPanel(1);
+  document.getElementById('ckModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCheckout(){
+  document.getElementById('ckModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function showCkPanel(n){
+  ckStep=n;
+  [1,2,3].forEach(i=>{
+    document.getElementById('ckp'+i).classList.toggle('show',i===n);
+    const s=document.getElementById('cks'+i);
+    s.classList.remove('active','done');
+    if(i===n)s.classList.add('active');
+    else if(i<n)s.classList.add('done');
+  });
+  const titles=['Datos de entrega','Datos de pago','Pedido confirmado'];
+  document.getElementById('ckTitle').textContent=titles[n-1];
+}
+function ckNext(n){
+  if(n===2){
+    const fields=['ck_nombre','ck_apellido','ck_email','ck_tel','ck_dir','ck_ciudad','ck_region'];
+    for(const f of fields){const el=document.getElementById(f);if(!el.value.trim()){el.focus();el.style.borderColor='#ef4444';setTimeout(()=>el.style.borderColor='',1800);return;}}
+    const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+    document.getElementById('ckPayAmt').textContent='$'+total.toLocaleString('es-CL');
+    const lines=cart.map(i=>`<div class="ck-sum-row"><span>${i.name} ×${i.qty}</span><span>$${(i.price*i.qty).toLocaleString('es-CL')}</span></div>`).join('');
+    const ship=`<div class="ck-sum-row"><span>Envío a domicilio</span><span style="color:#22c55e">Gratis</span></div>`;
+    const tot=`<div class="ck-sum-row"><span>Total</span><span>$${total.toLocaleString('es-CL')}</span></div>`;
+    document.getElementById('ckSummary').innerHTML=lines+ship+tot;
   }
-  function drawMountains(){
-    // Far mountains
-    ctx.beginPath();ctx.moveTo(0,H*.85);
-    ctx.lineTo(W*.05,H*.45);ctx.lineTo(W*.15,H*.6);ctx.lineTo(W*.25,H*.35);
-    ctx.lineTo(W*.38,H*.55);ctx.lineTo(W*.5,H*.28);ctx.lineTo(W*.62,H*.5);
-    ctx.lineTo(W*.75,H*.32);ctx.lineTo(W*.88,H*.52);ctx.lineTo(W,H*.4);
-    ctx.lineTo(W,H*.85);ctx.closePath();
-    const mg=ctx.createLinearGradient(0,H*.28,0,H*.85);
-    mg.addColorStop(0,'#1a2a4a');mg.addColorStop(1,'#0d1a32');
-    ctx.fillStyle=mg;ctx.fill();
-    // Snow caps far
-    ctx.beginPath();ctx.moveTo(W*.5-30,H*.38);ctx.lineTo(W*.5,H*.28);ctx.lineTo(W*.5+30,H*.38);ctx.closePath();ctx.fillStyle='rgba(200,220,255,.55)';ctx.fill();
-    ctx.beginPath();ctx.moveTo(W*.75-22,H*.42);ctx.lineTo(W*.75,H*.32);ctx.lineTo(W*.75+22,H*.42);ctx.closePath();ctx.fillStyle='rgba(200,220,255,.45)';ctx.fill();
-    ctx.beginPath();ctx.moveTo(W*.25-18,H*.44);ctx.lineTo(W*.25,H*.35);ctx.lineTo(W*.25+18,H*.44);ctx.closePath();ctx.fillStyle='rgba(200,220,255,.38)';ctx.fill();
-    // Near mountains
-    ctx.beginPath();ctx.moveTo(0,H);
-    ctx.lineTo(W*.1,H*.65);ctx.lineTo(W*.22,H*.75);ctx.lineTo(W*.35,H*.5);
-    ctx.lineTo(W*.48,H*.68);ctx.lineTo(W*.6,H*.45);ctx.lineTo(W*.72,H*.65);
-    ctx.lineTo(W*.85,H*.52);ctx.lineTo(W,H*.68);ctx.lineTo(W,H);ctx.closePath();
-    const mg2=ctx.createLinearGradient(0,H*.45,0,H);
-    mg2.addColorStop(0,'#0f2040');mg2.addColorStop(1,'#0a1428');
-    ctx.fillStyle=mg2;ctx.fill();
-    // Snow near
-    ctx.beginPath();ctx.moveTo(W*.35-28,H*.59);ctx.lineTo(W*.35,H*.5);ctx.lineTo(W*.35+28,H*.59);ctx.closePath();ctx.fillStyle='rgba(220,235,255,.7)';ctx.fill();
-    ctx.beginPath();ctx.moveTo(W*.6-24,H*.54);ctx.lineTo(W*.6,H*.45);ctx.lineTo(W*.6+24,H*.54);ctx.closePath();ctx.fillStyle='rgba(220,235,255,.65)';ctx.fill();
-    ctx.beginPath();ctx.moveTo(W*.85-20,H*.61);ctx.lineTo(W*.85,H*.52);ctx.lineTo(W*.85+20,H*.61);ctx.closePath();ctx.fillStyle='rgba(220,235,255,.55)';ctx.fill();
-    // Fire glow at base
-    const fg=ctx.createRadialGradient(W*.5,H*.9,0,W*.5,H*.9,W*.4);
-    fg.addColorStop(0,'rgba(255,107,43,.22)');fg.addColorStop(.5,'rgba(255,60,0,.08)');fg.addColorStop(1,'transparent');
-    ctx.fillStyle=fg;ctx.fillRect(0,H*.6,W,H*.4);
-    const fg2=ctx.createRadialGradient(W*.2,H*.95,0,W*.2,H*.95,W*.25);
-    fg2.addColorStop(0,'rgba(255,140,0,.15)');fg2.addColorStop(1,'transparent');
-    ctx.fillStyle=fg2;ctx.fillRect(0,H*.7,W*.5,H*.3);
-    const fg3=ctx.createRadialGradient(W*.82,H*.93,0,W*.82,H*.93,W*.2);
-    fg3.addColorStop(0,'rgba(255,80,0,.12)');fg3.addColorStop(1,'transparent');
-    ctx.fillStyle=fg3;ctx.fillRect(W*.5,H*.7,W*.5,H*.3);
-  }
-  function drawSnow(t){
-    ctx.fillStyle='rgba(255,255,255,.85)';
-    particles.forEach(p=>{
-      p.y+=p.s;p.x+=Math.sin(t*.001+p.x)*.3;
-      if(p.y>H){p.y=0;p.x=Math.random()*W;}
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
-    });
-  }
-  function drawStars(){
-    for(let i=0;i<80;i++){
-      const sx=(i*W/80+17)%W;const sy=(i*H/80*1.3+11)%H*.45;
-      const so=.3+.4*Math.sin(i*.7+Date.now()*.001);
-      ctx.beginPath();ctx.arc(sx,sy,i%4===0?.8:.4,0,Math.PI*2);ctx.fillStyle=`rgba(200,220,255,${so})`;ctx.fill();
-    }
-  }
-  let frame=0;
-  function loop(){frame++;ctx.clearRect(0,0,W,H);drawBg();drawStars();drawMountains();drawSnow(frame);requestAnimationFrame(loop);}
-  loop();
-})();
+  if(n===1){showCkPanel(1);return;}
+  showCkPanel(n);
+}
+function fmtCkCard(el){let v=el.value.replace(/\D/g,'').slice(0,16);el.value=v.replace(/(.{4})/g,'$1 ').trim();}
+function fmtExp(el){let v=el.value.replace(/\D/g,'').slice(0,4);if(v.length>=2)v=v.slice(0,2)+'/'+v.slice(2);el.value=v;}
+function ckPagar(){
+  const card=document.getElementById('ck_card').value.replace(/\s/g,'');
+  const exp=document.getElementById('ck_exp').value;
+  const cvv=document.getElementById('ck_cvv').value;
+  const tit=document.getElementById('ck_titular').value;
+  if(card.length<16||exp.length<5||cvv.length<3||!tit.trim()){alert('Completa todos los datos de pago.');return;}
+  const code='PA-'+Math.floor(100000+Math.random()*900000);
+  document.getElementById('ckOrderCode').textContent=code;
+  const nombre=document.getElementById('ck_nombre').value+' '+document.getElementById('ck_apellido').value;
+  const dir=document.getElementById('ck_dir').value;
+  const ciudad=document.getElementById('ck_ciudad').value;
+  const email=document.getElementById('ck_email').value;
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('ckDelivBox').innerHTML=`📦 <strong>Pedido:</strong> ${code}<br>👤 <strong>Cliente:</strong> ${nombre}<br>📍 <strong>Entrega:</strong> ${dir}, ${ciudad}<br>📧 <strong>Confirmación enviada a:</strong> ${email}<br>💳 <strong>Total cobrado:</strong> $${total.toLocaleString('es-CL')}<br>🚚 <strong>Despacho:</strong> 2–3 días hábiles`;
+  cart=[];renderCart();
+  toggleCart();
+  showCkPanel(3);
+}
 
 // ── CATÁLOGO FILTROS ──
 document.querySelectorAll('.filtro-btn').forEach(btn=>{
@@ -764,13 +890,6 @@ function renderCart(){
 }
 function removeCart(i){cart.splice(i,1);renderCart();}
 function toggleCart(){document.getElementById('cartDrawer').classList.toggle('open');document.getElementById('cartOverlay').classList.toggle('open');}
-function cotizarWA(){
-  if(!cart.length)return;
-  const lines=cart.map(i=>`• ${i.name} ×${i.qty} = $${(i.price*i.qty).toLocaleString('es-CL')}`).join('\n');
-  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const txt=`Hola Perfumería Alonso 👋\n\nQuisiera cotizar los siguientes productos:\n\n${lines}\n\n*Total:* $${total.toLocaleString('es-CL')}\n\n¿Tienen stock disponible?`;
-  window.open('https://wa.me/56939665163?text='+encodeURIComponent(txt),'_blank');
-}
 
 // ── COTIZADOR ──
 function calcCot(){
