@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Restó Alonso | Cocina de Autor — Las Condes, Santiago</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --negro:#0a0a0a;
+  --blanco:#f5f0e8;
+  --dorado:#b8960c;
+  --dorado2:#d4af37;
+  --gris:#2a2a2a;
+  --texto:#888;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--negro);color:var(--blanco);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+.nav-lateral{
+  position:fixed;top:0;left:0;height:100vh;width:220px;
+  background:rgba(10,10,10,0.97);
+  border-right:1px solid rgba(255,255,255,0.04);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:40px 28px;z-index:1000;
+  backdrop-filter:blur(20px);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;font-weight:700;color:var(--blanco);
+  letter-spacing:1px;text-decoration:none;line-height:1.2;
+}
+.nav-logo span{color:var(--dorado);}
+.nav-logo small{display:block;font-family:'Inter',sans-serif;font-size:0.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--texto);margin-top:4px;font-weight:400;}
+.nav-links{display:flex;flex-direction:column;gap:6px;list-style:none;}
+.nav-links a{
+  font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);text-decoration:none;
+  padding:8px 0;border-bottom:1px solid transparent;
+  transition:all 0.3s;
+}
+.nav-links a:hover{color:var(--dorado);border-bottom-color:rgba(184,150,12,0.3);}
+.nav-reserva{
+  display:block;text-align:center;
+  background:var(--dorado);color:var(--negro);
+  padding:12px;font-size:0.62rem;letter-spacing:3px;
+  text-transform:uppercase;font-weight:700;
+  text-decoration:none;transition:all 0.3s;
+}
+.nav-reserva:hover{background:var(--dorado2);}
+
+.nav-mobile{
+  display:none;position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:16px 20px;background:rgba(10,10,10,0.97);
+  backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.04);
+  justify-content:space-between;align-items:center;
+}
+.nav-mobile-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--blanco);}
+.nav-mobile-logo span{color:var(--dorado);}
+.hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:4px;}
+.hamburger span{width:24px;height:1.5px;background:var(--blanco);display:block;transition:all 0.3s;}
+.mobile-menu{
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;
+  background:var(--negro);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:32px;
+  opacity:0;pointer-events:none;transition:opacity 0.4s;
+}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{
+  font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;
+  color:var(--blanco);text-decoration:none;transition:color 0.3s;
+}
+.mobile-menu a:hover{color:var(--dorado);}
+.mobile-close{
+  position:absolute;top:20px;right:20px;
+  background:none;border:none;color:var(--blanco);
+  font-size:1.5rem;cursor:pointer;
+}
+
+.main{margin-left:220px;}
+
+#entrada{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;padding:80px;
+}
+.entrada-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80') center/cover;
+}
+.entrada-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 60%, rgba(10,10,10,0.2) 100%);
+}
+.entrada-content{position:relative;z-index:1;max-width:700px;}
+.entrada-tag{
+  font-size:0.6rem;letter-spacing:8px;text-transform:uppercase;
+  color:var(--dorado);display:block;margin-bottom:24px;
+}
+.entrada-titulo{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.5rem,7vw,7rem);font-weight:900;
+  line-height:0.95;margin-bottom:24px;
+}
+.entrada-titulo em{color:var(--dorado);font-style:italic;}
+.entrada-frase{
+  font-size:1rem;color:rgba(255,255,255,0.55);
+  line-height:1.7;max-width:440px;margin-bottom:40px;
+}
+.entrada-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-dorado{
+  background:var(--dorado);color:var(--negro);
+  padding:16px 40px;font-size:0.7rem;letter-spacing:3px;
+  text-transform:uppercase;font-weight:700;
+  text-decoration:none;transition:all 0.3s;display:inline-block;
+}
+.btn-dorado:hover{background:var(--dorado2);transform:translateY(-2px);}
+.btn-outline{
+  border:1px solid rgba(255,255,255,0.25);color:var(--blanco);
+  padding:16px 40px;font-size:0.7rem;letter-spacing:3px;
+  text-transform:uppercase;font-weight:500;
+  text-decoration:none;transition:all 0.3s;display:inline-block;
+}
+.btn-outline:hover{border-color:var(--dorado);color:var(--dorado);}
+.entrada-scroll{
+  position:absolute;right:80px;bottom:80px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  font-size:0.55rem;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);
+}
+.scroll-line{width:1px;height:60px;background:rgba(255,255,255,0.15);}
+
+#menu{padding:120px 80px;background:var(--negro);}
+.seccion-tag{font-size:0.6rem;letter-spacing:6px;text-transform:uppercase;color:var(--dorado);display:block;margin-bottom:16px;}
+.seccion-titulo{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.5rem,5vw,5rem);font-weight:900;line-height:0.95;
+  margin-bottom:60px;
+}
+.seccion-titulo em{font-style:italic;color:var(--dorado);}
+.menu-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;max-width:900px;
+}
+.menu-item{
+  padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:20px;transition:all 0.3s;cursor:default;
+}
+.menu-item:hover .menu-nombre{color:var(--dorado);}
+.menu-item:nth-child(odd){padding-right:60px;border-right:1px solid rgba(255,255,255,0.06);}
+.menu-item:nth-child(even){padding-left:60px;}
+.menu-nombre{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:6px;transition:color 0.3s;}
+.menu-desc{font-size:0.75rem;color:var(--texto);line-height:1.5;}
+.menu-precio{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;color:var(--dorado);
+  white-space:nowrap;flex-shrink:0;
+}
+
+#reservas{
+  padding:120px 80px;
+  background:var(--gris);
+  position:relative;overflow:hidden;
+}
+#reservas::before{
+  content:'RESERVA';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Playfair Display',serif;font-size:18vw;font-weight:900;
+  color:rgba(255,255,255,0.02);white-space:nowrap;pointer-events:none;
+}
+.reservas-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.reservas-left .seccion-titulo{margin-bottom:20px;}
+.reservas-desc{font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:36px;}
+.reservas-info{display:flex;flex-direction:column;gap:16px;}
+.reservas-info-item{display:flex;gap:14px;align-items:flex-start;}
+.ri-icon{
+  width:36px;height:36px;background:rgba(184,150,12,0.1);
+  border:1px solid rgba(184,150,12,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;flex-shrink:0;
+}
+.ri-texto strong{display:block;font-size:0.82rem;font-weight:700;margin-bottom:2px;}
+.ri-texto span{font-size:0.75rem;color:var(--texto);}
+.calendly-wrap{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  padding:40px;min-height:500px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:20px;text-align:center;
+}
+.calendly-wrap iframe{width:100%;min-height:460px;border:none;}
+
+#chef{
+  display:grid;grid-template-columns:1fr 1fr;min-height:80vh;
+}
+.chef-img{
+  background:url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=900&q=80') center/cover;
+  position:relative;
+}
+.chef-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(10,10,10,0) 60%, rgba(10,10,10,1) 100%);
+}
+.chef-content{
+  background:var(--negro);padding:100px 80px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.chef-cita{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.5rem,2.5vw,2.2rem);font-style:italic;
+  color:var(--blanco);line-height:1.4;margin-bottom:32px;
+}
+.chef-cita em{color:var(--dorado);}
+.chef-bio{font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:32px;}
+.chef-firma{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-style:italic;color:var(--dorado);
+}
+.chef-firma small{display:block;font-family:'Inter',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--texto);font-style:normal;margin-top:4px;}
+
+#galeria{padding:120px 80px;background:var(--negro);}
+.galeria-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:300px 300px;
+  gap:4px;margin-top:60px;
+}
+.galeria-item{overflow:hidden;}
+.galeria-item:first-child{grid-row:1/3;}
+.galeria-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.6s;display:block;
+}
+.galeria-item:hover img{transform:scale(1.05);}
+
+#eventos{padding:120px 80px;background:var(--gris);}
+.eventos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;}
+.evento-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  padding:40px 32px;transition:all 0.3s;position:relative;overflow:hidden;
+}
+.evento-card::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:2px;background:var(--dorado);
+  transition:width 0.4s;
+}
+.evento-card:hover{background:rgba(255,255,255,0.05);}
+.evento-card:hover::after{width:100%;}
+.evento-num{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;font-weight:900;color:rgba(184,150,12,0.08);
+  line-height:1;margin-bottom:20px;display:block;
+}
+.evento-nombre{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:12px;}
+.evento-desc{font-size:0.8rem;color:var(--texto);line-height:1.6;}
+
+#testimonios{padding:120px 80px;background:var(--negro);}
+.testimonios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;}
+.test-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.05);
+  padding:36px 28px;
+}
+.test-estrellas{color:var(--dorado);font-size:0.8rem;margin-bottom:16px;letter-spacing:2px;}
+.test-texto{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;font-style:italic;color:rgba(255,255,255,0.7);
+  line-height:1.7;margin-bottom:20px;
+}
+.test-autor{font-size:0.72rem;color:var(--texto);letter-spacing:1px;}
+.test-autor strong{color:var(--dorado);display:block;font-style:normal;font-family:'Inter',sans-serif;margin-bottom:2px;}
+
+#contacto{padding:120px 80px;background:var(--gris);}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.contacto-info{display:flex;flex-direction:column;gap:32px;margin-top:40px;}
+.ci-item strong{display:block;font-size:0.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--dorado);margin-bottom:8px;}
+.ci-item p{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.7;}
+.ci-item a{color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.3s;}
+.ci-item a:hover{color:var(--dorado);}
+.mapa-wrap{margin-top:40px;border:1px solid rgba(255,255,255,0.06);}
+.mapa-wrap iframe{width:100%;height:300px;border:none;display:block;filter:grayscale(100%) invert(90%);}
+.contacto-form-wrap{margin-top:40px;}
+.form-grupo{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-grupo label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--texto);}
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--blanco);padding:14px 16px;
+  font-family:'Inter',sans-serif;font-size:0.85rem;
+  outline:none;transition:border-color 0.3s;width:100%;
+}
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus{border-color:var(--dorado);}
+.form-grupo textarea{resize:vertical;min-height:100px;}
+.form-grupo select option{background:var(--negro);}
+.form-submit{
+  width:100%;background:var(--dorado);color:var(--negro);
+  padding:16px;font-size:0.7rem;letter-spacing:3px;
+  text-transform:uppercase;font-weight:700;
+  border:none;cursor:pointer;transition:all 0.3s;
+  font-family:'Inter',sans-serif;margin-top:8px;
+}
+.form-submit:hover{background:var(--dorado2);}
+
+.correos-row{display:flex;flex-direction:column;gap:8px;margin-top:32px;}
+.correo-item{
+  display:flex;align-items:center;gap:12px;
+  font-size:0.78rem;color:rgba(255,255,255,0.4);
+  text-decoration:none;transition:color 0.3s;
+}
+.correo-item:hover{color:var(--dorado);}
+.correo-dot{width:6px;height:6px;background:var(--dorado);border-radius:50%;flex-shrink:0;}
+
+footer{
+  background:#050505;padding:50px 80px 30px;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:center;gap:40px;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+.foot-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--blanco);}
+.foot-logo span{color:var(--dorado);}
+.foot-sub{font-size:0.65rem;color:rgba(255,255,255,0.2);margin-top:6px;letter-spacing:2px;text-transform:uppercase;}
+.foot-right{text-align:right;}
+.redes-row{display:flex;gap:10px;justify-content:flex-end;margin-bottom:12px;}
+.red-btn{
+  width:38px;height:38px;border:1px solid rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;color:rgba(255,255,255,0.3);
+  text-decoration:none;transition:all 0.3s;
+}
+.red-btn:hover{border-color:var(--dorado);color:var(--dorado);}
+.foot-copy{font-size:0.62rem;color:rgba(255,255,255,0.15);}
+
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:999;
+  width:56px;height:56px;background:#25D366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 30px rgba(37,211,102,0.4);
+  text-decoration:none;font-size:1.4rem;
+  animation:waPulse 2.5s ease infinite;
+}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 8px 30px rgba(37,211,102,0.4);}
+  50%{box-shadow:0 8px 50px rgba(37,211,102,0.65);}
+}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  .nav-lateral{display:none;}
+  .nav-mobile{display:flex;}
+  .main{margin-left:0;}
+  #entrada{padding:100px 24px 60px;}
+  #menu{padding:80px 24px;}
+  .menu-grid{grid-template-columns:1fr;}
+  .menu-item:nth-child(odd){padding-right:0;border-right:none;}
+  .menu-item:nth-child(even){padding-left:0;}
+  #reservas{padding:80px 24px;}
+  .reservas-grid{grid-template-columns:1fr;gap:40px;}
+  #chef{grid-template-columns:1fr;}
+  .chef-img{height:300px;}
+  .chef-content{padding:60px 24px;}
+  #galeria{padding:80px 24px;}
+  .galeria-grid{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px;}
+  .galeria-item:first-child{grid-row:auto;}
+  #eventos{padding:80px 24px;}
+  .eventos-grid{grid-template-columns:1fr;}
+  #testimonios{padding:80px 24px;}
+  .testimonios-grid{grid-template-columns:1fr;}
+  #contacto{padding:80px 24px;}
+  .contacto-grid{grid-template-columns:1fr;gap:40px;}
+  footer{grid-template-columns:1fr;padding:32px 24px 20px;gap:16px;}
+  .foot-right{text-align:left;}
+  .redes-row{justify-content:flex-start;}
+  .entrada-scroll{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-lateral">
+  <a href="#" class="nav-logo">
+    Restó<span>Alonso</span>
+    <small>Cocina de autor · Las Condes</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#reservas">Reservas</a></li>
+    <li><a href="#chef">El Chef</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#reservas" class="nav-reserva">Reservar mesa →</a>
+</nav>
+
+<nav class="nav-mobile">
+  <div class="nav-mobile-logo">Restó<span>Alonso</span></div>
+  <button class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#menu" onclick="toggleMenu()">Menú</a>
+  <a href="#reservas" onclick="toggleMenu()">Reservas</a>
+  <a href="#chef" onclick="toggleMenu()">El Chef</a>
+  <a href="#galeria" onclick="toggleMenu()">Galería</a>
+  <a href="#eventos" onclick="toggleMenu()">Eventos</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+</div>
+
+<main class="main">
+
+<section id="entrada">
+  <div class="entrada-bg"></div>
+  <div class="entrada-content">
+    <span class="entrada-tag">Las Condes, Santiago · Desde 2019</span>
+    <h1 class="entrada-titulo">
+      Donde la cocina<br>chilena se vuelve<br><em>arte.</em>
+    </h1>
+    <p class="entrada-frase">
+      Ingredientes de temporada, técnica francesa y alma chilena. Una experiencia que no se repite dos veces.
+    </p>
+    <div class="entrada-btns">
+      <a href="#reservas" class="btn-dorado">Reservar mesa</a>
+      <a href="#menu" class="btn-outline">Ver menú</a>
+    </div>
+  </div>
+  <div class="entrada-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<section id="menu">
+  <span class="seccion-tag reveal">La carta</span>
+  <h2 class="seccion-titulo reveal">Sabores que<br><em>permanecen.</em></h2>
+  <div class="menu-grid">
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Ceviche de Corvina</div>
+        <div class="menu-desc">Leche de tigre de cilantro, ají amarillo y quinoa crocante</div>
+      </div>
+      <div class="menu-precio">$14.900</div>
+    </div>
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Tataki de Atún</div>
+        <div class="menu-desc">Sésamo negro, vinagreta de miso y palta ahumada</div>
+      </div>
+      <div class="menu-precio">$16.500</div>
+    </div>
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Risotto de Locos</div>
+        <div class="menu-desc">Arborio cremoso, locos salteados y aceite de merkén</div>
+      </div>
+      <div class="menu-precio">$19.900</div>
+    </div>
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Lomo de Wagyu</div>
+        <div class="menu-desc">Punto medio, puré trufado y reducción de carménère</div>
+      </div>
+      <div class="menu-precio">$34.900</div>
+    </div>
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Congrio en Papillote</div>
+        <div class="menu-desc">Hierbas del jardín, mantequilla de anchoas y papa nativa</div>
+      </div>
+      <div class="menu-precio">$22.500</div>
+    </div>
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Pato Laqueado</div>
+        <div class="menu-desc">Miel de ulmo, puré de betarraga y chips de yuca</div>
+      </div>
+      <div class="menu-precio">$26.900</div>
+    </div>
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Mil Hojas de Manjar</div>
+        <div class="menu-desc">Hojaldre artesanal, manjar casero y frambuesas frescas</div>
+      </div>
+      <div class="menu-precio">$9.900</div>
+    </div>
+    <div class="menu-item reveal">
+      <div>
+        <div class="menu-nombre">Esfera de Chocolate</div>
+        <div class="menu-desc">Cacao 70%, centro de lúcuma y helado de vainilla de Tahití</div>
+      </div>
+      <div class="menu-precio">$11.500</div>
+    </div>
+  </div>
+</section>
+
+<section id="reservas">
+  <div class="reservas-grid">
+    <div class="reservas-left">
+      <span class="seccion-tag reveal">Reservas</span>
+      <h2 class="seccion-titulo reveal">Tu mesa,<br><em>cuando quieras.</em></h2>
+      <p class="reservas-desc reveal">Reserva en línea en menos de 2 minutos. Elige tu fecha, horario y número de personas. Confirmación inmediata por correo y WhatsApp.</p>
+      <div class="reservas-info">
+        <div class="reservas-info-item reveal">
+          <div class="ri-icon">🕐</div>
+          <div class="ri-texto">
+            <strong>Horario almuerzo</strong>
+            <span>Martes a domingo · 13:00 a 16:00 hrs</span>
+          </div>
+        </div>
+        <div class="reservas-info-item reveal">
+          <div class="ri-icon">🌙</div>
+          <div class="ri-texto">
+            <strong>Horario cena</strong>
+            <span>Martes a domingo · 20:00 a 23:30 hrs</span>
+          </div>
+        </div>
+        <div class="reservas-info-item reveal">
+          <div class="ri-icon">👥</div>
+          <div class="ri-texto">
+            <strong>Grupos grandes</strong>
+            <span>Más de 8 personas escríbenos al WhatsApp</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="calendly-wrap reveal">
+      <div style="font-size:2rem;margin-bottom:12px;">📅</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:8px;">Elige tu fecha</div>
+      <div style="font-size:0.78rem;color:var(--texto);margin-bottom:24px;">Sistema de reservas en línea</div>
+      <a href="https://calendly.com/restoalonso" target="_blank" class="btn-dorado">Abrir calendario →</a>
+    </div>
+  </div>
+</section>
+
+<section id="chef">
+  <div class="chef-img"></div>
+  <div class="chef-content">
+    <span class="seccion-tag reveal">El Chef</span>
+    <p class="chef-cita reveal">"Cocinar es recordar de dónde venimos y <em>soñar a dónde vamos.</em>"</p>
+    <p class="chef-bio reveal">Alonso Cifuentes comenzó su carrera en los mercados del sur de Chile, donde aprendió que el mejor ingrediente no se compra: se cultiva con tiempo. Tras formarse en Lyon y trabajar tres años en un restaurante con estrella Michelin en Madrid, volvió a Santiago con una sola misión: demostrar que la cocina chilena merece un lugar en la mesa del mundo.</p>
+    <div class="chef-firma reveal">
+      Alonso Cifuentes
+      <small>Chef y fundador · Restó Alonso</small>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <span class="seccion-tag reveal">Galería</span>
+  <h2 class="seccion-titulo reveal">Cada plato,<br><em>una historia.</em></h2>
+  <div class="galeria-grid">
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Plato principal"/>
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Restaurante"/>
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Postre"/>
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Entrada"/>
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Ambiente"/>
+    </div>
+  </div>
+</section>
+
+<section id="eventos">
+  <span class="seccion-tag reveal">Eventos privados</span>
+  <h2 class="seccion-titulo reveal">Momentos que<br><em>no se olvidan.</em></h2>
+  <div class="eventos-grid">
+    <div class="evento-card reveal">
+      <span class="evento-num">01</span>
+      <div class="evento-nombre">Cenas privadas</div>
+      <p class="evento-desc">Salón privado para hasta 20 personas. Menú degustación personalizado, maridaje incluido y atención exclusiva de principio a fin.</p>
+    </div>
+    <div class="evento-card reveal">
+      <span class="evento-num">02</span>
+      <div class="evento-nombre">Almuerzos corporativos</div>
+      <p class="evento-desc">Menú ejecutivo para tu equipo. Ambiente reservado, servicio ágil y opciones para todos los requerimientos dietéticos.</p>
+    </div>
+    <div class="evento-card reveal">
+      <span class="evento-num">03</span>
+      <div class="evento-nombre">Celebraciones</div>
+      <p class="evento-desc">Cumpleaños, aniversarios, propuestas. Coordinamos cada detalle para que solo tengas que preocuparte de disfrutar.</p>
+    </div>
+  </div>
+</section>
+
+<section id="testimonios">
+  <span class="seccion-tag reveal">Lo que dicen</span>
+  <h2 class="seccion-titulo reveal">Experiencias<br><em>reales.</em></h2>
+  <div class="testimonios-grid">
+    <div class="test-card reveal">
+      <div class="test-estrellas">★★★★★</div>
+      <p class="test-texto">"El lomo de Wagyu fue lo mejor que he comido en Santiago. El servicio, impecable. Ya reservé para la próxima semana."</p>
+      <div class="test-autor"><strong>Catalina Morales</strong>Las Condes, Santiago</div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-estrellas">★★★★★</div>
+      <p class="test-texto">"Celebramos el aniversario de la empresa acá y fue todo perfecto. El chef salió a saludar y eso marcó la diferencia."</p>
+      <div class="test-autor"><strong>Rodrigo Fernández</strong>Providencia, Santiago</div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-estrellas">★★★★★</div>
+      <p class="test-texto">"El ceviche de corvina es una obra de arte. Vine desde Viña del Mar solo por volver a comerlo. Vale cada kilómetro."</p>
+      <div class="test-autor"><strong>Valentina Reyes</strong>Viña del Mar</div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contacto-grid">
+    <div>
+      <span class="seccion-tag reveal">Contacto</span>
+      <h2 class="seccion-titulo reveal">Estamos<br><em>esperándote.</em></h2>
+      <div class="contacto-info">
+        <div class="ci-item reveal">
+          <strong>Dirección</strong>
+          <p>Av. Isidora Goyenechea 3000<br>Las Condes, Santiago</p>
+        </div>
+        <div class="ci-item reveal">
+          <strong>Horario</strong>
+          <p>Martes a domingo<br>Almuerzo 13:00 – 16:00 · Cena 20:00 – 23:30</p>
+        </div>
+        <div class="ci-item reveal">
+          <strong>WhatsApp</strong>
+          <p><a href="https://wa.me/56939665163">+56 9 3966 5163</a></p>
+        </div>
+        <div class="correos-row reveal">
+          <a href="mailto:reservas@restoalonso.cl" class="correo-item">
+            <div class="correo-dot"></div>reservas@restoalonso.cl
+          </a>
+          <a href="mailto:eventos@restoalonso.cl" class="correo-item">
+            <div class="correo-dot"></div>eventos@restoalonso.cl
+          </a>
+          <a href="mailto:contacto@restoalonso.cl" class="correo-item">
+            <div class="correo-dot"></div>contacto@restoalonso.cl
+          </a>
+        </div>
+      </div>
+      <div class="mapa-wrap reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.8!2d-70.5969!3d-33.4189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDI1JzA4LjEiUyA3MMKwMzUnNDguOCJX!5e0!3m2!1ses!2scl!4v1620000000000!5m2!1ses!2scl" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="contacto-form-wrap reveal">
+      <div class="form-grupo">
+        <label>Tu nombre</label>
+        <input type="text" id="c-nombre" placeholder="Ej: María González"/>
+      </div>
+      <div class="form-grupo">
+        <label>Tipo de reserva</label>
+        <select id="c-tipo">
+          <option value="">Selecciona...</option>
+          <option>Mesa para almuerzo</option>
+          <option>Mesa para cena</option>
+          <option>Evento privado</option>
+          <option>Almuerzo corporativo</option>
+          <option>Celebración especial</option>
+        </select>
+      </div>
+      <div class="form-grupo">
+        <label>Número de personas</label>
+        <select id="c-personas">
+          <option value="">Selecciona...</option>
+          <option>1 - 2 personas</option>
+          <option>3 - 4 personas</option>
+          <option>5 - 6 personas</option>
+          <option>7 - 8 personas</option>
+          <option>Más de 8 personas</option>
+        </select>
+      </div>
+      <div class="form-grupo">
+        <label>Mensaje (opcional)</label>
+        <textarea id="c-mensaje" placeholder="Fecha preferida, ocasión especial, alergias alimentarias..."></textarea>
+      </div>
+      <button class="form-submit" onclick="enviar()">Enviar por WhatsApp →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="foot-logo">Restó<span>Alonso</span></div>
+    <div class="foot-sub">Cocina de Autor · Las Condes · Santiago</div>
+  </div>
+  <div class="foot-right">
+    <div class="redes-row">
+      <a href="https://instagram.com/restoalonso" class="red-btn" target="_blank">📸</a>
+      <a href="https://tiktok.com/@restoalonso" class="red-btn" target="_blank">🎵</a>
+      <a href="https://wa.me/56939665163" class="red-btn" target="_blank">💬</a>
+    </div>
+    <div class="foot-copy">© Restó Alonso 2025 · Todos los derechos reservados</div>
+  </div>
+</footer>
+
+</main>
+
+<a class="wa-float" href="https://wa.me/56939665163?text=Hola%2C%20quisiera%20reservar%20una%20mesa%20en%20Rest%C3%B3%20Alonso" target="_blank">💬</a>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function enviar() {
+  const nombre = document.getElementById('c-nombre').value.trim();
+  const tipo = document.getElementById('c-tipo').value;
+  const personas = document.getElementById('c-personas').value;
+  const mensaje = document.getElementById('c-mensaje').value.trim();
+  if (!nombre || !tipo || !personas) {
+    alert('Por favor completa los campos obligatorios.');
+    return;
+  }
+  let txt = `Hola Restó Alonso 👋\n\nMe llamo *${nombre}* y quisiera:\n*${tipo}* para *${personas}*`;
+  if (mensaje) txt += `\n\nDetalles: ${mensaje}`;
+  txt += `\n\nQuedo atento/a, gracias.`;
+  window.open('https://wa.me/56939665163?text=' + encodeURIComponent(txt), '_blank');
+}
+</script>
+</body>
+</html>
