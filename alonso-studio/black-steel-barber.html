@@ -238,27 +238,47 @@
       position: relative;
       height: 100vh;
       min-height: 700px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
 
-    .hero-izq {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 120px 80px 80px 120px;
-      background: var(--g1);
+    /* Video de fondo */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
     }
 
-    .hero-izq::after {
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Overlay en dos capas: oscurece sin matar las palabras */
+    .hero-video::after {
       content: '';
       position: absolute;
-      right: -1px; top: 0; bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(201,168,76,.3), transparent);
+      inset: 0;
+      /* Capa base oscura + viñeta lateral izquierda más intensa para el texto */
+      background:
+        radial-gradient(ellipse 80% 100% at 30% 50%, rgba(6,6,10,.72) 0%, transparent 70%),
+        linear-gradient(to right, rgba(6,6,10,.85) 0%, rgba(6,6,10,.55) 45%, rgba(6,6,10,.35) 100%);
+    }
+
+    /* Contenido centrado-izquierda sobre el video */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1360px;
+      padding: 0 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .hero-num {
@@ -266,86 +286,48 @@
       font-size: 0.7rem;
       letter-spacing: .2em;
       color: var(--gr);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .hero-titulo {
       font-family: var(--ft);
-      font-size: clamp(3.5rem, 5.5vw, 7rem);
+      font-size: clamp(4rem, 6.5vw, 8rem);
       font-weight: 300;
-      line-height: .95;
+      line-height: .93;
       letter-spacing: -.02em;
       margin-bottom: 24px;
+      /* Sombra de texto suave para garantizar legibilidad sobre video */
+      text-shadow: 0 2px 40px rgba(0,0,0,.6), 0 0 80px rgba(0,0,0,.4);
     }
 
     .hero-titulo em { font-style: italic; color: var(--do); }
 
     .hero-sub {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--b2);
       line-height: 1.75;
-      max-width: 400px;
+      max-width: 480px;
       margin-bottom: 44px;
+      text-shadow: 0 1px 20px rgba(0,0,0,.8);
     }
 
     .hero-btns {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 56px;
     }
 
-    .hero-stats {
-      display: flex;
-      gap: 44px;
-    }
-
-    .hstat strong {
-      display: block;
-      font-family: var(--ft);
-      font-size: 2.2rem;
-      font-weight: 300;
-      color: var(--do);
-      line-height: 1;
-    }
-
-    .hstat span {
-      font-size: 0.65rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gr);
-      margin-top: 4px;
-      display: block;
-    }
-
-    .hero-der {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-der img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 20%;
-      filter: brightness(.45) saturate(.6);
-    }
-
-    .hero-der-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, var(--g1) 0%, transparent 40%);
-    }
-
+    /* Badge horario flotante abajo-derecha */
     .hero-horario {
       position: absolute;
       bottom: 48px;
-      right: 48px;
-      background: rgba(6,6,10,.85);
+      right: 60px;
+      z-index: 2;
+      background: rgba(6,6,10,.82);
       border: 1px solid rgba(201,168,76,.2);
       border-radius: 8px;
       padding: 18px 24px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
     }
 
     .hero-horario .hh-label {
@@ -1129,9 +1111,30 @@
      INICIO / HERO
 ═══════════════════════════════════════════ -->
 <section id="inicio">
-  <!-- Izquierda -->
-  <div class="hero-izq">
-    <p class="hero-num rv">— 01 / Inicio</p>
+
+  <!-- VIDEO DE FONDO -->
+  <div class="hero-video">
+    <!--
+      Video libre de derechos de barbería — Pexels
+      Se carga en loop silencioso, sin controles, no se pausa
+    -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1400&auto=format&fit=crop&q=80"
+    >
+      <!-- Fuente principal: barbero trabajando, ambiente oscuro -->
+      <source src="https://videos.pexels.com/video-files/3912516/3912516-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+      <!-- Fallback por si el video no carga: se muestra el poster -->
+    </video>
+  </div>
+
+  <!-- CONTENIDO SOBRE EL VIDEO -->
+  <div class="hero-content">
+    <p class="hero-num rv">— Black Steel Barbería & Lounge</p>
 
     <h1 class="hero-titulo rv d1">
       Tu imagen<br />
@@ -1152,42 +1155,21 @@
       </a>
       <a href="#servicios" class="btn-ghost">Ver servicios</a>
     </div>
-
-    <div class="hero-stats rv d4">
-      <div class="hstat">
-        <strong>+1.000</strong>
-        <span>Clientes atendidos</span>
-      </div>
-      <div class="hstat">
-        <strong>4,8 ★</strong>
-        <span>488 reseñas</span>
-      </div>
-      <div class="hstat">
-        <strong>4</strong>
-        <span>Barberos cert.</span>
-      </div>
-    </div>
   </div>
 
-  <!-- Derecha: imagen -->
-  <div class="hero-der">
-    <img
-      src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1400&auto=format&fit=crop&q=80"
-      alt="Black Steel Barbería interior"
-    />
-    <div class="hero-der-overlay"></div>
-
-    <div class="hero-horario">
-      <div class="hh-label">Horario de atención</div>
-      <div class="hh-row">Lunes – Sábado <span>11:00 – 21:00 hrs</span></div>
-      <div class="hh-row">Domingo <span style="color:var(--gr)">Cerrado</span></div>
-    </div>
+  <!-- Badge horario -->
+  <div class="hero-horario">
+    <div class="hh-label">Horario de atención</div>
+    <div class="hh-row">Lunes – Sábado <span>11:00 – 21:00 hrs</span></div>
+    <div class="hh-row">Domingo <span style="color:var(--gr)">Cerrado</span></div>
   </div>
 
+  <!-- Scroll hint -->
   <div class="hero-scroll">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
+
 </section>
 
 
